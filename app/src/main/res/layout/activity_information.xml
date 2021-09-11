@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".information">
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginVertical="7dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:paddingLeft="10dp"-->
+    <!--                android:text="Name"-->
+    <!--                android:textSize="15dp" />-->
+
+    <!--            <EditText-->
+    <!--                android:id="@+id/donor_name"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="2"-->
+    <!--                android:fontFamily="sans-serif-light"-->
+    <!--                android:hint="Enter Name"-->
+    <!--                android:inputType="text"-->
+    <!--                android:textAppearance="?android:textAppearanceMedium" />-->
+
+
+    <!--        </LinearLayout>-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginVertical="7dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:paddingLeft="10dp"-->
+    <!--                android:text="People"-->
+    <!--                android:textSize="15dp" />-->
+
+    <!--            <EditText-->
+    <!--                android:id="@+id/people"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="2"-->
+    <!--                android:fontFamily="sans-serif-light"-->
+    <!--                android:hint="Enter People"-->
+    <!--                android:inputType="text"-->
+    <!--                android:textAppearance="?android:textAppearanceMedium" />-->
+
+
+    <!--        </LinearLayout>-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginVertical="7dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:paddingLeft="10dp"-->
+    <!--                android:text="Main course"-->
+    <!--                android:textSize="15dp" />-->
+
+    <!--            <EditText-->
+    <!--                android:id="@+id/main_course"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="2"-->
+    <!--                android:fontFamily="sans-serif-light"-->
+    <!--                android:hint="Enter Main Course"-->
+    <!--                android:inputType="text"-->
+    <!--                android:textAppearance="?android:textAppearanceMedium" />-->
+
+
+    <!--        </LinearLayout>-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="10dp"-->
+    <!--            android:orientation="horizontal">-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginVertical="7dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:paddingLeft="10dp"-->
+    <!--                android:text="Adress"-->
+    <!--                android:textSize="15dp" />-->
+
+    <!--            <EditText-->
+    <!--                android:id="@+id/donor_address"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_weight="2"-->
+    <!--                android:fontFamily="sans-serif-light"-->
+    <!--                android:hint="Enter Address"-->
+    <!--                android:inputType="text"-->
+    <!--                android:textAppearance="?android:textAppearanceMedium" />-->
+
+
+    <!--        </LinearLayout>-->
+
+    <!--     -->
+    <!--        -->
+
+
+    <!--    </LinearLayout>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextField1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Donor Address">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/donor_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextField2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Main Course">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/main_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextField3"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="People">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/people"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextField4"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Donor name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/donor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/donation"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:text="Donation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/donation" />
+
+        <ImageView
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_camera_24" />
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+           />
+
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+
+
+
