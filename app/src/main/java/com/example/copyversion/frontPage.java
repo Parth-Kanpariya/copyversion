@@ -117,16 +117,16 @@ public class frontPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-              if(snapshot.exists()) {
-                  for (DataSnapshot ds : snapshot.getChildren()) {
-                      String donorName = ds.child("donorName").getValue(String.class);
-                      String donorAddress = ds.child("donorAddress").getValue(String.class);
-                      String people = ds.child("people").getValue(String.class);
-                      String mainCourse = ds.child("donorMainCourse").getValue(String.class);
-//                      Bitmap photo=ds.child("FoodPhoto").getValue(Bitmap.class);
-                      List.add(new DonorInfo(donorName, people, mainCourse, donorAddress));
-                  }
-              }
+                if(snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String donorName = ds.child("donorName").getValue(String.class);
+                        String donorAddress = ds.child("donorAddress").getValue(String.class);
+                        String people = ds.child("people").getValue(String.class);
+                        String mainCourse = ds.child("donorMainCourse").getValue(String.class);
+                        String foodPhotUrl=ds.child("foodPhotoUrl").getValue(String.class);
+                        List.add(new DonorInfo(donorName, people, mainCourse, donorAddress,foodPhotUrl));
+                    }
+                }
 
 
                 Collections.reverse(List);

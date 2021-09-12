@@ -1,6 +1,10 @@
 package com.example.copyversion;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +15,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo>{
@@ -54,7 +62,19 @@ public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo>
         // then according to the position of the view assign the desired TextView 4 for the same
         TextView textView4 = currentItemView.findViewById(R.id.demo4);
         textView4.setText(currentNumberPosition.getPeople());
-//
+
+
+        ImageView imageView1 = currentItemView.findViewById(R.id.show_photo);
+        String s= (currentNumberPosition.getFoodPhotoUrl());
+
+        if(s!=null)
+        {
+            Picasso.get().load(s).into(imageView1);
+
+        }
+
+
+
 
 
 
