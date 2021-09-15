@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.squareup.picasso.Picasso;
 
 public class FullInfoOfPost extends AppCompatActivity {
 
@@ -30,6 +33,7 @@ public class FullInfoOfPost extends AppCompatActivity {
         TextView t9=findViewById(R.id.textView9);
         TextView t6=findViewById(R.id.textView6);
         TextView t4=findViewById(R.id.textView4);
+        ImageView imageView2 = findViewById(R.id.image);
 
 
         Intent i=getIntent();
@@ -38,5 +42,11 @@ public class FullInfoOfPost extends AppCompatActivity {
         t9.setText(x.getPeople());
         t6.setText(x.getDonorMainCourse());
         t4.setText(x.getDonorAddress());
+        String s = (x.getFoodPhotoUrl());
+        if(s!=null)
+        {
+            Picasso.get().load(s).into(imageView2);
+
+        }
     }
 }

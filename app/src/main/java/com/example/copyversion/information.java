@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -264,12 +265,14 @@ public class information extends AppCompatActivity {
 
         // below line is for checking weather the
         // edittext fields are empty or not.
-        if (TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address)) {
-            // if the text fields are empty
-            // then show the below message.
-            Toast.makeText(information.this, "Please Add some data", Toast.LENGTH_SHORT).show();
-        } else {
+        if(TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address) )
+        {
+            Toast.makeText(information.this, "Please Add complete Data", Toast.LENGTH_SHORT).show();
+        }
+        else
+         {
             addToFirebase(name, maincourse, peple, address, uriIntoString);
+
 
         }
 

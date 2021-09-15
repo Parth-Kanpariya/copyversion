@@ -48,8 +48,8 @@ public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo>
 
 
         // then according to the position of the view assign the desired TextView 1 for the same
-        TextView textView1 = currentItemView.findViewById(R.id.demo1);
-        textView1.setText(currentNumberPosition.getDonorName());
+//        TextView textView1 = currentItemView.findViewById(R.id.demo1);
+//        textView1.setText(currentNumberPosition.getDonorName());
 
         // then according to the position of the view assign the desired TextView 2 for the same
         TextView textView2 = currentItemView.findViewById(R.id.demo2);

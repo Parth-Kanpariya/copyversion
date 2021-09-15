@@ -1,67 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
     app:cardCornerRadius="15dp"
-    android:layout_margin="8dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#b159c9"
-    android:orientation="vertical">
+    app:cardElevation="16dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true"
 
-    <TextView
+    >
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fontFamily="sans-serif-light"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
-        android:id="@+id/demo1"
-       />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="sans-serif-light"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
-        android:id="@+id/demo2"
-        />
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="sans-serif-light"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
-        android:id="@+id/demo3"
-        />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            app:cardCornerRadius="15dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="sans-serif-light"
-        android:textSize="20sp"
-        android:layout_margin="5dp"
-        android:id="@+id/demo4"
-        />
+            <ImageView
+                android:id="@+id/show_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:contentDescription="post info" />
+        </com.google.android.material.card.MaterialCardView>
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:fontFamily="sans-serif-light"-->
-<!--        android:textSize="20sp"-->
-<!--        android:layout_margin="5dp"-->
-<!--        android:text="hii"-->
-<!--        android:id="@+id/demo5"-->
-<!--        />-->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1">
 
-    <ImageView
-        android:id="@+id/show_photo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        />
+            <!--            android:background="#b159c9"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/demo3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:textAllCaps="true"
+                        android:textFontWeight="@android:integer/config_longAnimTime"
+                        android:textSize="15sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/demo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:textFontWeight="@android:integer/config_longAnimTime"
+                        android:textSize="15sp" />
+
+                </com.google.android.material.card.MaterialCardView>
 
 
-</LinearLayout>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/demo4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:textFontWeight="@android:integer/config_longAnimTime"
+                        android:textSize="15sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--                <com.google.android.material.card.MaterialCardView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:visibility="invisible"-->
+                <!--                    android:layout_margin="5dp">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:fontFamily="sans-serif-light"-->
+                <!--                        android:textSize="15sp"-->
+                <!--                        android:layout_margin="5dp"-->
+                <!--                        android:visibility="invisible"-->
+                <!--                        android:layout_weight="1"-->
+                <!--                        android:id="@+id/demo1"-->
+                <!--                        />-->
+                <!--                </com.google.android.material.card.MaterialCardView>-->
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

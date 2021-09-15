@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/outline_restaurant_24.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_front_page.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_full_info_of_post.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_information.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_main.xml" value="0.20625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/demo.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/shadow.xml" value="0.103125" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/additems.xml" value="0.2234375" />
       </map>
     </option>

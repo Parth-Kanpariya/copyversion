@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">copyversion</string>
+    <string name="app_name">ShareMeal</string>
+    <string name="name">Name</string>
+    <string name="textview">TextView</string>
+    <string name="people">People</string>
+    <string name="maincourse">MainCourse</string>
+    <string name="address">Address</string>
+    <string name="todo">TODO</string>
 </resources>

@@ -16,6 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Copyversion">
+        <receiver android:name=".broadcast">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".FullInfoOfPost"
             android:exported="true" />

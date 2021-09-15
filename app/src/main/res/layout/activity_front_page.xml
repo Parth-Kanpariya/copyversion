@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4a2a73"
-    tools:context=".frontPage">
 
+    tools:context=".frontPage">
+<!--    android:background="#4a2a73"-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -16,8 +16,9 @@
         android:layout_height="match_parent"
         tools:context=".ShowPost"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10.0sp"
+        android:dividerHeight="20.0sp"
         android:layout_margin="15dp"
+        android:scrollbars="none"
         android:id="@+id/list" />
 
 
