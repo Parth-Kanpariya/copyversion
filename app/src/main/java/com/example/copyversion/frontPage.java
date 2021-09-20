@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -29,11 +32,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class frontPage extends AppCompatActivity {
+public class frontPage extends AppCompatActivity implements FeedAdapter.ListItemClickListener {
 
     private DatabaseReference databaseReference;
     private ArrayList<String> list;
     private ArrayAdapter<String> adapter;
+    private ArrayList<DonorInfo> List = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,57 +66,29 @@ public class frontPage extends AppCompatActivity {
         });
 
 
-        //temporary
-//          String name= getIntent().getStringExtra("name");
-//          String address= getIntent().getStringExtra("address");
-//          String maincourse= getIntent().getStringExtra("maincourse");
-//          String peple= getIntent().getStringExtra("peple");
-//          TextView post1=findViewById(R.id.text_view_post1);
-//        TextView post2=findViewById(R.id.text_view_post2);
-//        TextView post3=findViewById(R.id.text_view_post3);
-//        TextView post4=findViewById(R.id.text_view_post4);
-//          post1.setText(name);
-//        post2.setText(address);
-//        post3.setText(maincourse);
-//        post4.setText(peple);
-        //
-
-
-//        Bundle extras = getIntent().getExtras();
-//        if (extras != null) {
-//
-//            Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//
-//                }
-//            }, 10000);
-
-        //The key argument here must match that used in the other activity
-//        }
-
-
         getdata();
 
 
     }
 
 
-
     private void getdata() {
 
         // calling add value event listener method
         // for getting the values from database.
-        ArrayList<DonorInfo> List = new ArrayList<>();
-        ListView l = findViewById(R.id.list);
 
-//        List.add(new DonorInfo("dd","dd","dd","Dd"));
-//        List.add(new DonorInfo("dd","dd","dd","Dd"));
-//        List.add(new DonorInfo("dd","dd","dd","Dd"));
+//        ListView l = findViewById(R.id.list);
+
+
+        //for Recycler view
+        RecyclerView l = findViewById(R.id.list);
+        l.setLayoutManager(new LinearLayoutManager(this));
+
+        ArrayList<DonorInfo> x = new ArrayList<>();
+
 
         final InfoAdapter adapter = new InfoAdapter(this, List);
-        l.setAdapter(adapter);
+
 //        l.setBackgroundResource(R.drawable.rounded_corner);
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -121,20 +98,21 @@ public class frontPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(snapshot.exists()) {
+                if (snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
                         String donorName = ds.child("donorName").getValue(String.class);
                         String donorAddress = ds.child("donorAddress").getValue(String.class);
                         String people = ds.child("people").getValue(String.class);
                         String mainCourse = ds.child("donorMainCourse").getValue(String.class);
-                        String foodPhotUrl=ds.child("foodPhotoUrl").getValue(String.class);
-                        List.add(new DonorInfo(donorName, people, mainCourse, donorAddress,foodPhotUrl));
+                        String foodPhotUrl = ds.child("foodPhotoUrl").getValue(String.class);
+                        List.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));
                     }
                 }
 
 
                 Collections.reverse(List);
                 adapter.notifyDataSetChanged();
+                l.setAdapter(new FeedAdapter(List, frontPage.this));
 
             }
 
@@ -146,16 +124,6 @@ public class frontPage extends AppCompatActivity {
 
         };
         rootRef.addListenerForSingleValueEvent(eventListener);
-
-        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(frontPage.this, FullInfoOfPost.class);
-                DonorInfo x = (DonorInfo) l.getAdapter().getItem(position);
-                intent.putExtra("hi", x);
-                startActivity(intent);
-            }
-        });
 
 
     }
@@ -172,4 +140,11 @@ public class frontPage extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onListItemClick(int position) {
+        Intent intent = new Intent(frontPage.this, FullInfoOfPost.class);
+        DonorInfo x = List.get(position);
+        intent.putExtra("hi", x);
+        startActivity(intent);
+    }
 }

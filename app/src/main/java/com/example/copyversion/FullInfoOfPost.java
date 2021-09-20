@@ -29,22 +29,21 @@ public class FullInfoOfPost extends AppCompatActivity {
         // Set BackgroundDrawable
         actionBar.setBackgroundDrawable(colorDrawable);
 
-        TextView t2=findViewById(R.id.textView2);
-        TextView t9=findViewById(R.id.textView9);
-        TextView t6=findViewById(R.id.textView6);
-        TextView t4=findViewById(R.id.textView4);
+        TextView t2 = findViewById(R.id.textView2);
+        TextView t9 = findViewById(R.id.textView9);
+        TextView t6 = findViewById(R.id.textView6);
+        TextView t4 = findViewById(R.id.textView4);
         ImageView imageView2 = findViewById(R.id.image);
 
 
-        Intent i=getIntent();
-        DonorInfo x=(DonorInfo) i.getSerializableExtra("hi");
+        Intent i = getIntent();
+        DonorInfo x = (DonorInfo) i.getSerializableExtra("hi");
         t2.setText(x.getDonorName());
         t9.setText(x.getPeople());
         t6.setText(x.getDonorMainCourse());
         t4.setText(x.getDonorAddress());
         String s = (x.getFoodPhotoUrl());
-        if(s!=null)
-        {
+        if (s != null) {
             Picasso.get().load(s).into(imageView2);
 
         }

@@ -265,12 +265,9 @@ public class information extends AppCompatActivity {
 
         // below line is for checking weather the
         // edittext fields are empty or not.
-        if(TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address) )
-        {
+        if (TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address)) {
             Toast.makeText(information.this, "Please Add complete Data", Toast.LENGTH_SHORT).show();
-        }
-        else
-         {
+        } else {
             addToFirebase(name, maincourse, peple, address, uriIntoString);
 
 

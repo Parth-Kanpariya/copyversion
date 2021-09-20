@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo>{
+public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo> {
 
     public InfoAdapter(@NonNull Context context, ArrayList<com.example.copyversion.DonorInfo> arrayList) {
 
@@ -29,6 +29,7 @@ public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo>
         // constructor of the ArrayAdapter class
         super(context, 0, arrayList);
     }
+
 
     @NonNull
     @Override
@@ -44,7 +45,6 @@ public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo>
 
         // get the position of the view from the ArrayAdapter
         com.example.copyversion.DonorInfo currentNumberPosition = getItem(position);
-
 
 
         // then according to the position of the view assign the desired TextView 1 for the same
@@ -65,17 +65,12 @@ public class InfoAdapter extends ArrayAdapter<com.example.copyversion.DonorInfo>
 
 
         ImageView imageView1 = currentItemView.findViewById(R.id.show_photo);
-        String s= (currentNumberPosition.getFoodPhotoUrl());
+        String s = (currentNumberPosition.getFoodPhotoUrl());
 
-        if(s!=null)
-        {
+        if (s != null) {
             Picasso.get().load(s).into(imageView1);
 
         }
-
-
-
-
 
 
         // then return the recyclable view

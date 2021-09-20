@@ -11,16 +11,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ListView
+<!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:context=".ShowPost"-->
+<!--        android:divider="@android:color/transparent"-->
+<!--        android:dividerHeight="20.0sp"-->
+<!--        android:layout_margin="15dp"-->
+<!--        android:scrollbars="none"-->
+<!--        android:id="@+id/list" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ShowPost"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="20.0sp"
         android:layout_margin="15dp"
         android:scrollbars="none"
-        android:id="@+id/list" />
-
+        android:id="@+id/list"
+        android:orientation="vertical"
+        />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -30,7 +38,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="#ff9100"
         android:src="@drawable/outline_restaurant_white_18" />
     <!--        android:src="@drawable/ic_add_pet"/>-->
 </RelativeLayout>
