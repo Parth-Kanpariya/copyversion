@@ -1,12 +1,21 @@
 package com.example.copyversion;
 
+import android.app.Activity;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Bundle;
+
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,6 +33,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,11 +46,20 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class information extends AppCompatActivity  {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link information_Fragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class information_Fragment extends Fragment  {
+
+
     private TextView post;
     private Bitmap photo;
     private EditText people, donorName, mainCourse, donorAddress;
@@ -66,68 +86,45 @@ public class information extends AppCompatActivity  {
     private ArrayAdapter<String> adapter;
 
 
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public information_Fragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment information_Fragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static information_Fragment newInstance(String param1, String param2) {
+        information_Fragment fragment = new information_Fragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information);
-
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        // Define ColorDrawable object and parse color
-        // using parseColor method
-        // with color hash code as its parameter
-        ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#ff9100"));
-        // Set BackgroundDrawable
-        actionBar.setBackgroundDrawable(colorDrawable);
-
-        people = findViewById(R.id.people);
-        donorAddress = findViewById(R.id.donor_address);
-        donorName = findViewById(R.id.donor_name);
-        mainCourse = findViewById(R.id.main_course);
-
-//        post=findViewById(R.id.text_view_post1);
-
-        // below line is used to get the
-        // instance of our FIrebase database.
-        firebaseDatabase = FirebaseDatabase.getInstance();
-
-        // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("Donor"); //Main reference
-
-        // initializing our object
-        // class variable.
-        donorInfo = new DonorInfo();
-
-
-        //to go in camera
-
-        imageView = findViewById(R.id.camera);
-        photos = findViewById(R.id.photo);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent forCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(forCamera, 123);
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(
-                        Intent.createChooser(
-                                intent,
-                                "Select Image from here..."),
-                        123);
-
-
-            }
-
-
-        });
 
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 //        if (requestCode == 123) {
 //            photo = (Bitmap) data.getExtras().get("data");
@@ -142,7 +139,7 @@ public class information extends AppCompatActivity  {
 //
 //        }
         if (requestCode == 123
-                && resultCode == RESULT_OK
+                && resultCode == Activity.RESULT_OK
                 && data != null
                 && data.getData() != null) {
 
@@ -155,9 +152,9 @@ public class information extends AppCompatActivity  {
                         .Images
                         .Media
                         .getBitmap(
-                                getContentResolver(),
+                                getActivity().getContentResolver(),
                                 filePath);
-                imageView.setImageBitmap(bitmap);
+                photos.setImageBitmap(bitmap);
             } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
@@ -176,7 +173,7 @@ public class information extends AppCompatActivity  {
             // Create a storage reference from our app
             StorageReference storageReference = storage.getReference();
             ProgressDialog progressDialog
-                    = new ProgressDialog(this);
+                    = new ProgressDialog(getActivity());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
@@ -214,7 +211,7 @@ public class information extends AppCompatActivity  {
                                     // Dismiss dialog
                                     progressDialog.dismiss();
                                     Toast
-                                            .makeText(information.this,
+                                            .makeText(getContext(),
                                                     "Image Uploaded!!",
                                                     Toast.LENGTH_SHORT)
                                             .show();
@@ -228,7 +225,7 @@ public class information extends AppCompatActivity  {
                             // Error, Image not uploaded
                             progressDialog.dismiss();
                             Toast
-                                    .makeText(information.this,
+                                    .makeText(getContext(),
                                             "Failed " + e.getMessage(),
                                             Toast.LENGTH_SHORT)
                                     .show();
@@ -266,7 +263,7 @@ public class information extends AppCompatActivity  {
         // below line is for checking weather the
         // edittext fields are empty or not.
         if (TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address)) {
-            Toast.makeText(information.this, "Please Add complete Data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please Add complete Data", Toast.LENGTH_SHORT).show();
         } else {
             addToFirebase(name, maincourse, peple, address, uriIntoString);
 
@@ -275,17 +272,18 @@ public class information extends AppCompatActivity  {
 
 
 //                getdata();
-        Intent intent = new Intent(information.this, com.example.copyversion.frontPage.class);
-
-        startActivity(intent);
+//        Intent intent = new Intent(getContext(), com.example.copyversion.frontPage.class);
+//
+//        startActivity(intent);
 
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.additems, menu);
-        return true;
+        inflater.inflate(R.menu.additems, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
@@ -310,7 +308,7 @@ public class information extends AppCompatActivity  {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.push().setValue(donorInfo);
-        Toast.makeText(information.this, "Data added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Data added", Toast.LENGTH_SHORT).show();
 
 
     }
@@ -323,21 +321,84 @@ public class information extends AppCompatActivity  {
 
     }
 
+
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.activity_information, container, false);
+
+//
+//        ActionBar actionBar;
+////        actionBar = getSupportActionBar();
+//        // Define ColorDrawable object and parse color
+//        // using parseColor method
+//        // with color hash code as its parameter
+//        ColorDrawable colorDrawable
+//                = new ColorDrawable(Color.parseColor("#ff9100"));
+//        // Set BackgroundDrawable
+//        actionBar.setBackgroundDrawable(colorDrawable);
 
 
+        Button postButton=rootView.findViewById(R.id.post_button);
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onclicked();
+//                FragmentTransaction fr= getFragmentManager().beginTransaction();
+//                fr.replace(R.id.container,new frontPage_Fragment());
+//                fr.commit();
+
+            }
+        });
+
+        people = rootView.findViewById(R.id.people);
+        donorAddress = rootView.findViewById(R.id.donor_address);
+        donorName = rootView.findViewById(R.id.donor_name);
+        mainCourse = rootView.findViewById(R.id.main_course);
+
+//        post=findViewById(R.id.text_view_post1);
+
+        // below line is used to get the
+        // instance of our FIrebase database.
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        // below line is used to get reference for our database.
+        databaseReference = firebaseDatabase.getReference("Donor"); //Main reference
+
+        // initializing our object
+        // class variable.
+        donorInfo = new DonorInfo();
+
+
+        //to go in camera
+
+        imageView = rootView.findViewById(R.id.camera);
+        photos = rootView.findViewById(R.id.photo);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent forCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(forCamera, 123);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(
+                        Intent.createChooser(
+                                intent,
+                                "Select Image from here..."),
+                        123);
+
+
+            }
+
+
+        });
+
+
+        return rootView;
     }
 
-//    private void dispatchTakePictureIntent() {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        try {
-//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//        } catch (ActivityNotFoundException e) {
-//            // display error state to the user
-//        }
-//    }
 
 
 }

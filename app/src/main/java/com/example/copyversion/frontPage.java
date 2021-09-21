@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +18,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class frontPage extends AppCompatActivity implements FeedAdapter.ListItemClickListener {
+public class frontPage extends AppCompatActivity implements FeedAdapter.ListItemClickListener{
 
     private DatabaseReference databaseReference;
     private ArrayList<String> list;
@@ -40,10 +44,16 @@ public class frontPage extends AppCompatActivity implements FeedAdapter.ListItem
     private ArrayList<DonorInfo> List = new ArrayList<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_page);
+
+//        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+//
+//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
 
 
         ActionBar actionBar;
@@ -56,14 +66,14 @@ public class frontPage extends AppCompatActivity implements FeedAdapter.ListItem
         // Set BackgroundDrawable
         actionBar.setBackgroundDrawable(colorDrawable);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(frontPage.this, information.class);
-                startActivity(intent);
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(frontPage.this, information.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         getdata();
@@ -147,4 +157,23 @@ public class frontPage extends AppCompatActivity implements FeedAdapter.ListItem
         intent.putExtra("hi", x);
         startActivity(intent);
     }
+
+//    information_Fragment information_fragment=new information_Fragment();
+
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.add_post:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.container, information_fragment).commit();
+//                return true;
+//
+////            case R.id.home:
+////                getSupportFragmentManager().beginTransaction().replace(R.id.container, secondFragment).commit();
+////                return true;
+//
+//        }
+//        return false;
+//
+//    }
 }

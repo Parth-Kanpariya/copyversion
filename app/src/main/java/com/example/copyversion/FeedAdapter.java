@@ -50,7 +50,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
 
         DonorInfo address = FeedList.get(position);
         holder.textView2.setText(address.getDonorMainCourse());
-        holder.textView3.setText(address.getDonorMainCourse());
+        holder.textView3.setText(address.getDonorAddress());
         holder.textView4.setText(address.getPeople());
         String s = (address.getFoodPhotoUrl());
 
