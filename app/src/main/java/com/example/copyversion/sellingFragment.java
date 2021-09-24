@@ -24,13 +24,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link frontPage_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItemClickListener {
+public class sellingFragment extends Fragment implements FeedAdapter.ListItemClickListener {
 
     private DatabaseReference databaseReference;
     private ArrayList<String> list;
@@ -51,7 +52,7 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
     private String mParam1;
     private String mParam2;
 
-    public frontPage_Fragment() {
+    public sellingFragment() {
         // Required empty public constructor
     }
 
@@ -87,7 +88,7 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View rootView=inflater.inflate(R.layout.activity_front_page, container, false);
+        View rootView=inflater.inflate(R.layout.fragment_selling, container, false);
 
 
 //        ActionBar actionBar;
@@ -102,7 +103,7 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
 
 
 
-        getdata(rootView);
+          getdata(rootView);
 
 
 
@@ -114,9 +115,9 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
             public void onRefresh() {
 
 
-                getParentFragmentManager().beginTransaction().detach(frontPage_Fragment.this).commit();
-                donationList.clear();
-                getParentFragmentManager().beginTransaction().attach(frontPage_Fragment.this).commit();
+                getParentFragmentManager().beginTransaction().detach(sellingFragment.this).commit();
+                sellingList.clear();
+                getParentFragmentManager().beginTransaction().attach(sellingFragment.this).commit();
 
 //                getdata(rootView);
 
@@ -148,8 +149,11 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
 
 
         //for Recycler view
-        RecyclerView l = rootView.findViewById(R.id.list);
-        l.setLayoutManager(new LinearLayoutManager(getContext()));
+//        RecyclerView l = rootView.findViewById(R.id.list);
+//        l.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView sl=rootView.findViewById(R.id.sellinglist);
+        sl.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         ArrayList<DonorInfo> x = new ArrayList<>();
 
@@ -176,6 +180,10 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
 
                         if(switched.equals("true"))
                         { donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));}
+                        else
+                        {
+                            sellingList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));
+                        }
 
 
 //
@@ -183,10 +191,11 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
                     }
                 }
 
-
+                Collections.reverse(sellingList);
                 Collections.reverse(donationList);
                 adapter.notifyDataSetChanged();
-                l.setAdapter(new FeedAdapter(donationList,frontPage_Fragment.this::onListItemClick));
+//                l.setAdapter(new FeedAdapter(donationList,sellingFragment.this::onListItemClick));
+                sl.setAdapter(new FeedAdapter(sellingList,sellingFragment.this::onListItemClick));
 
             }
 

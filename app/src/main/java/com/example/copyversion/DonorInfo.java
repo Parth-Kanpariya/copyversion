@@ -10,6 +10,7 @@ public class DonorInfo  implements Serializable {
     private String people;
     private String Url;
     private String urlForPhoto;
+    private String switched;
 //
 
     public DonorInfo(String donorName,String people,String mainCourse,String donorAddress,String uploadUrl) {
@@ -19,19 +20,29 @@ public class DonorInfo  implements Serializable {
         this.mainCourse=mainCourse;
         this.urlForPhoto=uploadUrl;
 
+
 //
 
     }
 
-    public DonorInfo(String donorName,String people,String mainCourse,String donorAddress) {
+    public DonorInfo(String donorName,String people,String mainCourse,String donorAddress,String uploadUrl,String switched) {
         this.donorAddress=donorAddress;
         this.donorName=donorName;
         this.people=people;
         this.mainCourse=mainCourse;
+        this.urlForPhoto=uploadUrl;
+        this.switched=switched;
+
+    }
 
 
-//
+    public void setSwitch(String switched) {
+        this.switched = switched;
+    }
 
+    public String getSwitch()
+    {
+        return this.switched;
     }
 
     public String getUrl() {

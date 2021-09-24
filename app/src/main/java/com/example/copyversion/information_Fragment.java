@@ -25,6 +25,7 @@ import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -252,7 +254,7 @@ public class information_Fragment extends Fragment  {
     }
 
 
-    public void onclicked() {
+    public void onclicked(String switched) {
 
 //         getting text from our edittext fields.
         String name = donorName.getText().toString();
@@ -265,9 +267,13 @@ public class information_Fragment extends Fragment  {
         if (TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address)) {
             Toast.makeText(getContext(), "Please Add complete Data", Toast.LENGTH_SHORT).show();
         } else {
-            addToFirebase(name, maincourse, peple, address, uriIntoString);
+            addToFirebase(name, maincourse, peple, address, uriIntoString,switched);
 
-
+            donorName.getText().clear();
+            mainCourse.getText().clear();
+            people.getText().clear();
+            donorAddress.getText().clear();
+            photos.setImageBitmap(null);
         }
 
 
@@ -286,24 +292,15 @@ public class information_Fragment extends Fragment  {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.ic_check:
-                onclicked();
-                return true;
 
 
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void addToFirebase(String name, String maincourse, String peple, String address, String photourl) {
+    private void addToFirebase(String name, String maincourse, String peple, String address, String photourl, String switched) {
         donorInfo.setDonorAddress(address);
         donorInfo.setDonorMainCourse(maincourse);
         donorInfo.setDonorPeople(peple);
         donorInfo.setDonorName(name);
         donorInfo.setFoodPhotoUrl(photourl);
+        donorInfo.setSwitch(switched);
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -340,11 +337,31 @@ public class information_Fragment extends Fragment  {
 //        actionBar.setBackgroundDrawable(colorDrawable);
 
 
+        SwitchMaterial switchMaterial=rootView.findViewById(R.id.donation);
+        final String[] switched = new String[1];
+        switched[0]="true";
+        switchMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked)
+                {
+                    switched[0] ="true";
+                }else {
+                    switched[0] ="false";
+                }
+            }
+        });
+
+
+
+
+
         Button postButton=rootView.findViewById(R.id.post_button);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onclicked();
+                onclicked(switched[0]);
 //                FragmentTransaction fr= getFragmentManager().beginTransaction();
 //                fr.replace(R.id.container,new frontPage_Fragment());
 //                fr.commit();

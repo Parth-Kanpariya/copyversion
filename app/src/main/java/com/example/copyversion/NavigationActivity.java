@@ -32,7 +32,8 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 //        fr.commit();
 
         fr.beginTransaction().add(R.id.container,information_fragment,"2").hide(information_fragment).commit();
-        fr.beginTransaction().add(R.id.container,frontPage_fragment,"1").commit();
+//        fr.beginTransaction().add(R.id.container,frontPage_fragment,"1").commit();
+        fr.beginTransaction().add(R.id.container,homePager_fragment,"1").commit();
 
 
 
@@ -40,6 +41,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
     final information_Fragment information_fragment=new information_Fragment();
     final frontPage_Fragment frontPage_fragment=new frontPage_Fragment();
+    final HomePager_fragment homePager_fragment=new HomePager_fragment();
      Fragment active=frontPage_fragment;
 
     final FragmentManager fr=getSupportFragmentManager();
@@ -64,8 +66,8 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 //                getSupportFragmentManager().beginTransaction().replace(R.id.container, frontPage_fragment).commit();
 //                  x=getSupportFragmentManager().beginTransaction();
 
-                  fr.beginTransaction().hide(active).show(frontPage_fragment).commit();
-                  active=frontPage_fragment;
+                  fr.beginTransaction().hide(active).show(homePager_fragment).commit();
+                  active=homePager_fragment;
 
 //                x.detach(frontPage_fragment);
 //                x.attach(frontPage_fragment);
