@@ -2,6 +2,7 @@ package com.example.copyversion;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -16,7 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.copyversion.ui.main.SectionsPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -91,6 +97,7 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
         View rootView=inflater.inflate(R.layout.activity_front_page, container, false);
 
 
+
 //        ActionBar actionBar;
 //        actionBar = getSupportActionBar();
 //        // Define ColorDrawable object and parse color
@@ -137,6 +144,9 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
 
         return rootView;
     }
+
+
+
 
 
 

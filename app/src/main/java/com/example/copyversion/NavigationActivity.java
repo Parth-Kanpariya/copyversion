@@ -39,8 +39,9 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 //        fr.commit();
 
         fr.beginTransaction().add(R.id.container,profileFragment,"3").hide(profileFragment).commit();
-        fr.beginTransaction().add(R.id.container,information_fragment,"2").hide(information_fragment).commit();
-//        fr.beginTransaction().add(R.id.container,frontPage_fragment,"1").commit();
+//        fr.beginTransaction().add(R.id.container,information_fragment,"4").hide(information_fragment).commit();
+        fr.beginTransaction().add(R.id.container,optionForDaS,"2").hide(optionForDaS).commit();
+////        fr.beginTransaction().add(R.id.container,frontPage_fragment,"1").commit();
         fr.beginTransaction().add(R.id.container,homePager_fragment,"1").commit();
 
 
@@ -51,6 +52,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
     final frontPage_Fragment frontPage_fragment=new frontPage_Fragment();
     final HomePager_fragment homePager_fragment=new HomePager_fragment();
     final ProfileFragment profileFragment=new ProfileFragment();
+    final OptionForDaS optionForDaS =new OptionForDaS();
      Fragment active=frontPage_fragment;
 
     final FragmentManager fr=getSupportFragmentManager();
@@ -65,8 +67,9 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         FragmentTransaction x;
         switch (item.getItemId()) {
             case R.id.add_post:
-                  fr.beginTransaction().hide(active).show(information_fragment).commit();
-                  active=information_fragment;
+//                  fr.beginTransaction().replace(R.id.container,optionForDaS).setReorderingAllowed(true).commit();
+                fr.beginTransaction().hide(active).show(optionForDaS).commit();
+                  active=optionForDaS;
 //                getSupportFragmentManager().beginTransaction().replace(R.id.container, information_fragment).commit();
                 return true;
 
@@ -78,6 +81,8 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                   fr.beginTransaction().hide(active).show(homePager_fragment).commit();
                   active=homePager_fragment;
 
+//                fr.beginTransaction().replace(R.id.container,homePager_fragment).setReorderingAllowed(true).commit();
+
 //                x.detach(frontPage_fragment);
 //                x.attach(frontPage_fragment);
 //                x.commit();
@@ -86,6 +91,9 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
             case R.id.user_id:
                 fr.beginTransaction().hide(active).show(profileFragment).commit();
                 active=profileFragment;
+
+//                fr.beginTransaction().replace(R.id.container,profileFragment).setReorderingAllowed(true).commit();
+//                active=profileFragment;
                 return true;
 
 

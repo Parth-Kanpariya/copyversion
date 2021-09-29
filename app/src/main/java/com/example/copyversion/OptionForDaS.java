@@ -1,12 +1,16 @@
 package com.example.copyversion;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,7 @@ public class OptionForDaS extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button DonationButton,SellButoon;
 
     public OptionForDaS() {
         // Required empty public constructor
@@ -59,6 +64,49 @@ public class OptionForDaS extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_option_for_da_s, container, false);
+
+        View rootView= inflater.inflate(R.layout.fragment_option_for_da_s, container, false);
+
+        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+
+        information_Fragment information_fragment=new information_Fragment();
+        SellingPostFragment sellingPostFragment=new SellingPostFragment();
+        OptionForDaS optionForDaS =new OptionForDaS();
+
+       fragmentManager.beginTransaction().add(R.id.visible,information_fragment).hide(information_fragment).commit();
+       fragmentManager.beginTransaction().add(R.id.visible,sellingPostFragment).hide(sellingPostFragment).commit();
+        DonationButton=rootView.findViewById(R.id.DonatButton);
+        SellButoon=rootView.findViewById(R.id.SellButtom);
+        LinearLayout linearLayout=rootView.findViewById(R.id.OptionDandS);
+
+        DonationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                linearLayout.setVisibility(View.GONE);
+//                 fragmentManager.beginTransaction().replace(R.id.container, information_fragment).setReorderingAllowed(true).commit();
+                fragmentManager.beginTransaction().remove(optionForDaS).show(information_fragment).commit();
+
+
+
+
+            }
+        });
+
+        SellButoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                linearLayout.setVisibility(View.GONE);
+                fragmentManager.beginTransaction().remove(optionForDaS).show(sellingPostFragment).commit();
+//                fragmentManager.beginTransaction().replace(R.id.container, sellingPostFragment).setReorderingAllowed(true).commit();
+            }
+        });
+
+
+        return rootView;
     }
 }

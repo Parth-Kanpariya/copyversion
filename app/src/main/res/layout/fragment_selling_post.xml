@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/information_scroll"
-    tools:context=".information_Fragment">
+    tools:context=".SellingPostFragment">
+
 
 
 
@@ -21,10 +22,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Donor Address">
+            android:hint="Selling Address">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/donor_address"
+                android:id="@+id/seller_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="TextContrastCheck" />
@@ -38,10 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Main Course">
+            android:hint="Approximate Weight">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/main_course"
+                android:id="@+id/Approximate_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="TextContrastCheck" />
@@ -49,21 +50,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField3"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="People">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/people"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="TextContrastCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -72,10 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Donor name">
+            android:layout_marginBottom="20dp"
+            android:hint="Seller name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/donor_name"
+                android:id="@+id/seller_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="TextContrastCheck" />
@@ -84,48 +72,36 @@
 
 
 
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/donation"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_margin="10dp"
-            android:checked="true"
-            android:text="Donation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/donation" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:weightSum="2">
+            <ImageView
+                android:id="@+id/camera_seller"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_camera_24" />
 
-           <ImageView
-               android:id="@+id/camera"
-               android:layout_weight="1"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/ic_baseline_camera_24" />
-
-           <Button
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:background="@color/primaryColor"
-               style="@style/Widget.MaterialComponents.Button.TextButton"
-               android:id="@+id/post_button"
-               android:text="Post"/>
-       </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/primaryColor"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:id="@+id/post_button"
+                android:text="Post"/>
+        </LinearLayout>
 
 
 
         <ImageView
-            android:id="@+id/photo"
+            android:id="@+id/photo_seller"
             android:layout_width="250dp"
             android:layout_height="250dp"
-           />
+            />
 
 
 

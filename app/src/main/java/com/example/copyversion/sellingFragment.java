@@ -2,6 +2,7 @@ package com.example.copyversion;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,7 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +41,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
     private ArrayList<String> list;
     private ArrayAdapter<String> adapter;
     private ArrayList<DonorInfo> donationList = new ArrayList<>();
-    private ArrayList<DonorInfo> sellingList = new ArrayList<>();
+    private ArrayList<SellerInfo> sellingList = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
 
 
@@ -130,6 +134,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
 
 
+        viewPager=rootView.findViewById(R.id.view_pager);
 
 
 
@@ -155,7 +160,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
         sl.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        ArrayList<DonorInfo> x = new ArrayList<>();
+        ArrayList<SellerInfo> x = new ArrayList<>();
 
 
         final InfoAdapter adapter = new InfoAdapter(getContext(), donationList);
@@ -171,15 +176,15 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
                 if (snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        String donorName = ds.child("donorName").getValue(String.class);
-                        String donorAddress = ds.child("donorAddress").getValue(String.class);
-                        String people = ds.child("people").getValue(String.class);
-                        String mainCourse = ds.child("donorMainCourse").getValue(String.class);
+                        String donorName = ds.child("sellerName").getValue(String.class);
+                        String donorAddress = ds.child("sellerAddress").getValue(String.class);
+
+                        String mainCourse = ds.child("sellerApproximate").getValue(String.class);
                         String foodPhotUrl = ds.child("foodPhotoUrl").getValue(String.class);
-                        String switched=ds.child("switch").getValue(String.class).toString();
 
 
-                            sellingList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));
+
+                            sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl));
 
 
                     }
@@ -189,7 +194,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
                 Collections.reverse(donationList);
                 adapter.notifyDataSetChanged();
 //                l.setAdapter(new FeedAdapter(donationList,sellingFragment.this::onListItemClick));
-                sl.setAdapter(new FeedAdapter(sellingList,sellingFragment.this::onListItemClick));
+                sl.setAdapter(new FeedAdapterSell(sellingList,sellingFragment.this::onListItemClick));
 
             }
 
@@ -204,6 +209,13 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
 
     }
+    ViewPager2 viewPager;
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        TabLayout tabLayout = view.findViewById(R.id.tabs);
+//        new TabLayoutMediator(tabLayout, viewPager , (tab, position) -> tab.setText("OBJECT " + (position + 1))).attach();
+//    }
+
 
 
 
@@ -217,8 +229,8 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPost.class);
-        DonorInfo x = sellingList.get(position);
+        Intent intent = new Intent(getContext(), FullInfoOfPostSell.class);
+        SellerInfo x = sellingList.get(position);
         intent.putExtra("hi", x);
         startActivity(intent);
     }
