@@ -128,18 +128,7 @@ public class information_Fragment extends Fragment  {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 123) {
-//            photo = (Bitmap) data.getExtras().get("data");
-//            photos.setImageBitmap(photo);
-//            filePath=data.getData();
-//
-//            uploadImage();
-//
-//
-//            // Create a reference to "mountains.jpg"
-//
-//
-//        }
+
         if (requestCode == 123
                 && resultCode == Activity.RESULT_OK
                 && data != null
@@ -183,7 +172,7 @@ public class information_Fragment extends Fragment  {
             StorageReference ref
                     = storageReference
                     .child(
-                            "images/"
+                            "/images/post/"
                                     + UUID.randomUUID().toString());
 
             // adding listeners on upload
@@ -303,8 +292,14 @@ public class information_Fragment extends Fragment  {
         donorInfo.setSwitch(switched);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.push().setValue(donorInfo);
+        if(switched=="true")
+        {databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation");
+        databaseReference.push().setValue(donorInfo);}
+        else
+        {
+            databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling");
+            databaseReference.push().setValue(donorInfo);
+        }
         Toast.makeText(getContext(), "Data added", Toast.LENGTH_SHORT).show();
 
 

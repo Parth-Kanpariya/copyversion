@@ -9,6 +9,10 @@
         android:id="@+id/add_post"
         android:title="Create"
         android:icon="@drawable/ic_add_post"/>
+    <item
+        android:id="@+id/user_id"
+        android:title="User"
+        android:icon="@drawable/profile_icon"/>
 
 
 </menu>

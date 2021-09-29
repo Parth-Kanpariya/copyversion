@@ -10,32 +10,129 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/front_photo" />
+         android:scaleType="fitXY"
+        android:alpha="0.3"
+        android:src="@drawable/foodphoto" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="135dp"
-        android:background="@color/green"
-        android:text="Login"
-        android:textSize="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:weightSum="3"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="60dp"
-        android:background="@color/green"
-        android:text="sign up"
-        android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ROTLO"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:textAppearance="@font/josefinsanssemibold"
+            android:fontFamily="@font/fontresourcefile"
+            android:layout_marginHorizontal="120dp"
+            android:layout_weight="1"
+            android:textSize="40dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="70dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aim, no faim"
+                android:textAppearance="@font/josefinsanssemibold"
+                android:fontFamily="@font/fontresourcefile"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="50dp"
+                android:textSize="40dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="It feels good to share"
+                android:textAppearance="@font/josefinsanssemibold"
+                android:fontFamily="@font/fontresourcefile"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="18dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="100dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/signin"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/round_corner"
+                android:text="Sign up"
+                android:textAllCaps="false"
+                android:textSize="20dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account?"
+                    android:textAppearance="@font/josefinsanssemibold"
+                    android:fontFamily="@font/fontresourcefile"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_marginHorizontal="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/round_corner"
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textSize="20dp"
+
+                    />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
 
 
     <!--        android:src="@drawable/ic_add_pet"/>-->

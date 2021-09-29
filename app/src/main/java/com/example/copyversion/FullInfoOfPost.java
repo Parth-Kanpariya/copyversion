@@ -19,15 +19,7 @@ public class FullInfoOfPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_info_of_post);
 
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        // Define ColorDrawable object and parse color
-        // using parseColor method
-        // with color hash code as its parameter
-        ColorDrawable colorDrawable
-                = new ColorDrawable(Color.parseColor("#ff9100"));
-        // Set BackgroundDrawable
-        actionBar.setBackgroundDrawable(colorDrawable);
+
 
         TextView t2 = findViewById(R.id.textView2);
         TextView t9 = findViewById(R.id.textView9);

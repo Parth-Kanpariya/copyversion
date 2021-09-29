@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -158,7 +159,7 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
 
 //        l.setBackgroundResource(R.drawable.rounded_corner);
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation");
 
 
         ValueEventListener eventListener = new ValueEventListener() {
@@ -174,8 +175,10 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
                         String foodPhotUrl = ds.child("foodPhotoUrl").getValue(String.class);
                         String switched=ds.child("switch").getValue(String.class).toString();
 
-                        if(switched.equals("true"))
-                        { donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));}
+
+
+                         donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));
+
 
 
 //

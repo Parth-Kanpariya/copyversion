@@ -15,15 +15,20 @@ import android.icu.text.IDNA;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.copyversion.authentication.ui.LoadFrontPhoto;
+import com.example.copyversion.authentication.ui.Login;
+import com.example.copyversion.authentication.ui.signup;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,21 +48,39 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     StorageReference mdatabase;
     BroadcastReceiver broadcastReceiver;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null) {
+
+            startActivity(new Intent(MainActivity.this, NavigationActivity.class));
+            finish();
+        }
+
          broadcastReceiver=new broadcast();
          registerBroadcast();
 
 
-        Button login = (Button) findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
+        Button toGologin = (Button) findViewById(R.id.login);
+        toGologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.example.copyversion.NavigationActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.example.copyversion.authentication.ui.Login.class);
+                startActivity(intent);
+            }
+        });
+
+        Button toGoSignUpPage = (Button) findViewById(R.id.signin);
+        toGoSignUpPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, com.example.copyversion.authentication.ui.signup.class);
                 startActivity(intent);
             }
         });

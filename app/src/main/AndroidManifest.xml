@@ -23,11 +23,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Copyversion">
         <activity
+            android:name=".authentication.ui.LoadFrontPhoto"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
+        <activity
+            android:name=".authentication.ui.Login"
+            android:exported="true" />
+        <activity
+            android:name=".authentication.ui.signup"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".NavigationActivity"
             android:exported="true"
-            android:label="ShareMeal"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop" />
+            android:label="ROTLO"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,17 +70,15 @@
         <activity
             android:name=".FullInfoOfPost"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:label="ROTLO"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="ROTLO"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

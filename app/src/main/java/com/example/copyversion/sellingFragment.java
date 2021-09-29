@@ -162,7 +162,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
 //        l.setBackgroundResource(R.drawable.rounded_corner);
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling");
 
 
         ValueEventListener eventListener = new ValueEventListener() {
@@ -178,15 +178,9 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
                         String foodPhotUrl = ds.child("foodPhotoUrl").getValue(String.class);
                         String switched=ds.child("switch").getValue(String.class).toString();
 
-                        if(switched.equals("true"))
-                        { donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));}
-                        else
-                        {
+
                             sellingList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl));
-                        }
 
-
-//
 
                     }
                 }
@@ -224,7 +218,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
     @Override
     public void onListItemClick(int position) {
         Intent intent = new Intent(getContext(), FullInfoOfPost.class);
-        DonorInfo x = donationList.get(position);
+        DonorInfo x = sellingList.get(position);
         intent.putExtra("hi", x);
         startActivity(intent);
     }
