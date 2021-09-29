@@ -6,12 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.lifecycle.Lifecycle;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.copyversion.R;
 
@@ -22,13 +18,12 @@ import java.util.List;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentStateAdapter {
+public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    private FragmentManager fragmentManager;
-    public final List<Fragment> fragments = new ArrayList<>();
-    public final List<String> fragmentTitle = new ArrayList<>();
+    private final List<Fragment> fragments = new ArrayList<>();
+    private final List<String> fragmentTitle = new ArrayList<>();
 
-    public SectionsPagerAdapter( FragmentActivity fm)
+    public SectionsPagerAdapter(@NonNull FragmentManager fm)
     {
         super(fm);
     }
@@ -39,23 +34,22 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         fragmentTitle.add(title);
     }
 
-//    @NonNull @Override public Fragment getItem(int position)
-//    {
-//        return fragments.get(position);
-//    }
+    @NonNull @Override public Fragment getItem(int position)
+    {
+        return fragments.get(position);
+    }
 
-    @Override public int getItemCount()
+    @Override public int getCount()
     {
         return fragments.size();
     }
 
-
-
-
-
-    @NonNull
+    @Nullable
     @Override
-    public Fragment createFragment(int position) {
-        return fragments.get(position);
+    public CharSequence getPageTitle(int position)
+    {
+        return fragmentTitle.get(position);
     }
+
+
 }

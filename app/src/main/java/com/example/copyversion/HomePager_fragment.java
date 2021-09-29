@@ -2,12 +2,8 @@ package com.example.copyversion;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.example.copyversion.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +28,6 @@ public class HomePager_fragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
 
     public HomePager_fragment() {
         // Required empty public constructor
@@ -70,48 +64,23 @@ public class HomePager_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View rootView= inflater.inflate(R.layout.fragment_home_pager, container, false);
-
 //        binding = ActivityHomePagerBinding.inflate(getLayoutInflater());
 
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter( getActivity());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter( getActivity().getSupportFragmentManager());
         sectionsPagerAdapter.add(new frontPage_Fragment(),"Donation");
         sectionsPagerAdapter.add(new sellingFragment(),"Sell");
 
 
 
-        ViewPager2 viewPager = rootView.findViewById(R.id.view_pager);
+        ViewPager viewPager = rootView.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-//        TabLayout tabs = rootView.findViewById(R.id.tabs);
+        TabLayout tabs = rootView.findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
 
-//        tabs.setupWithViewPager(viewPager);
-
-        viewPager=rootView.findViewById(R.id.view_pager);
 
 
         return rootView;
     }
-
-    ViewPager2 viewPager;
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-        viewPager.setAdapter(new SectionsPagerAdapter(getActivity()));
-        TabLayout tabLayout = view.findViewById(R.id.tabs);
-        new TabLayoutMediator(tabLayout, viewPager,
-                new TabLayoutMediator.TabConfigurationStrategy() {
-                    @Override
-                    public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        tab.setText("hii");//Sets tabs names as mentioned in ViewPagerAdapter fragmentNames array, this can be implemented in many different ways.
-                    }
-                }
-        ).attach();
-
-
-//        TabLayout tabLayout = view.findViewById(R.id.tabs);
-//        new TabLayoutMediator(tabLayout, viewPager , (tab, position) -> tab.setText("OBJECT " + (position + 1))).attach();
-    }
-
 }
