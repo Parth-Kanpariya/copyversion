@@ -1,39 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/visible"
     tools:context=".OptionForDaS">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:outlineSpotShadowColor="@color/primaryColor"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="16dp">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:background="@drawable/circle_corner"
+                android:src="@drawable/logoutil"/>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="70dp"
+            android:outlineSpotShadowColor="@color/primaryColor"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fontresourcefile"
+                android:textSize="30dp"
+                android:text="Want To Share Food?"/>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:outlineSpotShadowColor="@color/primaryColor"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fontresourcefile"
+                android:textSize="15dp"
+                android:text="choose anyone"/>
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
         android:id="@+id/OptionDandS"
         >
 
-        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="15dp"
-            android:id="@+id/DonatButton"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/circle_corner"
-            android:text="Donate"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="30dp"
+                android:outlineSpotShadowColor="@color/primaryColor"
+                app:cardCornerRadius="75dp"
+                app:cardElevation="16dp">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/DonatButton"
+                    android:src="@drawable/food_button1"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/circle_corner"
+                    />
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="15dp"
-            android:id="@+id/SellButtom"
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/fontresourcefile"
+                android:textSize="20dp"
+                android:text="Donate"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:outlineSpotShadowColor="@color/primaryColor"
+                app:cardCornerRadius="75dp"
+                app:cardElevation="16dp">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/SellButtom"
+                    android:src="@drawable/sell_food_button"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/circle_corner"
+                    />
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/fontresourcefile"
+                android:textSize="20dp"
+                android:text="Sell"/>
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/circle_corner"
-            android:text="Sell"/>
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:outlineSpotShadowColor="@color/primaryColor"
+                app:cardCornerRadius="75dp"
+                app:cardElevation="16dp">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/RaiseFoodButton"
+                    android:src="@drawable/raisefood"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/circle_corner"
+                    />
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/fontresourcefile"
+                android:textSize="20dp"
+                android:text="RaiseFood"/>
+        </LinearLayout>
 
     </LinearLayout>
 

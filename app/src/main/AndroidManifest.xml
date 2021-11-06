@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.copyversion">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -10,6 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -36,6 +38,14 @@
 
 
         </activity>
+        <service
+            android:name=".FirebaseMessagingService"
+            android:permission="TODO"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".authentication.ui.Login"
             android:screenOrientation="portrait"
@@ -49,7 +59,9 @@
             android:exported="true"
             android:label="ROTLO"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -72,9 +84,22 @@
             android:name=".FullInfoOfPost"
             android:exported="true"
             android:label="ROTLO"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="example.com/link" android:scheme="http"/>
+                <data android:host="example.com/link" android:scheme="https"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".FullInfoOfPostSell"
+            android:exported="true"
+            android:label="ROTLO"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FullInfoOfPostRaise"
             android:exported="true"
             android:label="ROTLO"
             android:screenOrientation="portrait" />
@@ -84,6 +109,17 @@
             android:label="ROTLO"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="rotlo.com"
+                    android:scheme="https"/>
+                <data
+                    android:host="rotlo.com"
+                    android:scheme="http"/>
+            </intent-filter>
 
         </activity>
     </application>

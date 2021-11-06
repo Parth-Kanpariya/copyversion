@@ -4,9 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/circle_corner.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/dahed_border_for_photo.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_add_photo.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_add_post.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_attach_file_24.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_check.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_home_feed.xml" value="0.2390194075587334" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/kebap.xml" value="0.2390194075587334" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/more_vert.xml" value="0.11388888888888889" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/outline_restaurant_24.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/profile_icon.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/round_corner.xml" value="0.1" />
@@ -37,11 +44,17 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_maps_with_marker.xml" value="0.103125" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_option_for_da_s.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_profile.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_fragment.xml" value="0.103125" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_freagment.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_post.xml" value="0.12946428571428573" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling_post.xml" value="0.20625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/notification.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/shadow.xml" value="0.103125" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/additems.xml" value="0.2234375" />
-        <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1391304347826087" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu_fragment.xml" value="0.103125" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/menu/postmenu.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -44,22 +44,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHolder> {
+public class FeedAdapterRaise extends RecyclerView.Adapter<FeedAdapterRaise.FeedHolder> {
 
     // Main-list item titles will be stored here
-    private ArrayList<SellerInfo> FeedList;
-    private Context context=new MainActivity();
+    private ArrayList<FoodRaiseInfo> FeedList;
+    private Context context;
     final private ListItemClickListener mOnClickListener;
     private FirebaseAuth auth;
-    private MainActivity mainActivity;
 
     // Parameterized constructor of this
     // class to initialize tutorialList
-    public FeedAdapterSell(ArrayList<SellerInfo> FeedList,ListItemClickListener listItemClickListener,Context context) {
+    public FeedAdapterRaise(ArrayList<FoodRaiseInfo> FeedList, ListItemClickListener listItemClickListener,Context context) {
         this.FeedList = FeedList;
-        mOnClickListener=listItemClickListener;
+        mOnClickListener = listItemClickListener;
         this.context=context;
-
     }
 
     // Attach the item layout with the proper xml file
@@ -74,47 +72,17 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
     @Override
     public void onBindViewHolder(@NonNull FeedHolder holder, int position) {
 
-        SellerInfo address = FeedList.get(position);
-        holder.textView2.setText(address.getSellerApproximate());
-        holder.textView3.setText(address.getSellerAddress());
-        holder.textView4.setText(address.getSellerName());
+        FoodRaiseInfo address = FeedList.get(position);
+        holder.textView2.setText(address.getPeople());
+        holder.textView3.setText(address.getRaiserAddress());
+        holder.textView4.setText(address.getRaiserName());
         holder.username.setText(address.getUsername());
         Date createdAt = address.getCurrentTime();//get the date the message was created from parse backend
         long now = new Date().getTime();//get current date
         String convertedDate = DateUtils.getRelativeTimeSpanString(
                 createdAt.getTime(), now, DateUtils.SECOND_IN_MILLIS).toString();
         holder.timeForPost.setText(convertedDate);
-        auth= FirebaseAuth.getInstance();
-
-//        if(address.getUid().equals(auth.getUid())) {
-//            holder.imageViewforKebap.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-//                    MenuInflater inflater = popupMenu.getMenuInflater();
-//                    inflater.inflate(R.menu.postmenu, popupMenu.getMenu());
-//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                        @Override
-//                        public boolean onMenuItemClick(MenuItem item) {
-//                            if (item.getItemId() == R.id.menuDeletePost) {
-//                                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling").child(address.getPostID());
-//                                rootRef.removeValue();
-//                                return true;
-//                            }
-//                            return false;
-//                        }
-//                    });
-//
-//                    popupMenu.show();
-//
-//
-//                }
-//            });
-//        }
-
-
-
+        auth = FirebaseAuth.getInstance();
 
 
         String s = (address.getFoodPhotoUrl());
@@ -144,7 +112,7 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
 
     // The ViewHolder is a java class that stores
     // the reference to the item layout views
-    public class FeedHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
+    public class FeedHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private TextView textView2;
         private TextView textView3;
         private TextView textView4,username;
@@ -172,7 +140,7 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
                     int position1=getAbsoluteAdapterPosition();
 //                    Toast.makeText(context,""+position1,Toast.LENGTH_SHORT).show();
 
-                    SellerInfo d=FeedList.get(position1);
+                    FoodRaiseInfo d=FeedList.get(position1);
                     creatLink(d.getPostID());
                 }
             });
@@ -187,15 +155,15 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
 
         @Override
         public void onClick(View v) {
-            int position=this.getAdapterPosition();
+            int position = this.getAbsoluteAdapterPosition();
             mOnClickListener.onListItemClick(position);
         }
+
         @Override
         public boolean onLongClick(View v) {
 
             int position = getAbsoluteAdapterPosition();
-            SellerInfo info = FeedList.get(position);
-
+            FoodRaiseInfo info = FeedList.get(position);
             if (info.getUid().equals(auth.getUid())) {
                 AlertDialog.Builder alert=new AlertDialog.Builder(context);
                 alert.setTitle("Rotlo");
@@ -205,7 +173,7 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(itemView.getContext(), "Post Deleted", Toast.LENGTH_SHORT).show();
                         FeedList.remove(position);
-                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling").child(info.getPostID());
+                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/Raising").child(info.getPostID());
                         rootRef.removeValue();
                         notifyItemRemoved(position);
                     }
@@ -243,7 +211,7 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
             Uri dynamicLinkUri = dynamicLink.getUri();
 
             String shareLink="https://copyversion.page.link/?"+
-                    "link=https://www.example.com/?postid="+PostId+"?Seller"+
+                    "link=https://www.example.com/?postid="+PostId+"?Raise"+
                     "&apn="+ context.getPackageName() +
                     "&st="+"My Rotlo Link";
 
@@ -278,11 +246,13 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
 
 
 
+
 //
 //
 
     }
-    interface ListItemClickListener{
+
+    interface ListItemClickListener {
         void onListItemClick(int position);
     }
 }

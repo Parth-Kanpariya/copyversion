@@ -3,6 +3,7 @@ package com.example.copyversion.authentication.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +31,7 @@ public class Login extends AppCompatActivity {
     private EditText mEmail, mPassword;
     private FirebaseAuth auth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +45,12 @@ public class Login extends AppCompatActivity {
         mEmail = findViewById(R.id.login_email_address);
         mPassword = findViewById(R.id.login_password);
         Button logintostart = findViewById(R.id.login_start);
+
 //         ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
 //        loadingProgressBar.setVisibility(View.INVISIBLE);
+
+
 
 
         logintostart.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +63,11 @@ public class Login extends AppCompatActivity {
                 } else {
                     //Register User
 //                    loadingProgressBar.setVisibility(View.VISIBLE);
+                    ProgressDialog progressDialog
+                            = new ProgressDialog(Login.this);
+                    progressDialog.setTitle("Login..");
+                    progressDialog.show();
+
                     auth.signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
                             .addOnCompleteListener(
                                     new OnCompleteListener<AuthResult>() {
@@ -65,10 +75,11 @@ public class Login extends AppCompatActivity {
                                         public void onComplete(
                                                 @NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
-                                                Toast.makeText(getApplicationContext(),
-                                                        "Login successful!!",
-                                                        Toast.LENGTH_LONG)
-                                                        .show();
+                                                progressDialog.dismiss();
+//                                                Toast.makeText(getApplicationContext(),
+//                                                        "Login successful!!",
+//                                                        Toast.LENGTH_LONG)
+//                                                        .show();
                                                 Intent intent1
                                                         = new Intent(com.example.copyversion.authentication.ui.Login.this,
                                                         NavigationActivity.class);

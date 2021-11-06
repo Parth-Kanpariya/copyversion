@@ -17,6 +17,61 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+
+        <LinearLayout
+            android:layout_marginTop="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                app:cardCornerRadius="75dp"
+               >
+
+                <ImageView
+                    android:id="@+id/profilePhotoInPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:scaleType="centerCrop" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:backgroundTint="@android:color/transparent"
+                android:outlineProvider="none"
+                app:cardElevation="16dp">
+
+                <TextView
+                    android:id="@+id/UserNameInPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fontresourcefile"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.card.MaterialCardView>
+            <Button
+                android:layout_marginLeft="100dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="20dp"
+                android:id="@+id/more_vertt"
+                android:layout_height="20dp"
+                android:background="@drawable/more_vert"/>
+
+
+        </LinearLayout>
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -99,6 +154,19 @@
                         android:textFontWeight="@android:integer/config_longAnimTime"
                         android:textSize="15sp" />
                 </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:id="@+id/TimeFromPostCreate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="10 am"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="10sp" />
+
+
 
                 <!--                <com.google.android.material.card.MaterialCardView-->
                 <!--                    android:layout_width="match_parent"-->

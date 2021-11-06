@@ -2,6 +2,7 @@ package com.example.copyversion;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Contacts;
+import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
@@ -64,7 +67,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -80,20 +82,22 @@ import java.util.UUID;
  * Use the {@link information_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SellingPostFragment extends Fragment {
+public class RaiseFoodPostFragment extends Fragment {
 
 
     private TextView post;
     private Bitmap photo;
-    private EditText sellerName, Approximate, sellerAddress,ContactNumberSeller;
+    private EditText RaiserName, PeopleField, RaiserAddress,ContactNumberRaiser;
     private Button sendDataButtuon;
     private ArrayList<String> arrayList;
     private ArrayAdapter<String> arr;
     private ImageView imageView, photos;
     private Uri filePath;
+    private FirebaseAuth Auth;
+
     private String uriIntoString,username,profilrphotopost;
     private FirebaseAuth mAuth;
-    private FirebaseAuth Auth;
+
     private double longitude, latitude;
     FusedLocationProviderClient fusedLocationProviderClient;
     String address;
@@ -109,7 +113,7 @@ public class SellingPostFragment extends Fragment {
     // creating a variable for
     // our object class
 
-    SellerInfo sellerInfo;
+    FoodRaiseInfo foodRaiseInfo;
     private ArrayList<String> list;
     private ArrayAdapter<String> adapter;
 
@@ -123,7 +127,7 @@ public class SellingPostFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SellingPostFragment() {
+    public RaiseFoodPostFragment() {
         // Required empty public constructor
     }
 
@@ -175,21 +179,17 @@ public class SellingPostFragment extends Fragment {
 
                 if(bitmap.getByteCount()>144609280)
                 { int nh = (int) ( bitmap.getHeight() * (1024.0 / bitmap.getWidth()) );
-                    Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 1024, nh, true);
+                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 1024, nh, true);
                     Matrix matrix = new Matrix();
 
                     matrix.postRotate(90);
-                    scaled = Bitmap.createBitmap(scaled, 0, 0, scaled.getWidth(), scaled.getHeight(), matrix, true);
+                     scaled = Bitmap.createBitmap(scaled, 0, 0, scaled.getWidth(), scaled.getHeight(), matrix, true);
 
                     imageView.setImageBitmap(scaled);}
                 else
                 {
                     imageView.setImageBitmap(bitmap);
                 }
-
-
-
-
             } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
@@ -290,31 +290,37 @@ public class SellingPostFragment extends Fragment {
     public void onclicked() {
 
 //         getting text from our edittext fields.
-        String name = sellerName.getText().toString();
-        String maincourse = Approximate.getText().toString();
-        String address = sellerAddress.getText().toString();
-        String mobile=ContactNumberSeller.getText().toString();
+        String name =RaiserName.getText().toString();
+        String People = PeopleField.getText().toString();
+        String address = RaiserAddress.getText().toString();
+        String mobile=ContactNumberRaiser.getText().toString();
 
         // below line is for checking weather the
         // edittext fields are empty or not.
-        if (TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(address)&&TextUtils.isEmpty(mobile)) {
+        if (TextUtils.isEmpty(name) && TextUtils.isEmpty(People) && TextUtils.isEmpty(address)&&TextUtils.isEmpty(mobile)) {
             Toast.makeText(getContext(), "Please Add complete Data", Toast.LENGTH_SHORT).show();
 
 
         }
-        else  if(mobile.length()<10 || mobile.length()>10 )
+//        else if(PhoneNumberUtils.isGlobalPhoneNumber("+91"+"mobile"))
+//        {
+//            Toast.makeText(getContext(), "Entered valid contact number", Toast.LENGTH_SHORT).show();
+//        }
+        else  if(mobile.length()<10 || mobile.length()>10)
         {
             Toast.makeText(getContext(), "Please Enter valid contact number", Toast.LENGTH_SHORT).show();
         }
 
-        else {
-            addToFirebase(name, maincourse, address, uriIntoString,mobile);
 
-            sellerName.getText().clear();
-            Approximate.getText().clear();
-            sellerAddress.getText().clear();
+
+        else {
+            addToFirebase(name, People, address, uriIntoString,mobile);
+
+            RaiserName.getText().clear();
+            PeopleField.getText().clear();
+            RaiserAddress.getText().clear();
             imageView.setImageBitmap(null);
-            ContactNumberSeller.getText().clear();
+            ContactNumberRaiser.getText().clear();
         }
 
 
@@ -334,21 +340,22 @@ public class SellingPostFragment extends Fragment {
     }
 
 
-    private void addToFirebase(String name, String maincourse, String address, String photourl,String mobile) {
-        sellerInfo.setSellerAddress(address);
-        sellerInfo.setSellerApproximate(maincourse);
-        sellerInfo.setSellerName(name);
-        sellerInfo.setFoodPhotoUrl(photourl);
+    private void addToFirebase(String name, String People, String address, String photourl,String mobile) {
+        foodRaiseInfo.setRaiserAddress(address);
+        foodRaiseInfo.setPeople(People);
+        foodRaiseInfo.setRaiserName(name);
+        foodRaiseInfo.setFoodPhotoUrl(photourl);
         mAuth = FirebaseAuth.getInstance();
-        sellerInfo.setUid(mAuth.getUid());
-        sellerInfo.setLatitude(latitude);
-        sellerInfo.setLongitude(longitude);
-        sellerInfo.setCurrentTime(new Date());
-        sellerInfo.setContact(mobile);
+        foodRaiseInfo.setUid(mAuth.getUid());
+        foodRaiseInfo.setLatitude(latitude);
+        foodRaiseInfo.setLongitude(longitude);
+        foodRaiseInfo.setContact(mobile);
+        foodRaiseInfo.setCurrentTime(new Date());
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling");
-        databaseReference.push().setValue(sellerInfo);
+        databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/Raising");
+        databaseReference.push().setValue(foodRaiseInfo);
+
 
         FirebaseMessaging.getInstance().subscribeToTopic("all");
 
@@ -361,10 +368,10 @@ public class SellingPostFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
-                    String nameForPost =(snapshot.child("fullName").getValue(String.class));
+                String nameForPost =(snapshot.child("fullName").getValue(String.class));
 
 
-                FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Seller", nameForPost +" Added the new Post"
+                FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Raiser", nameForPost +" Added the new Post"
                         ,getContext(),getActivity());
                 notificationsSender.SendNotifications();
 
@@ -379,13 +386,6 @@ public class SellingPostFragment extends Fragment {
 
         };
         mDatabase.addListenerForSingleValueEvent(eventListener);
-
-
-
-
-
-
-
 
 
         Toast.makeText(getContext(), "Data added", Toast.LENGTH_SHORT).show();
@@ -406,7 +406,7 @@ public class SellingPostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_selling_post, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_raise_food_post, container, false);
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
@@ -424,8 +424,8 @@ public class SellingPostFragment extends Fragment {
 
                 username=(snapshot.child("fullName").getValue(String.class));
                 profilrphotopost= snapshot.child("uri").getValue(String.class);
-                sellerInfo.setUsername(username);
-                sellerInfo.setProfilePhtourl(profilrphotopost);
+                foodRaiseInfo.setUsername(username);
+                foodRaiseInfo.setProfilePhtourl(profilrphotopost);
 
 
 
@@ -439,7 +439,7 @@ public class SellingPostFragment extends Fragment {
         mDatabase.addValueEventListener(eventListener);
 
 
-        Button postButton = rootView.findViewById(R.id.post_button);
+        Button postButton = rootView.findViewById(R.id.Raise_post_button);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -452,10 +452,10 @@ public class SellingPostFragment extends Fragment {
         });
 
 
-        sellerAddress = rootView.findViewById(R.id.seller_address);
-        sellerName = rootView.findViewById(R.id.seller_name);
-        Approximate = rootView.findViewById(R.id.Approximate_weight);
-        ContactNumberSeller=rootView.findViewById(R.id.mobileNumberSeller);
+        RaiserAddress = rootView.findViewById(R.id.Raiser_address);
+        RaiserName = rootView.findViewById(R.id.Raiser_name);
+        PeopleField= rootView.findViewById(R.id.food_weight);
+        ContactNumberRaiser=rootView.findViewById(R.id.mobileNumberRaiser);
 
 //        post=findViewById(R.id.text_view_post1);
 
@@ -464,16 +464,16 @@ public class SellingPostFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("Donor"); //Main reference
+        databaseReference = firebaseDatabase.getReference("Raiser"); //Main reference
 
         // initializing our object
         // class variable.
-        sellerInfo = new SellerInfo();
+        foodRaiseInfo = new FoodRaiseInfo();
 
 
         //to go in camera
 
-        imageView = rootView.findViewById(R.id.camera_seller);
+        imageView = rootView.findViewById(R.id.camera_Raiser);
 //        photos = rootView.findViewById(R.id.photo_seller);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -494,6 +494,7 @@ public class SellingPostFragment extends Fragment {
 
 
         });
+
 
 
         return rootView;

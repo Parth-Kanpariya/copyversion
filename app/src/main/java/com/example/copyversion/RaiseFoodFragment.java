@@ -6,7 +6,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -26,8 +25,6 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,13 +43,14 @@ import java.util.Locale;
  * Use the {@link frontPage_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class sellingFragment extends Fragment implements FeedAdapter.ListItemClickListener {
+public class RaiseFoodFragment extends Fragment implements FeedAdapter.ListItemClickListener {
 
     private DatabaseReference databaseReference;
     private ArrayList<String> list;
     private ArrayAdapter<String> adapter;
     private ArrayList<DonorInfo> donationList = new ArrayList<>();
     private ArrayList<SellerInfo> sellingList = new ArrayList<>();
+    private ArrayList<FoodRaiseInfo> RaisingList = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     private double longitude, latitude;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -67,7 +65,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
     private String mParam1;
     private String mParam2;
 
-    public sellingFragment() {
+    public RaiseFoodFragment() {
         // Required empty public constructor
     }
 
@@ -103,7 +101,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View rootView = inflater.inflate(R.layout.fragment_selling, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_raise_food_fragment, container, false);
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -121,9 +119,9 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
             public void onRefresh() {
 
 
-                getParentFragmentManager().beginTransaction().detach(sellingFragment.this).commit();
-                sellingList.clear();
-                getParentFragmentManager().beginTransaction().attach(sellingFragment.this).commit();
+                getParentFragmentManager().beginTransaction().detach(RaiseFoodFragment.this).commit();
+                RaisingList.clear();
+                getParentFragmentManager().beginTransaction().attach(RaiseFoodFragment.this).commit();
 
 //                getdata(rootView);
 
@@ -152,18 +150,18 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
         //for Recycler view
 //        RecyclerView l = rootView.findViewById(R.id.list);
 //        l.setLayoutManager(new LinearLayoutManager(getContext()));
-        RecyclerView sl = rootView.findViewById(R.id.sellinglist);
+        RecyclerView sl = rootView.findViewById(R.id.Raisinglist);
         sl.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        ArrayList<SellerInfo> x = new ArrayList<>();
+        ArrayList<FoodRaiseInfo> x = new ArrayList<>();
 
 
         final InfoAdapter adapter = new InfoAdapter(getContext(), donationList);
 
 //        l.setBackgroundResource(R.drawable.rounded_corner);
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling");
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/Raising");
 
 
         ValueEventListener eventListener = new ValueEventListener() {
@@ -172,37 +170,39 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
                 if (snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        String donorName = ds.child("sellerName").getValue(String.class);
-                        String donorAddress = ds.child("sellerAddress").getValue(String.class);
+                        String RaiserName = ds.child("raiserName").getValue(String.class);
+                        String RaiserAddress = ds.child("raiserAddress").getValue(String.class);
 
-                        String mainCourse = ds.child("sellerApproximate").getValue(String.class);
+                        String People = ds.child("people").getValue(String.class);
                         String foodPhotUrl = ds.child("foodPhotoUrl").getValue(String.class);
                         String uid = ds.child("uid").getValue(String.class);
                         String username=ds.child("username").getValue(String.class);
-                        Date currentTime=ds.child("currentTime").getValue(Date.class);
                         String profilePhtourl=ds.child("profilePhtourl").getValue(String.class);
+                        Date currentTime=ds.child("currentTime").getValue(Date.class);
                         String contact=ds.child("contact").getValue(String.class);
                         double latiitude = ds.child("latitude").getValue(double.class);
                         double longitude = ds.child("longitude").getValue(double.class);
                         String postID = ds.getKey();
+
                         if(foodPhotUrl==null)
                         {
-                            foodPhotUrl="https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fpost%2Fselling%2F3608aa61-7c94-4e36-bd4b-46dfe62f4403?alt=media&token=24638d50-1e71-4c72-8373-522b62710297";
+                            foodPhotUrl="https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fpost%2Fselling%2F8f62ebcb-3d7f-4f54-a06d-fc50e2d84c73?alt=media&token=95d18879-1068-4be1-9e1d-651fddde9151";
                         }
 
 
-                        sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact));
+                        RaisingList.add(new FoodRaiseInfo(RaiserName, People, RaiserAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact));
 
 
                     }
                 }
 
-                Collections.sort(sellingList,(o1, o2) -> (int) (o2.getCurrentTime().getTime()-o1.getCurrentTime().getTime()));
-                Collections.sort(sellingList, new SortPlacesSelling(latitude,longitude));
+
+
+                Collections.sort(RaisingList,(o1, o2) -> (int) (o2.getCurrentTime().getTime()-o1.getCurrentTime().getTime()));
+                Collections.sort(RaisingList, new SortPlacesRaising(latitude,longitude));
                 adapter.notifyDataSetChanged();
 //                l.setAdapter(new FeedAdapter(donationList,sellingFragment.this::onListItemClick));
-               MainActivity mainActivity=new MainActivity();
-                sl.setAdapter(new FeedAdapterSell(sellingList, sellingFragment.this::onListItemClick,getContext()));
+                sl.setAdapter(new FeedAdapterRaise(RaisingList, RaiseFoodFragment.this::onListItemClick,getContext()));
 
             }
 
@@ -234,8 +234,8 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPostSell.class);
-        SellerInfo x = sellingList.get(position);
+        Intent intent = new Intent(getContext(), FullInfoOfPostRaise.class);
+        FoodRaiseInfo x = RaisingList.get(position);
         intent.putExtra("PostId", x.getPostID());
         startActivity(intent);
     }

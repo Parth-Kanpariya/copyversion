@@ -3,12 +3,22 @@ package com.example.copyversion;
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class SellerInfo  implements Serializable {
 
     private String sellerName,approximate, sellerAddress;
     private String Url;
     private String urlForPhoto;
+    private String UID;
+    private String postID;
+    private String username;
+    private String profilePhtourl;
+    private String Contact;
+    private double longitude;
+    private double latitude;
+    private Date currentTime;
+
 
 //
 
@@ -17,16 +27,39 @@ public class SellerInfo  implements Serializable {
 
     }
 
-    public SellerInfo (String sellerName,String approximate,String sellerAddress,String uploadUrl) {
+    public SellerInfo (String sellerName,String approximate,String sellerAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact) {
         this.sellerAddress=sellerAddress;
         this.sellerName=sellerName;
         this.approximate=approximate;
         this.urlForPhoto=uploadUrl;
+        this.UID=UID;
+        this.postID=postID;
+        this.longitude=longitude;
+        this.latitude=latitude;
+        this.profilePhtourl=profilePhtourl;
+        this.username=username;
+        this.currentTime=currentTime;
+        this.Contact=Contact;
 
 
     }
 
 
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
 
 
 
@@ -39,8 +72,16 @@ public class SellerInfo  implements Serializable {
         this.Url = url;
     }
 
+    public void setPostID(String postID)
+    {
+        this.postID=postID;
+    }
+    public String getPostID() {
+        return this.postID;
+    }
 
-
+    public void setUid(String uid) {this.UID=uid;}
+    public String getUid() {return this.UID;}
     public void setFoodPhotoUrl(String url) {this.urlForPhoto=url;}
 
     public String getFoodPhotoUrl(){return urlForPhoto;}
@@ -69,6 +110,36 @@ public class SellerInfo  implements Serializable {
         this.sellerAddress = sellerAddress;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getProfilePhtourl() {
+        return profilePhtourl;
+    }
+
+    public void setProfilePhtourl(String profilePhtourl) {
+        this.profilePhtourl = profilePhtourl;
+    }
+
+    public Date getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(Date currentTime) {
+        this.currentTime = currentTime;
+    }
 
 
+    public String getContact() {
+        return Contact;
+    }
+
+    public void setContact(String contact) {
+        Contact = contact;
+    }
 }

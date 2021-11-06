@@ -5,31 +5,33 @@ import android.graphics.Bitmap;
 import java.io.Serializable;
 import java.util.Date;
 
-public class DonorInfo  implements Serializable {
+public class FoodRaiseInfo  implements Serializable {
 
-    private String donorName, mainCourse, donorAddress;
-    private String people;
+    private String RaiserName,People, RaiserAddress;
     private String Url;
     private String urlForPhoto;
-    private String uid;
-    private String username;
-    private String profilePhtourl;
+    private String UID;
     private String postID;
+    private String username;
     private String Contact;
+    private String profilePhtourl;
     private double longitude;
     private double latitude;
     private Date currentTime;
 
+//
 
+    FoodRaiseInfo ()
+    {
 
+    }
 
-    public DonorInfo(String donorName,String people,String mainCourse,String donorAddress,String uploadUrl,String uid,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact) {
-        this.donorAddress=donorAddress;
-        this.donorName=donorName;
-        this.people=people;
-        this.mainCourse=mainCourse;
+    public FoodRaiseInfo  (String RaiserName,String People,String RaiserAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact) {
+        this.RaiserAddress=RaiserAddress;
+        this.RaiserName=RaiserName;
+        this.People=People;
         this.urlForPhoto=uploadUrl;
-        this.uid=uid;
+        this.UID=UID;
         this.postID=postID;
         this.longitude=longitude;
         this.latitude=latitude;
@@ -39,20 +41,7 @@ public class DonorInfo  implements Serializable {
         this.Contact=Contact;
 
 
-
-//
-
     }
-
-//    public DonorInfo(String donorName,String people,String mainCourse,String donorAddress,String uploadUrl,String switched) {
-//        this.donorAddress=donorAddress;
-//        this.donorName=donorName;
-//        this.people=people;
-//        this.mainCourse=mainCourse;
-//        this.urlForPhoto=uploadUrl;
-//        this.switched=switched;
-//
-//    }
 
 
     public void setLatitude(double latitude) {
@@ -71,17 +60,8 @@ public class DonorInfo  implements Serializable {
         return longitude;
     }
 
-    public void settUid(String uid) {this.uid=uid;}
 
-    public void setPostID(String postID)
-    {
-        this.postID=postID;
-    }
-    public String getPostID() {
-        return this.postID;
-    }
 
-    public String getUid() {return this.uid;}
 
     public String getUrl() {
         return Url;
@@ -91,44 +71,42 @@ public class DonorInfo  implements Serializable {
         this.Url = url;
     }
 
-    public DonorInfo(){
-
+    public void setPostID(String postID)
+    {
+        this.postID=postID;
+    }
+    public String getPostID() {
+        return this.postID;
     }
 
+    public void setUid(String uid) {this.UID=uid;}
+    public String getUid() {return this.UID;}
     public void setFoodPhotoUrl(String url) {this.urlForPhoto=url;}
 
     public String getFoodPhotoUrl(){return urlForPhoto;}
 
-    public String getDonorName() {
-        return donorName;
+    public String getRaiserName() {
+        return RaiserName;
     }
 
-    public void setDonorName(String donorName) {
-        this.donorName = donorName;
-    }
-
-    public String getDonorMainCourse() {
-        return mainCourse;
-    }
-
-    public void setDonorMainCourse(String mainCourse) {
-        this.mainCourse = mainCourse;
-    }
-
-    public String getDonorAddress() {
-        return donorAddress;
-    }
-
-    public void setDonorAddress(String donorAddress) {
-        this.donorAddress = donorAddress;
+    public void setRaiserName(String RaiserName) {
+        this.RaiserName = RaiserName;
     }
 
     public String getPeople() {
-        return people;
+        return People;
     }
 
-    public void setDonorPeople(String people) {
-        this.people = people;
+    public void setPeople(String People) {
+        this.People =People;
+    }
+
+    public String getRaiserAddress() {
+        return RaiserAddress;
+    }
+
+    public void setRaiserAddress(String RaiserAddress) {
+        this.RaiserAddress = RaiserAddress;
     }
 
     public String getUsername() {
@@ -147,8 +125,6 @@ public class DonorInfo  implements Serializable {
         this.profilePhtourl = profilePhtourl;
     }
 
-
-
     public Date getCurrentTime() {
         return currentTime;
     }
@@ -156,6 +132,7 @@ public class DonorInfo  implements Serializable {
     public void setCurrentTime(Date currentTime) {
         this.currentTime = currentTime;
     }
+
 
     public String getContact() {
         return Contact;

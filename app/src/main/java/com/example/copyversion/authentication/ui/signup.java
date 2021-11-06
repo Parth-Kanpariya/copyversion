@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -83,7 +84,10 @@ public class signup extends AppCompatActivity {
         }
          else{
 
-
+            ProgressDialog progressDialog
+                    = new ProgressDialog(signup.this);
+            progressDialog.setTitle("Signup..");
+            progressDialog.show();
 
             profileUri="https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fusers%2Fprofileicon.jpeg?alt=media&token=559dd13d-e17c-40fd-a2fa-c601bf83fdb1";
 
@@ -95,10 +99,12 @@ public class signup extends AppCompatActivity {
                         {
 
                             if (task.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(),
-                                        "Registration successful!",
-                                        Toast.LENGTH_LONG)
-                                        .show();
+
+                                progressDialog.show();
+//                                Toast.makeText(getApplicationContext(),
+//                                        "Registration successful!",
+//                                        Toast.LENGTH_LONG)
+//                                        .show();
 
 
 

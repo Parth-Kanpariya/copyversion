@@ -1,17 +1,30 @@
 package com.example.copyversion;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Parcelable;
+import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.copyversion.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,33 +67,61 @@ public class HomePager_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//           viewPager=savedInstanceState.getParcelable("viewPage");
+//        }
     }
+    ViewPager viewPager;
+    View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView= inflater.inflate(R.layout.fragment_home_pager, container, false);
+
+
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
+        }
+        if(rootView==null) {
+
+
+
+                rootView = inflater.inflate(R.layout.fragment_home_pager, container, false);
 //        binding = ActivityHomePagerBinding.inflate(getLayoutInflater());
 
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter( getActivity().getSupportFragmentManager());
-        sectionsPagerAdapter.add(new frontPage_Fragment(),"Donation");
-        sectionsPagerAdapter.add(new sellingFragment(),"Sell");
+                SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
 
-
-
-        ViewPager viewPager = rootView.findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = rootView.findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+                sectionsPagerAdapter.add(new frontPage_Fragment(), "Donation");
+                sectionsPagerAdapter.add(new RaiseFoodFragment(), "Raise");
+               sectionsPagerAdapter.add(new sellingFragment(), "Sell");
 
 
 
+                viewPager = rootView.findViewById(R.id.view_pager);
+                viewPager.setAdapter(sectionsPagerAdapter);
+                TabLayout tabs = rootView.findViewById(R.id.tabs);
+                tabs.setupWithViewPager(viewPager);
+                viewPager.setOffscreenPageLimit(4);
+
+
+
+
+
+
+
+
+        }
         return rootView;
     }
+
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putParcelable("viewPage", (Parcelable) viewPager);
+//    }
 }

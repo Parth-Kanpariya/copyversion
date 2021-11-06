@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".authentication.ui.signup">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:alpha="0.3"
+        android:forceDarkAllowed="true"
+        android:src="@drawable/rotlologin6" />
+
     <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
@@ -17,12 +26,15 @@
         android:id="@+id/outlinedTextField1"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
+        android:textColorHint="@color/primaryColor"
         android:layout_height="wrap_content"
         android:hint="Full Name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sign_up_Full_Name"
             android:layout_width="match_parent"
+            android:textColor="@color/green_dark"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             tools:ignore="TextContrastCheck" />
 
@@ -34,6 +46,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/primaryColor"
         android:layout_marginTop="20dp"
         android:hint="Email">
 
@@ -41,6 +54,8 @@
             android:id="@+id/sign_up_Email_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/green_dark"
+            android:textStyle="bold"
             android:inputType="textEmailAddress"
             tools:ignore="TextContrastCheck" />
 
@@ -52,6 +67,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/primaryColor"
         android:layout_marginTop="20dp"
         app:passwordToggleEnabled="true"
         android:hint="Password">
@@ -61,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/green_dark"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -71,6 +89,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/primaryColor"
         android:layout_marginTop="20dp"
         android:hint="Confirm Password">
 
@@ -79,6 +98,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/green_dark"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -107,4 +128,4 @@
             android:layout_gravity="center" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

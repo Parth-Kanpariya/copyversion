@@ -3,26 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/homePager_fragment">
+
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.copyversion.authentication.ui.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/information_Fragment"
+        android:name="com.example.copyversion.information_Fragment"
+        android:label="activity_information"
+        tools:layout="@layout/activity_information" />
+    <fragment
+        android:id="@+id/sellingPostFragment"
+        android:name="com.example.copyversion.SellingPostFragment"
+        android:label="fragment_selling_post"
+        tools:layout="@layout/fragment_selling_post" />
+    <fragment
+        android:id="@+id/optionForDaS"
+        android:name="com.example.copyversion.OptionForDaS"
+        android:label="fragment_option_for_da_s"
+        tools:layout="@layout/fragment_option_for_da_s">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_optionForDaS_to_information_Fragment"
+            app:destination="@id/information_Fragment" />
+        <action
+            android:id="@+id/action_optionForDaS_to_sellingPostFragment"
+            app:destination="@id/sellingPostFragment" />
+        <action
+            android:id="@+id/action_optionForDaS_to_raiseFoodPostFragment2"
+            app:destination="@id/raiseFoodPostFragment2" />
+        <action
+            android:id="@+id/action_optionForDaS_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.copyversion.authentication.ui.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/homePager_fragment"
+        android:name="com.example.copyversion.HomePager_fragment"
+        android:label="fragment_home_pager"
+        tools:layout="@layout/fragment_home_pager">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_homePager_fragment_to_optionForDaS"
+            app:destination="@id/optionForDaS" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.copyversion.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/raiseFoodPostFragment2"
+        android:name="com.example.copyversion.RaiseFoodPostFragment"
+        android:label="fragment_raise_food_post"
+        tools:layout="@layout/fragment_raise_food_post">
     </fragment>
 </navigation>

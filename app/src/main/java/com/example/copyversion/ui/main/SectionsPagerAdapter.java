@@ -1,6 +1,7 @@
 package com.example.copyversion.ui.main;
 
 import android.content.Context;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,6 +51,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     {
         return fragmentTitle.get(position);
     }
+
+
 
 
 }

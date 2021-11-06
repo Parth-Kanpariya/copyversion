@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/information_scroll"
-    android:paddingBottom="75dp"
-    tools:context=".information_Fragment">
+    tools:context=".RaiseFoodPostFragment">
+
 
 
 
@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Donate Food Details"
+                android:text="Raise Food Details"
                 android:textFontWeight="@integer/material_motion_duration_medium_2"
                 android:fontFamily="@font/fontresourcefile"
                 android:textColor="@color/primaryColor"
@@ -43,10 +43,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Donor Address">
+            android:hint="Raising Address">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/donor_address"
+                android:id="@+id/Raiser_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="TextContrastCheck" />
@@ -60,33 +60,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Main Course">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/main_course"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="TextContrastCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField3"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:hint="People">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/people"
-                android:inputType="number"
+                android:id="@+id/food_weight"
                 android:layout_width="match_parent"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -95,27 +81,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Donor name">
+            android:layout_marginBottom="20dp"
+            android:hint="Raiser name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/donor_name"
+                android:id="@+id/Raiser_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField5"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:hint="Contact Number">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mobileNumberDonor"
+                android:id="@+id/mobileNumberRaiser"
                 android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,65 +110,62 @@
 
 
 
-
-
-
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:layout_marginVertical="10dp"
-           android:weightSum="2">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="10dp"
+            android:weightSum="2">
 
 
 
 
-               <com.google.android.material.card.MaterialCardView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="20dp"
-                   android:layout_marginBottom="30dp"
-                   android:outlineProvider="none"
-                   android:layout_weight="1"
-                   app:cardElevation="16dp">
-
-                   <ImageView
-                       android:id="@+id/camera"
-                       android:layout_weight="1"
-                       android:layout_width="150dp"
-                       android:scaleType="fitXY"
-                       android:layout_height="150dp"
-                       android:background="@drawable/dahed_border_for_photo"
-                       android:src="@drawable/ic_add_photo" />
-               </com.google.android.material.card.MaterialCardView>
-
-
-
-       </LinearLayout>
-
-         <com.google.android.material.card.MaterialCardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
                 android:outlineProvider="none"
-                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 app:cardElevation="16dp">
-                <Button
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
+
+                <ImageView
+                    android:id="@+id/camera_Raiser"
                     android:layout_weight="1"
-                    android:background="@drawable/round_corner"
-                    android:id="@+id/post_button"
-                    android:text="Submit"/>
-         </com.google.android.material.card.MaterialCardView>
+                    android:layout_width="150dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="150dp"
+                    android:background="@drawable/dahed_border_for_photo"
+                    android:src="@drawable/ic_add_photo" />
+            </com.google.android.material.card.MaterialCardView>
 
 
 
 
 
 
+        </LinearLayout>
 
 
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:outlineProvider="none"
+            android:layout_gravity="center_horizontal"
+            app:cardElevation="16dp">
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner"
+                android:id="@+id/Raise_post_button"
+                android:text="Submit"/>
+        </com.google.android.material.card.MaterialCardView>
 
 
 

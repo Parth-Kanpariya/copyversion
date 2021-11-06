@@ -1,10 +1,31 @@
 package com.example.copyversion;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Matrix;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.media.RingtoneManager;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.telephony.PhoneNumberUtils;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
@@ -37,21 +58,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.cloudmessaging.CloudMessage;
+import com.google.android.gms.cloudmessaging.CloudMessagingReceiver;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -59,18 +96,23 @@ import java.util.UUID;
  * Use the {@link information_Fragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class information_Fragment extends Fragment  {
+public class information_Fragment extends Fragment {
 
 
+    DatabaseReference mDatabase;
     private TextView post;
     private Bitmap photo;
-    private EditText people, donorName, mainCourse, donorAddress;
+    private EditText people, donorName, mainCourse, donorAddress,ContactNumberDonor;
     private Button sendDataButtuon;
     private ArrayList<String> arrayList;
     private ArrayAdapter<String> arr;
     private ImageView imageView, photos;
     private Uri filePath;
-    private String uriIntoString;
+    private String uriIntoString,username,profilrphotopost;
+    private double longitude, latitude;
+    private FirebaseAuth Auth;
+    FusedLocationProviderClient fusedLocationProviderClient;
+    String address;
 
     // creating a variable for our
     // Firebase Database.
@@ -145,7 +187,22 @@ public class information_Fragment extends Fragment  {
                         .getBitmap(
                                 getActivity().getContentResolver(),
                                 filePath);
-                photos.setImageBitmap(bitmap);
+
+                if(bitmap.getByteCount()>144609280)
+                { int nh = (int) ( bitmap.getHeight() * (1024.0 / bitmap.getWidth()) );
+                    Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 1024, nh, true);
+                    Matrix matrix = new Matrix();
+
+                    matrix.postRotate(90);
+                    scaled = Bitmap.createBitmap(scaled, 0, 0, scaled.getWidth(), scaled.getHeight(), matrix, true);
+
+                    imageView.setImageBitmap(scaled);}
+                else
+                {
+                    imageView.setImageBitmap(bitmap);
+                }
+
+
             } catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
@@ -243,35 +300,54 @@ public class information_Fragment extends Fragment  {
     }
 
 
-    public void onclicked(String switched) {
+    public void onclicked() {
 
 //         getting text from our edittext fields.
+
+
+
+
+
+
         String name = donorName.getText().toString();
         String maincourse = mainCourse.getText().toString();
         String peple = people.getText().toString();
         String address = donorAddress.getText().toString();
+        String mobile=ContactNumberDonor.getText().toString();
+
 
         // below line is for checking weather the
         // edittext fields are empty or not.
-        if (TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address)) {
+        if (TextUtils.isEmpty(name) && TextUtils.isEmpty(maincourse) && TextUtils.isEmpty(peple) && TextUtils.isEmpty(address)&&TextUtils.isEmpty(mobile)) {
             Toast.makeText(getContext(), "Please Add complete Data", Toast.LENGTH_SHORT).show();
-        } else {
-            addToFirebase(name, maincourse, peple, address, uriIntoString,switched);
+
+
+        }
+        else  if(mobile.length()<10 || mobile.length()>10)
+        {
+            Toast.makeText(getContext(), "Please Enter valid contact number", Toast.LENGTH_SHORT).show();
+        }
+
+        else {
+
+
+            addToFirebase(name, maincourse, peple, address, uriIntoString,username,profilrphotopost,mobile);
+
+
 
             donorName.getText().clear();
             mainCourse.getText().clear();
             people.getText().clear();
             donorAddress.getText().clear();
-            photos.setImageBitmap(null);
+            imageView.setImageResource(R.drawable.ic_add_photo);
+            ContactNumberDonor.getText().clear();
+
+
         }
 
 
-//                getdata();
-//        Intent intent = new Intent(getContext(), com.example.copyversion.frontPage.class);
-//
-//        startActivity(intent);
-
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -282,28 +358,143 @@ public class information_Fragment extends Fragment  {
     }
 
 
-
-    private void addToFirebase(String name, String maincourse, String peple, String address, String photourl, String switched) {
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void addToFirebase(String name, String maincourse, String peple, String address, String photourl, String usernamee, String profilrphotopostt, String mobile) {
         donorInfo.setDonorAddress(address);
         donorInfo.setDonorMainCourse(maincourse);
         donorInfo.setDonorPeople(peple);
         donorInfo.setDonorName(name);
         donorInfo.setFoodPhotoUrl(photourl);
-        donorInfo.setSwitch(switched);
+        donorInfo.setContact(mobile);
+        donorInfo.setLatitude(latitude);
+        donorInfo.setLongitude(longitude);
+        donorInfo.setCurrentTime(new Date());
 
 
-        if(switched=="true")
-        {databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation");
-        databaseReference.push().setValue(donorInfo);}
-        else
-        {
-            databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling");
-            databaseReference.push().setValue(donorInfo);
-        }
-        Toast.makeText(getContext(), "Data added", Toast.LENGTH_SHORT).show();
+
+//        donorInfo.setSwitch(switched);
+        Auth = FirebaseAuth.getInstance();
+        donorInfo.settUid(Auth.getUid());
+
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation");
+        databaseReference.push().setValue(donorInfo);
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
+        Auth=FirebaseAuth.getInstance();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("/rotlo/user").child(Auth.getCurrentUser().getUid());
+
+
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                String nameForPost =(snapshot.child("fullName").getValue(String.class));
+
+
+                FcmNotificationsSender notificationsSender=new FcmNotificationsSender("/topics/all","Donorr", nameForPost +" Added the new Post"
+                        ,getContext(),getActivity());
+                notificationsSender.SendNotifications();
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "no data", Toast.LENGTH_SHORT).show();
+            }
+
+        };
+        mDatabase.addListenerForSingleValueEvent(eventListener);
+
+
+
+
+
+
+
+
+
+
+//        NotificationManager notificationManager
+//                = (NotificationManager)getContext().getSystemService(NotificationManager.class);
+//
+//
+//        if (Build.VERSION.SDK_INT
+//                >= Build.VERSION_CODES.O) {
+//            NotificationChannel notificationChannel
+//                    = new NotificationChannel("My Notifications", "My Notifications",
+//                    NotificationManager.IMPORTANCE_HIGH);
+//
+//
+//            notificationManager.createNotificationChannel(
+//                    notificationChannel);
+//
+//        }
+//        Intent intent
+//                = new Intent(getContext(), MainActivity.class);
+//        // Assign channel ID
+//        String channel_id = "notification_channel";
+//        // Here FLAG_ACTIVITY_CLEAR_TOP flag is set to clear
+//        // the activities present in the activity stack,
+//        // on the top of the Activity that is to be launched
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//        PendingIntent pendingIntent
+//                = PendingIntent.getActivity(
+//                getContext(), 0, intent,
+//                PendingIntent.FLAG_ONE_SHOT);
+//
+//        NotificationCompat.Builder builder
+//                = new NotificationCompat
+//                .Builder(getContext(),"My Notifications")
+//                .setSmallIcon(R.drawable.logo1)
+//                .setAutoCancel(true)
+//                .setOnlyAlertOnce(true)
+//                .setContentIntent(pendingIntent);;
+//
+//         builder=builder.setSmallIcon(R.drawable.logo1)
+//                         .setContentTitle("Rotlo")
+//                          .setContentText("Donor added the post");
+//         NotificationManagerCompat notificationManagerCompat=NotificationManagerCompat.from(getContext());
+//         notificationManagerCompat.notify(999,builder.build());
+
+
+
+
+
+
+
+
+
+
+
+//        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
+//        {
+//            NotificationChannel channel=new NotificationChannel("n","n",NotificationManager.IMPORTANCE_DEFAULT);
+//            NotificationManager manager=getContext().getSystemService(NotificationManager.class);
+//            manager.createNotificationChannel(channel);
+//        }
+//
+//        NotificationCompat.Builder builder=new NotificationCompat.Builder(getContext(),"n")
+//                .setContentText("Rotlo")
+//                .setSmallIcon(R.drawable.profile_icon)
+//                .setAutoCancel(true)
+//                .setContentText("New Post is Added");
+//
+//        NotificationManagerCompat managerCompat=NotificationManagerCompat.from(getContext());
+//        managerCompat.notify(999,builder.build());
+//        Toast.makeText(getContext(), "Data added", Toast.LENGTH_SHORT).show();
 
 
     }
+
+
 
 
     @Override
@@ -320,43 +511,47 @@ public class information_Fragment extends Fragment  {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.activity_information, container, false);
 
-//
-//        ActionBar actionBar;
-////        actionBar = getSupportActionBar();
-//        // Define ColorDrawable object and parse color
-//        // using parseColor method
-//        // with color hash code as its parameter
-//        ColorDrawable colorDrawable
-//                = new ColorDrawable(Color.parseColor("#ff9100"));
-//        // Set BackgroundDrawable
-//        actionBar.setBackgroundDrawable(colorDrawable);
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
-        SwitchMaterial switchMaterial=rootView.findViewById(R.id.donation);
-        final String[] switched = new String[1];
-        switched[0]="true";
-        switchMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        getlocation();
+
+        Auth=FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("/rotlo/user").child(Auth.getCurrentUser().getUid());
+
+        ValueEventListener eventListener = new ValueEventListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(isChecked)
-                {
-                    switched[0] ="true";
-                }else {
-                    switched[0] ="false";
-                }
+
+
+
+                username=(snapshot.child("fullName").getValue(String.class));
+                profilrphotopost= snapshot.child("uri").getValue(String.class);
+                donorInfo.setUsername(username);
+                donorInfo.setProfilePhtourl(profilrphotopost);
+
+
+
             }
-        });
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "no data", Toast.LENGTH_SHORT).show();
+            }
+        };
+        mDatabase.addValueEventListener(eventListener);
 
 
 
 
 
-        Button postButton=rootView.findViewById(R.id.post_button);
+
+        Button postButton = rootView.findViewById(R.id.post_button);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onclicked(switched[0]);
+                onclicked();
 //                FragmentTransaction fr= getFragmentManager().beginTransaction();
 //                fr.replace(R.id.container,new frontPage_Fragment());
 //                fr.commit();
@@ -368,6 +563,9 @@ public class information_Fragment extends Fragment  {
         donorAddress = rootView.findViewById(R.id.donor_address);
         donorName = rootView.findViewById(R.id.donor_name);
         mainCourse = rootView.findViewById(R.id.main_course);
+        ContactNumberDonor=rootView.findViewById(R.id.mobileNumberDonor);
+
+
 
 //        post=findViewById(R.id.text_view_post1);
 
@@ -386,12 +584,14 @@ public class information_Fragment extends Fragment  {
         //to go in camera
 
         imageView = rootView.findViewById(R.id.camera);
-        photos = rootView.findViewById(R.id.photo);
+//        photos = rootView.findViewById(R.id.photo);
         imageView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 //                Intent forCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //                startActivityForResult(forCamera, 123);
+
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -411,6 +611,33 @@ public class information_Fragment extends Fragment  {
         return rootView;
     }
 
+    @SuppressLint("MissingPermission")
+    private void getlocation() {
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if (location != null) {
+                    longitude = location.getLongitude();
+                    latitude = location.getLatitude();
+
+                    Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+                    List<Address> addressList = null;
+                    try {
+                        addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    address = addressList.get(0).getAddressLine(0);
+//                    Toast.makeText(getContext(), address, Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
+    }
 
 
 }

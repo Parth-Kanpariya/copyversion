@@ -3,13 +3,18 @@ package com.example.copyversion;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavHost;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 /**
@@ -27,7 +32,7 @@ public class OptionForDaS extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button DonationButton,SellButoon;
+    private ImageView DonationButton,SellButoon,RaiserButton;
 
     public OptionForDaS() {
         // Required empty public constructor
@@ -67,6 +72,9 @@ public class OptionForDaS extends Fragment {
 
         View rootView= inflater.inflate(R.layout.fragment_option_for_da_s, container, false);
 
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
         FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
 
         information_Fragment information_fragment=new information_Fragment();
@@ -77,17 +85,45 @@ public class OptionForDaS extends Fragment {
        fragmentManager.beginTransaction().add(R.id.visible,sellingPostFragment).hide(sellingPostFragment).commit();
         DonationButton=rootView.findViewById(R.id.DonatButton);
         SellButoon=rootView.findViewById(R.id.SellButtom);
+        RaiserButton=rootView.findViewById(R.id.RaiseFoodButton);
         LinearLayout linearLayout=rootView.findViewById(R.id.OptionDandS);
+
+
+
 
         DonationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+//                linearLayout.setVisibility(View.GONE);
+
+//                Navigation.findNavController(v).navigate(R.id.information_Fragment);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_optionForDaS_to_information_Fragment);
+//
+//                linearLayout.setVisibility(View.GONE);
+////
+//                fragmentManager.beginTransaction().remove(optionForDaS).show(information_fragment).commit();
 
 
-                linearLayout.setVisibility(View.GONE);
-//                 fragmentManager.beginTransaction().replace(R.id.container, information_fragment).setReorderingAllowed(true).commit();
-                fragmentManager.beginTransaction().remove(optionForDaS).show(information_fragment).commit();
+
+
+
+            }
+        });
+
+        RaiserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                linearLayout.setVisibility(View.GONE);
+
+//                Navigation.findNavController(v).navigate(R.id.information_Fragment);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_optionForDaS_to_raiseFoodPostFragment2);
+//
+//                linearLayout.setVisibility(View.GONE);
+////
+//                fragmentManager.beginTransaction().remove(optionForDaS).show(information_fragment).commit();
+
 
 
 
@@ -100,9 +136,12 @@ public class OptionForDaS extends Fragment {
             public void onClick(View v) {
 
 
-                linearLayout.setVisibility(View.GONE);
-                fragmentManager.beginTransaction().remove(optionForDaS).show(sellingPostFragment).commit();
-//                fragmentManager.beginTransaction().replace(R.id.container, sellingPostFragment).setReorderingAllowed(true).commit();
+//                linearLayout.setVisibility(View.GONE);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_optionForDaS_to_sellingPostFragment);
+//                Navigation.findNavController(v).navigate(R.id.sellingPostFragment);
+//                linearLayout.setVisibility(View.GONE);
+//                fragmentManager.beginTransaction().remove(optionForDaS).show(sellingPostFragment).commit();
+
             }
         });
 
