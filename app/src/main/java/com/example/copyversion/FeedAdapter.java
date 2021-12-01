@@ -39,6 +39,7 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -175,7 +176,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
 //                    Toast.makeText(context,""+position1,Toast.LENGTH_SHORT).show();
 
                     DonorInfo d=FeedList.get(position1);
-                    creatLink(d.getPostID());
+                    creatLink(d.getPostID(),d);
                 }
             });
 
@@ -239,7 +240,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
 
 
         @RequiresApi(api = Build.VERSION_CODES.P)
-        private void creatLink(String PostId) {
+        private void creatLink(String PostId,DonorInfo d) {
 //            Toast.makeText(context,"hii",Toast.LENGTH_SHORT).show();
 
 
@@ -259,7 +260,10 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
             String shareLink="https://copyversion.page.link/?"+
                     "link=https://www.example.com/?postid="+PostId+"?Donor"+
                     "&apn="+ context.getPackageName() +
-                    "&st="+"My Rotlo Link";
+                    "&st="+d.getDonorMainCourse()+
+                    "&si="+"https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/logo1.png?alt=media&token=d4c5f5a0-a684-459f-ab28-5eb6db842619";
+
+
 
 
 

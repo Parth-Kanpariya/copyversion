@@ -127,6 +127,9 @@ public class ProfileFragment extends Fragment {
             });
 
 
+
+
+
             name = rootView.findViewById(R.id.UserName);
             email = rootView.findViewById(R.id.UserEmail);
             profileIcon = rootView.findViewById(R.id.profilePhoto);

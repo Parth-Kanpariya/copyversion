@@ -22,6 +22,7 @@
 <!--        android:scrollbars="none"-->
 <!--        android:id="@+id/list" />-->
 
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"

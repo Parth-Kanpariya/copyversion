@@ -141,7 +141,7 @@ public class FeedAdapterRaise extends RecyclerView.Adapter<FeedAdapterRaise.Feed
 //                    Toast.makeText(context,""+position1,Toast.LENGTH_SHORT).show();
 
                     FoodRaiseInfo d=FeedList.get(position1);
-                    creatLink(d.getPostID());
+                    creatLink(d.getPostID(),d);
                 }
             });
 
@@ -193,7 +193,7 @@ public class FeedAdapterRaise extends RecyclerView.Adapter<FeedAdapterRaise.Feed
             return true;
         }
         @RequiresApi(api = Build.VERSION_CODES.P)
-        private void creatLink(String PostId) {
+        private void creatLink(String PostId,FoodRaiseInfo d) {
 //            Toast.makeText(context,"hii",Toast.LENGTH_SHORT).show();
 
 
@@ -213,7 +213,9 @@ public class FeedAdapterRaise extends RecyclerView.Adapter<FeedAdapterRaise.Feed
             String shareLink="https://copyversion.page.link/?"+
                     "link=https://www.example.com/?postid="+PostId+"?Raise"+
                     "&apn="+ context.getPackageName() +
-                    "&st="+"My Rotlo Link";
+                    "&st="+"Rotlo"+
+                    "&si="+"https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/logo1.png?alt=media&token=d4c5f5a0-a684-459f-ab28-5eb6db842619";
+
 
 
 

@@ -43,16 +43,25 @@
         <action
             android:id="@+id/action_homePager_fragment_to_optionForDaS"
             app:destination="@id/optionForDaS" />
+
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.copyversion.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+
+    </fragment>
     <fragment
         android:id="@+id/raiseFoodPostFragment2"
         android:name="com.example.copyversion.RaiseFoodPostFragment"
         android:label="fragment_raise_food_post"
         tools:layout="@layout/fragment_raise_food_post">
     </fragment>
+
+    <activity
+        android:id="@+id/chatInitiates"
+        android:name="com.example.copyversion.ChatInitiate"
+        android:label="activity_chat_initiate"
+        tools:layout="@layout/activity_chat_initiate" />
 </navigation>

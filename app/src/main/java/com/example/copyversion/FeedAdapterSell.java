@@ -173,7 +173,7 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
 //                    Toast.makeText(context,""+position1,Toast.LENGTH_SHORT).show();
 
                     SellerInfo d=FeedList.get(position1);
-                    creatLink(d.getPostID());
+                    creatLink(d.getPostID(),d);
                 }
             });
 
@@ -225,13 +225,14 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
             return true;
         }
         @RequiresApi(api = Build.VERSION_CODES.P)
-        private void creatLink(String PostId) {
+        private void creatLink(String PostId,SellerInfo d) {
 //            Toast.makeText(context,"hii",Toast.LENGTH_SHORT).show();
 
 
 
             DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
                     .setLink(Uri.parse("https://www.example.com/"))
+
                     .setDomainUriPrefix("https://copyversion.page.link/")
 
                     // Open links with this app on Android
@@ -245,15 +246,22 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
             String shareLink="https://copyversion.page.link/?"+
                     "link=https://www.example.com/?postid="+PostId+"?Seller"+
                     "&apn="+ context.getPackageName() +
-                    "&st="+"My Rotlo Link";
+                    "&st="+"Rotlo"+
+                    "&si="+"https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/logo1.png?alt=media&token=d4c5f5a0-a684-459f-ab28-5eb6db842619";
+
 
 
 
             Task<ShortDynamicLink> shortLinkTask = FirebaseDynamicLinks.getInstance().createDynamicLink()
                     .setLink(Uri.parse(shareLink))
+
                     .setDomainUriPrefix("https://copyversion.page.link/")
                     // Set parameters
                     // ...
+                    .setSocialMetaTagParameters(
+                            new DynamicLink.SocialMetaTagParameters.Builder()
+                                    .setImageUrl(Uri.parse(d.getFoodPhotoUrl()))
+                                    .build())
                     .buildShortDynamicLink()
                     .addOnCompleteListener(context.getMainExecutor(), new OnCompleteListener<ShortDynamicLink>() {
                         @Override

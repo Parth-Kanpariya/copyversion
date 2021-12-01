@@ -9,6 +9,12 @@
         android:id="@+id/optionForDaS"
         android:title="Create"
         android:icon="@drawable/ic_add_post"/>
+
+
+    <item
+        android:id="@+id/chatInitiates"
+        android:title="chat"
+        android:icon="@drawable/ic_baseline_message_24"/>
     <item
         android:id="@+id/profileFragment"
         android:title="User"

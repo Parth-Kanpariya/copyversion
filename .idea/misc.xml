@@ -4,23 +4,30 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/circle_corner.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/cross_sign.xml" value="0.146875" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/dahed_border_for_photo.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_add_photo.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_add_post.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_attach_file_24.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.17962962962962964" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_send_button_24.xml" value="0.18333333333333332" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_check.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_home_feed.xml" value="0.2390194075587334" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_round_shap.xml" value="0.146875" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/kebap.xml" value="0.2390194075587334" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/more_vert.xml" value="0.11388888888888889" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/outline_restaurant_24.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/profile_icon.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/round_corner.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/rounded_corner.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/share.xml" value="0.146875" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/font/fontresourcefile.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.14280958721704395" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout-w936dp/activity_login.xml" value="0.167578125" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_chat_application.xml" value="0.4" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_chat_initiate.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_fee_copy.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_feed_back.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_front_page.xml" value="0.2234375" />
@@ -34,6 +41,8 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_navigation.xml" value="0.20625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_selling_fragment_page.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_signup.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/chat_phermo.xml" value="0.20208333333333334" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/chatinitiatelayout.xml" value="0.72" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/demo.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_donation.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_first.xml" value="0.2234375" />
@@ -50,6 +59,9 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling_post.xml" value="0.20625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/notification.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/received_message_quoted_row.xml" value="0.1265625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/reply_layout.xml" value="0.21927083333333333" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/send_message_quoted_row.xml" value="0.1265625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/shadow.xml" value="0.103125" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/additems.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1391304347826087" />

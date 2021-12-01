@@ -40,6 +40,18 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
+//        Button chatInitiate= findViewById(R.id.chatInitiate);
+//        chatInitiate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent=new Intent(NavigationActivity.this,ChatInitiate.class);
+//                startActivity(intent);
+//            }
+//        });
+
+
+
 
 
 

@@ -256,6 +256,7 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
         Intent intent = new Intent(getContext(), FullInfoOfPost.class);
         DonorInfo x = donationList.get(position);
         intent.putExtra("PostId", x.getPostID());
+        intent.putExtra("object",x);
         startActivity(intent);
     }
 

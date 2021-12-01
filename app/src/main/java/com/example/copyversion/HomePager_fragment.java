@@ -102,6 +102,7 @@ public class HomePager_fragment extends Fragment {
 
 
 
+
                 viewPager = rootView.findViewById(R.id.view_pager);
                 viewPager.setAdapter(sectionsPagerAdapter);
                 TabLayout tabs = rootView.findViewById(R.id.tabs);
