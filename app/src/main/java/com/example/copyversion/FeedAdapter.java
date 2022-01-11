@@ -89,6 +89,15 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
 
 
 
+        holder.userNameInPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,ProfileOfUser.class);
+                intent.putExtra("id",address.getUid());
+                context.startActivity(intent);
+            }
+        });
+
 
         String s = (address.getFoodPhotoUrl());
         String sl=address.getProfilePhtourl();
@@ -154,6 +163,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
         private TextView timeForPost;
         private ImageView imageView1,userProfile;
         private ImageButton imageViewforKebap;
+        private TextView userNameInPost;
 
 
         public FeedHolder(@NonNull View itemView) {
@@ -166,6 +176,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
             username=itemView.findViewById(R.id.UserNameInPost);
             timeForPost=itemView.findViewById(R.id.TimeFromPostCreate);
             Button button1 = itemView.findViewById(R.id.more_vertt);
+            userNameInPost=itemView.findViewById(R.id.UserNameInPost);
             button1.setOnClickListener(new View.OnClickListener() {
 
                 @RequiresApi(api = Build.VERSION_CODES.P)

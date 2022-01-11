@@ -39,6 +39,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.copyversion.authentication.ui.User;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -79,6 +82,7 @@ public class ProfileFragment extends Fragment {
     private View rootView;
     private Bitmap bitmap;
     private String s;
+    private GoogleSignInClient mGoogleSignInClient;
     Map<String, Object> postValues = new HashMap<String, Object>();
 
 
@@ -117,7 +121,7 @@ public class ProfileFragment extends Fragment {
 
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
-            Button logOutButton = rootView.findViewById(R.id.logout);
+            TextView logOutButton = rootView.findViewById(R.id.log_out);
             logOutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -126,7 +130,12 @@ public class ProfileFragment extends Fragment {
                 }
             });
 
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.web_client_id))
+                    .requestEmail()
+                    .build();
 
+            mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
 
 
@@ -239,6 +248,7 @@ public class ProfileFragment extends Fragment {
 //                                Picasso.get().load(s).resize(1800, 1800).onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
 //                                        .into(profileIcon);
 //
+
                                 Picasso.get().load(s).into(profileIcon);
 //
                             String firstWord;
@@ -253,6 +263,7 @@ public class ProfileFragment extends Fragment {
 
 
                         }
+
                     }
 
 
@@ -441,7 +452,15 @@ public class ProfileFragment extends Fragment {
     public void logOut(View view) {
         auth = FirebaseAuth.getInstance();
         auth.signOut();
+        mGoogleSignInClient.signOut();
+//        if (mGoogleSignInClient.) {
+//            Plus.AccountApi.clearDefaultAccount(mGoogleSignInClient);
+//            Plus.AccountApi.revokeAccessAndDisconnect(mGoogleSignInClient);
+//            mGoogleApiClient.disconnect();
+//            mGoogleApiClient.connect();
+//        }
         Intent intent = new Intent(view.getContext(), MainActivity.class);
         startActivity(intent);
+        getActivity().finish();
     }
 }

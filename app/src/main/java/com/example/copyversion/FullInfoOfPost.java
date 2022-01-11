@@ -41,12 +41,17 @@ public class FullInfoOfPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_info_of_post);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
 
         ProgressDialog progressDialog
                 = new ProgressDialog(FullInfoOfPost.this);
         progressDialog.setTitle("Loading..");
 
         progressDialog.show();
+
 
 
 //        Button contactNumber = findViewById(R.id.contact_me);
@@ -73,67 +78,63 @@ public class FullInfoOfPost extends AppCompatActivity {
 
 
 //        Toast.makeText(FullInfoOfPost.this, ""+PostId, Toast.LENGTH_SHORT).show();
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation").child(PostId);
-        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                t2.setText(snapshot.child("donorName").getValue(String.class));
-                t9.setText(snapshot.child("people").getValue(String.class));
-                t6.setText(snapshot.child("donorMainCourse").getValue(String.class));
-                t4.setText(snapshot.child("donorAddress").getValue(String.class));
-                imgUrl=snapshot.child("foodPhotoUrl").getValue(String.class);
-                if(imgUrl!=null)
-                {
-                    Picasso.get().load(imgUrl).resize(2048, 1600).onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
-                            .into(imageView2);
-                }else
-                {
-                    imageView2.setBackgroundResource(R.drawable.food_button1);
+        if(PostId!=null) {
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation").child(PostId);
+            rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    t2.setText(snapshot.child("donorName").getValue(String.class));
+                    t9.setText(snapshot.child("people").getValue(String.class));
+                    t6.setText(snapshot.child("donorMainCourse").getValue(String.class));
+                    t4.setText(snapshot.child("donorAddress").getValue(String.class));
+                    imgUrl = snapshot.child("foodPhotoUrl").getValue(String.class);
+                    if (imgUrl != null) {
+                        Picasso.get().load(imgUrl).resize(2048, 1600).onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
+                                .into(imageView2);
+                    } else {
+                        imageView2.setBackgroundResource(R.drawable.food_button1);
+
+                    }
+
+                    contact[0] = snapshot.child("contact").getValue(String.class);
+                    name[0] = snapshot.child("donorName").getValue(String.class);
+                    people[0] = snapshot.child("people").getValue(String.class);
+                    maincourse[0] = snapshot.child("donorMainCourse").getValue(String.class);
+                    address[0] = snapshot.child("donorAddress").getValue(String.class);
+                    uid[0] = snapshot.child("uid").getValue(String.class);
+                    x = uid[0];
+
+
+                    if (x.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                        chat.setVisibility(View.GONE);
+                    } else {
+                        DatabaseReference rootReference = FirebaseDatabase.getInstance().getReference("/rotlo/user/" + x);
+                        rootReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                ProfilePhotoUrl[0] = snapshot.child("uri").getValue(String.class);
+                                ProfileName[0] = snapshot.child("fullName").getValue(String.class);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                    }
+                    progressDialog.dismiss();
+
 
                 }
 
-                contact[0] = snapshot.child("contact").getValue(String.class);
-                name[0] = snapshot.child("donorName").getValue(String.class);
-                people[0] = snapshot.child("people").getValue(String.class);
-                maincourse[0] = snapshot.child("donorMainCourse").getValue(String.class);
-                address[0] = snapshot.child("donorAddress").getValue(String.class);
-                uid[0]=snapshot.child("uid").getValue(String.class);
-                x=uid[0];
 
-
-                if(x.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-                {
-                    chat.setVisibility(View.GONE);
-                }
-                else
-                {
-                    DatabaseReference rootReference = FirebaseDatabase.getInstance().getReference("/rotlo/user/"+x);
-                    rootReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            ProfilePhotoUrl[0]=snapshot.child("uri").getValue(String.class);
-                            ProfileName[0]=snapshot.child("fullName").getValue(String.class);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-                progressDialog.dismiss();
-
-
-
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+            });
+        }
 
 //        Toast.makeText(FullInfoOfPost.this, x, Toast.LENGTH_SHORT).show();
 

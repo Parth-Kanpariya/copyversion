@@ -1,177 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#666666"
-    android:orientation="vertical"
-    android:weightSum="2"
-    tools:context=".ProfileFragment">
-    <LinearLayout
-        android:id="@+id/decision"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
+    android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/cross"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="no"
-            android:textFontWeight="@integer/material_motion_duration_medium_2"
-            android:textSize="16dp" />
-
-        <Button
-            android:id="@+id/check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="yes" />
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#666666"
         android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/view2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:outlineSpotShadowColor="@color/primaryColor"
-            app:cardCornerRadius="75dp"
-            app:cardElevation="16dp">
-
-            <ImageView
-                android:id="@+id/profilePhoto"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/decision"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@android:color/transparent"
-            android:outlineProvider="none"
-            app:cardElevation="16dp">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-            <TextView
-                android:id="@+id/greetings"
+            <Button
+                android:id="@+id/cross"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/fontresourcefile"
-                android:textColor="@color/white"
-                android:textSize="22dp" />
+                android:layout_weight="1"
+                android:text="no"
+                android:textFontWeight="@integer/material_motion_duration_medium_2"
+                android:textSize="16dp" />
 
-        </com.google.android.material.card.MaterialCardView>
-
-
-    </LinearLayout>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        app:cardBackgroundColor="@color/primaryColor"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="16dp"
-        app:cardPreventCornerOverlap="false"
+            <Button
+                android:id="@+id/check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="yes" />
 
 
-        >
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="17dp"
+            android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="7dp"
-                android:layout_marginBottom="30dp"
-                app:cardElevation="14dp">
-
-                <TextView
-                    android:id="@+id/UserName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    android:background="@color/white"
-                    android:fontFamily="@font/fontresourcefile"
-                    android:padding="10dp"
-                    android:text="Name"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="7dp"
-                android:layout_marginBottom="80dp"
-                app:cardElevation="14dp">
-
-                <TextView
-                    android:id="@+id/UserEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:fontFamily="@font/fontresourcefile"
-                    android:padding="10dp"
-                    android:text="Email"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
-
-            </com.google.android.material.card.MaterialCardView>
-            
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/view2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="7dp"
-                android:layout_marginBottom="10dp"
-                app:cardElevation="13dp">
+                android:outlineSpotShadowColor="@color/primaryColor"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="16dp">
 
-                <Button
-                    android:id="@+id/logout"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                <ImageView
+                    android:id="@+id/profilePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/profileicon"
+                    android:scaleType="centerCrop" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+                <TextView
+                    android:id="@+id/greetings"
+                    android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Log out" />
+                    android:fontFamily="@font/fontresourcefile"
+                    android:layout_marginLeft="25dp"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
 
-
-            </com.google.android.material.card.MaterialCardView>
 
 
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="35dp"
+            android:background="@color/black"/>
 
-    </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="11dp"
+           >
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_baseline_perm_identity_24"
+                android:fontFamily="@font/fontresourcefile"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/UserName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:fontFamily="@font/fontresourcefile"
+                android:text="Name"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="2dp"
+                android:textSize="18dp" />
+
+
+
+       </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/black"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="11dp">
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_baseline_email_24"
+                android:fontFamily="@font/fontresourcefile"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/UserEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/fontresourcefile"
+                android:text="Email"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="2dp"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/black"/>
+
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="11dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_baseline_settings_24"
+                android:fontFamily="@font/fontresourcefile"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/setting"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fontFamily="@font/fontresourcefile"
+                android:text="Setting"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/black"/>
+
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="11dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_baseline_login_24"
+                android:fontFamily="@font/fontresourcefile"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/log_out"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:fontFamily="@font/fontresourcefile"
+                android:text="Log out"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="8dp"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
 
 
 
 
 
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+

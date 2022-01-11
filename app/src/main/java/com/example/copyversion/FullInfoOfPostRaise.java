@@ -31,7 +31,11 @@ public class FullInfoOfPostRaise extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_full_info_of_post);
+        setContentView(R.layout.full_info_of_raise);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         ProgressDialog progressDialog
                 = new ProgressDialog(FullInfoOfPostRaise.this);
@@ -45,9 +49,11 @@ public class FullInfoOfPostRaise extends AppCompatActivity {
         Button chat=findViewById(R.id.Chat_Initiate);
         TextView t2 = findViewById(R.id.textView2);
         TextView t9 = findViewById(R.id.textView9);
-        TextView t6 = findViewById(R.id.textView6);
+//        TextView t6 = findViewById(R.id.textView6);
         TextView t4 = findViewById(R.id.textView4);
-        TextView t7 = findViewById(R.id.textView7);
+
+
+
         ImageView imageView2 = findViewById(R.id.image);
 
 
@@ -63,6 +69,7 @@ public class FullInfoOfPostRaise extends AppCompatActivity {
 
         Intent i = getIntent();
         String PostId = (String) i.getSerializableExtra("PostId");
+        FoodRaiseInfo foodRaiseInfo= (FoodRaiseInfo) i.getSerializableExtra("object");
         ;
 
 //        Toast.makeText(FullInfoOfPostRaise.this, ""+PostId, Toast.LENGTH_SHORT).show();
@@ -126,8 +133,8 @@ public class FullInfoOfPostRaise extends AppCompatActivity {
         });
 
 
-        t7.setVisibility(View.GONE);
-        t6.setVisibility(View.GONE);
+
+//        t6.setVisibility(View.GONE);
 
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +143,7 @@ public class FullInfoOfPostRaise extends AppCompatActivity {
                 chatIntent.putExtra("Name",ProfileName[0]);
                 chatIntent.putExtra("imagUrl",ProfilePhotoUrl[0]);
                 chatIntent.putExtra("uidOther",uid[0]);
+                chatIntent.putExtra("object1foodraise",foodRaiseInfo);
                 startActivity(chatIntent);
             }
         });

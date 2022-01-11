@@ -1,5 +1,7 @@
 package com.example.copyversion;
 
+import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_IDLE;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
@@ -9,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -17,6 +20,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 class MessageSwipeController extends ItemTouchHelper.Callback implements SwipeControllerActions{
 
@@ -31,12 +36,14 @@ class MessageSwipeController extends ItemTouchHelper.Callback implements SwipeCo
     Context context;
     View mView;
     Float dX=0f;
+    RecyclerView l;
     boolean startTracking=false;
     RecyclerView.ViewHolder currentItemViewHolder=null;
-    MessageSwipeController(Context context,SwipeControllerActions swipeControllerActions) {
+    MessageSwipeController(RecyclerView List, Context context, SwipeControllerActions swipeControllerActions) {
         super();
         this.context=context;
         this.swipeControllerActions=swipeControllerActions;
+        this.l=List;
     }
 
     private static int convertTodp(int x,Context context)
@@ -51,13 +58,9 @@ class MessageSwipeController extends ItemTouchHelper.Callback implements SwipeCo
         imageDrawable = context.getDrawable(R.drawable.share);
                 shareRound = context.getDrawable(R.drawable.circle_corner);
 
-        return ItemTouchHelper.Callback.makeMovementFlags(0, ItemTouchHelper.RIGHT);
+        return ItemTouchHelper.Callback.makeMovementFlags(ACTION_STATE_IDLE, ItemTouchHelper.RIGHT);
     }
-    @Override
-    public float getSwipeThreshold( RecyclerView.ViewHolder viewHolder){
 
-        return .9f;
-    }
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -67,6 +70,7 @@ class MessageSwipeController extends ItemTouchHelper.Callback implements SwipeCo
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
+         l.getAdapter().notifyItemChanged(viewHolder.getAbsoluteAdapterPosition());
     }
    @Override
    public int convertToAbsoluteDirection(int flags,int layoutDirection) {
@@ -81,7 +85,14 @@ class MessageSwipeController extends ItemTouchHelper.Callback implements SwipeCo
     public void onChildDraw(Canvas c, RecyclerView recyclerView,
                             RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState, boolean isCurrentlyActive) {
-        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
+        float newDx=dX;
+        if(newDx>=100f)
+        {
+            newDx=100f;
+        }
+
+        super.onChildDraw(c, recyclerView, viewHolder, newDx, dY, actionState, isCurrentlyActive);
         // Set elevation for dragged itemView
 
 

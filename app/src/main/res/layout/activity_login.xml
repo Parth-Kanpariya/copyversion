@@ -72,12 +72,26 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
             android:background="@drawable/round_corner"
+            android:gravity="center_horizontal"
             android:text="Login"
             android:textAllCaps="false"
             android:textSize="20dp"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="30dp"
             />
+
+        <com.google.android.gms.common.SignInButton
+            android:layout_marginTop="18dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/sign_in_button_google"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp">
+
+        </com.google.android.gms.common.SignInButton>
+
 
     </LinearLayout>
 

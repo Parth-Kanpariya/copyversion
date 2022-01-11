@@ -30,7 +30,13 @@ public class FullInfoOfPostSell extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_full_info_of_post);
+        setContentView(R.layout.full_info_of_sell);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+
 
 
         ProgressDialog progressDialog
@@ -45,8 +51,9 @@ public class FullInfoOfPostSell extends AppCompatActivity {
         TextView t9 = findViewById(R.id.textView9);
         TextView t6 = findViewById(R.id.textView6);
         TextView t4 = findViewById(R.id.textView4);
-        TextView t8=findViewById(R.id.textView8);
-        TextView t7=findViewById(R.id.textView7);
+
+
+
         ImageView imageView2 = findViewById(R.id.image);
 
         final String[] contact = new String[1];
@@ -59,10 +66,11 @@ public class FullInfoOfPostSell extends AppCompatActivity {
         final String[] ProfileName=new String[1];
 
 
-        t8.setVisibility(View.GONE);
-        t9.setVisibility(View.GONE);
+
+
         Intent i = getIntent();
         String PostId=(String)i.getSerializableExtra("PostId");
+        SellerInfo sellerInfo= (SellerInfo) i.getSerializableExtra("object");
 
 
 //        Toast.makeText(FullInfoOfPostSell.this, ""+PostId+"SELL", Toast.LENGTH_SHORT).show();
@@ -72,7 +80,7 @@ public class FullInfoOfPostSell extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 t2.setText(snapshot.child("sellerName").getValue(String.class));
 //                t9.setText(snapshot.child("people").getValue(String.class));
-                t6.setText(snapshot.child("sellerApproximate").getValue(String.class));
+                t9.setText(snapshot.child("sellerApproximate").getValue(String.class));
                 t4.setText(snapshot.child("sellerAddress").getValue(String.class));
                 String imgUrl=snapshot.child("foodPhotoUrl").getValue(String.class);
                 if(imgUrl!=null)
@@ -129,7 +137,7 @@ public class FullInfoOfPostSell extends AppCompatActivity {
 
 
 
-        t7.setText("Weight");
+
 
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +146,7 @@ public class FullInfoOfPostSell extends AppCompatActivity {
                 chatIntent.putExtra("Name",ProfileName[0]);
                 chatIntent.putExtra("imagUrl",ProfilePhotoUrl[0]);
                 chatIntent.putExtra("uidOther",uid[0]);
+                chatIntent.putExtra("object1seller",sellerInfo);
                 startActivity(chatIntent);
             }
         });

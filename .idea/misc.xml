@@ -6,6 +6,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/circle_corner.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/cross_sign.xml" value="0.146875" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/dahed_border_for_photo.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/gradient.xml" value="0.18283963227783454" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_add_photo.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_add_post.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_attach_file_24.xml" value="0.1" />
@@ -26,12 +27,12 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/font/fontresourcefile.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.14280958721704395" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout-w936dp/activity_login.xml" value="0.167578125" />
-        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_chat_application.xml" value="0.4" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_chat_application.xml" value="0.24537037037037038" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_chat_initiate.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_fee_copy.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_feed_back.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_front_page.xml" value="0.2234375" />
-        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_full_info_of_post.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_full_info_of_post.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_home_pager.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_information.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_load_front_photo.xml" value="0.103125" />
@@ -58,11 +59,20 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_post.xml" value="0.12946428571428573" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling_post.xml" value="0.20625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/full_info_of_raise.xml" value="0.21927083333333333" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/full_info_of_sell.xml" value="0.21927083333333333" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/kuchb.xml" value="0.11367753623188406" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/mapinchatmessage.xml" value="0.536" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/notification.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/received_message_quoted_row.xml" value="0.1265625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/received_message_row.xml" value="0.6" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/recived_reply_post.xml" value="0.15081521739130435" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/reply_layout.xml" value="0.21927083333333333" />
-        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/send_message_quoted_row.xml" value="0.1265625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/send_message_quoted_row.xml" value="0.264" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/send_message_row.xml" value="0.7083333333333334" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/send_post_reply.xml" value="0.15081521739130435" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/shadow.xml" value="0.103125" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/time_label_in_chat.xml" value="0.264" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/additems.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1391304347826087" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu_fragment.xml" value="0.103125" />

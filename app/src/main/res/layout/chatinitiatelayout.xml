@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentTop="true"
-    android:background="@color/primaryColor"
+    android:background="@drawable/gradient"
     android:orientation="vertical">
 
         <RelativeLayout
@@ -23,7 +23,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:outlineSpotShadowColor="@color/primaryColor"
-                app:cardCornerRadius="50dp"
+                app:cardCornerRadius="25dp"
                 app:cardElevation="16dp">
 
                 <ImageView
@@ -31,7 +31,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/circle_corner"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/logoutil"
+                    android:src="@drawable/profileicon"
                     android:id="@+id/profileImageChatInitiate"/>
             </com.google.android.material.card.MaterialCardView>
 

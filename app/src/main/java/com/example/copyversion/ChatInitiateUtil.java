@@ -2,7 +2,7 @@ package com.example.copyversion;
 
 public class ChatInitiateUtil {
     private String uid,profileUrl,Name,lastMessage;
-    private int timeStamp;
+    private long timeStamp;
     ChatInitiateUtil()
     {
 
@@ -19,11 +19,11 @@ public class ChatInitiateUtil {
 
     }
 
-    public void setTimeStamp(int timeStamp) {
+    public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
     }
 
-    public int getTimeStamp() {
+    public long getTimeStamp() {
         return timeStamp;
     }
 

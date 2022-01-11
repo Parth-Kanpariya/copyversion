@@ -237,6 +237,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
         Intent intent = new Intent(getContext(), FullInfoOfPostSell.class);
         SellerInfo x = sellingList.get(position);
         intent.putExtra("PostId", x.getPostID());
+        intent.putExtra("object",x);
         startActivity(intent);
     }
 

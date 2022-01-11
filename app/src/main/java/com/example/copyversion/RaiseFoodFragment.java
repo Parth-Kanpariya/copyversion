@@ -237,6 +237,7 @@ public class RaiseFoodFragment extends Fragment implements FeedAdapter.ListItemC
         Intent intent = new Intent(getContext(), FullInfoOfPostRaise.class);
         FoodRaiseInfo x = RaisingList.get(position);
         intent.putExtra("PostId", x.getPostID());
+        intent.putExtra("object",x);
         startActivity(intent);
     }
 

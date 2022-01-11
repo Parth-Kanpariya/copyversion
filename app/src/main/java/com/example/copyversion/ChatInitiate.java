@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +41,7 @@ import java.util.Stack;
 public class ChatInitiate extends AppCompatActivity implements FeedAdapterForEnterChat.ListItemClickListener {
 
     DatabaseReference databaseReference1, databaseReference2;
+    DatabaseReference status1,connect1;
     String nameOfUser, profileImageUri;
 
 
@@ -55,6 +57,40 @@ public class ChatInitiate extends AppCompatActivity implements FeedAdapterForEnt
 
         FirebaseAuth Auth = FirebaseAuth.getInstance();
         String myUid = Auth.getCurrentUser().getUid();
+
+
+
+
+
+
+
+
+//        status1=FirebaseDatabase.getInstance().getReference("/rotlo/user").child(myUid);
+//        connect1=FirebaseDatabase.getInstance().getReference(".info/connected");
+//        connect1.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                boolean connected=snapshot.getValue(Boolean.class);
+//                if(connected)
+//                {
+//
+//
+//                    Long tsLong = System.currentTimeMillis()/1000;
+//                    String ts = tsLong.toString();
+//                    status1.child("status").setValue(ts);
+//                    status1.child("status").onDisconnect().setValue(ts);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+
+
+
 
 
 
@@ -102,7 +138,7 @@ public class ChatInitiate extends AppCompatActivity implements FeedAdapterForEnt
 
                         chatInitiateUtil.setOtherUid(uidOfOther);
 
-                        final int[] max = {0};
+                        final long[] max = {0};
                         final String[] sd = new String[1];
 
                         String finalUidOfOther = uidOfOther;
@@ -114,7 +150,7 @@ public class ChatInitiate extends AppCompatActivity implements FeedAdapterForEnt
 
                                     for (DataSnapshot ds : snapshot.getChildren()) {
 //                                                Toast.makeText(ChatInitiate.this,ds.getKey(),Toast.LENGTH_SHORT).show();
-                                        int s = Integer.parseInt(ds.getKey());
+                                        long s = Long.parseLong(ds.getKey());
 
                                         if (s > max[0]) {
                                             max[0] = s;

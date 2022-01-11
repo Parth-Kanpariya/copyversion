@@ -2,23 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
+    android:id="@+id/linear_Layout"
     android:layout_width="match_parent"
     android:padding="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="4dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="45dp"
     android:layout_marginBottom="4dp"
+    android:background="@drawable/round_corner"
     android:layout_height="wrap_content"
     android:minWidth="50dp">
 
 <!--    android:background="@drawable/left_tv_bg"-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/reply"
+        android:id="@+id/replyWithQuoted"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:animateLayoutChanges="true"
-        android:background="@color/primaryDarkColor"
+        android:background="@color/primaryColor"
         android:paddingStart="4dp"
         android:paddingTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,13 +38,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
-            android:id="@+id/name"
-            android:text="Receiver"
+            android:id="@+id/Recivername"
+            android:textColor="#732D77"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/image_line"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textQuote"
+            android:id="@+id/textQuotes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -53,13 +55,16 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/image_line"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            tools:text="h ghgdhg fgd \n h ghgdhg fgd h ghgdhg fgdn h ghgdhg fgd h ghgdhg fgdn h ghgdhg fgd h ghgdhg fgdn h ghgdhg fgd h ghgdhg fgdn h ghgdhg" />
+            app:layout_constraintTop_toBottomOf="@id/Recivername"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:autoLink="all"
+        android:textColorLink="@color/black"
+        android:linksClickable="true"
         android:id="@+id/txtBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,8 +75,20 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reply"
-        tools:text="@tools:sample/last_names" />
+        app:layout_constraintTop_toBottomOf="@+id/replyWithQuoted"
+        />
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:text="10:20 am"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

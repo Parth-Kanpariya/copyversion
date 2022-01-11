@@ -64,7 +64,43 @@ public class FeedAdapterForEnterChat extends RecyclerView.Adapter<FeedAdapterFor
 
         ChatInitiateUtil chatInitiateUtil=FeedList.get(position);
         String uidOfOther=chatInitiateUtil.getOtherUid();
-        holder.textViewChat.setText(chatInitiateUtil.getLastMessage());
+        String last=chatInitiateUtil.getLastMessage();
+        if(last.length()>20)
+        {
+            last=last.substring(0,20);
+        }
+
+
+
+        DatabaseReference connectOther=FirebaseDatabase.getInstance().getReference("/rotlo/user").child(uidOfOther);
+        String finalLast = last;
+        connectOther.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String s=snapshot.child("status").getValue(String.class);
+               if(s.equals("typing...."))
+                {
+                    holder.textViewChat.setText(s);
+                }
+               else
+               {
+                   holder.textViewChat.setText(finalLast);
+               }
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        holder.textViewChat.setText(last);
+
 
 
         DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("/rotlo/user").child(uidOfOther);
