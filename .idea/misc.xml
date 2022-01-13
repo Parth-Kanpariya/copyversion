@@ -16,6 +16,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_check.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_home_feed.xml" value="0.2390194075587334" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_logout__1_.xml" value="0.20277777777777778" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_round_shap.xml" value="0.146875" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/kebap.xml" value="0.2390194075587334" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/more_vert.xml" value="0.11388888888888889" />
@@ -40,6 +41,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_login.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_main.xml" value="0.20625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_navigation.xml" value="0.20625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_profile_of_user.xml" value="0.1265625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_selling_fragment_page.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_signup.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/chat_phermo.xml" value="0.20208333333333334" />
@@ -52,6 +54,10 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_home_pager_fragment.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_information_.xml" value="0.20625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_maps_with_marker.xml" value="0.103125" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_my_post.xml" value="0.21927083333333333" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_my_post_donor.xml" value="0.21927083333333333" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_my_post_raise.xml" value="0.20208333333333334" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_my_post_sell.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_option_for_da_s.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_profile.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_fragment.xml" value="0.103125" />
@@ -59,6 +65,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_post.xml" value="0.12946428571428573" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_selling_post.xml" value="0.20625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_setting_fragment.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/full_info_of_raise.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/full_info_of_sell.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/kuchb.xml" value="0.11367753623188406" />

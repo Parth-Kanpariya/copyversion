@@ -142,6 +142,7 @@ public class signup extends AppCompatActivity {
 //                                user.setUri(profileUri);
                                 user.setFullName(mFullname.getText().toString());
                                 user.setEmail(mEmailAddress.getText().toString());
+                                user.setStatus("");
 //                                User(mFullname.getText().toString(),mEmailAddress.getText().toString(),profileUri);
 ////
                                 FirebaseAuth mAuth= FirebaseAuth.getInstance();
@@ -228,6 +229,7 @@ public class signup extends AppCompatActivity {
 //                                user.setUri(profileUri);
                             user1.setFullName(user.getDisplayName());
                             user1.setEmail(user.getEmail());
+                            user1.setStatus("");
                             user1.setUri(user.getPhotoUrl().toString());
 //                                User(mFullname.getText().toString(),mEmailAddress.getText().toString(),profileUri);
 ////

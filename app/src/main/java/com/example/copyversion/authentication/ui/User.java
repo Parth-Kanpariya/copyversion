@@ -6,7 +6,7 @@ import android.widget.ImageView;
 public class User {
     private String fullName;
     private String email;
-    private String phone;
+    private String status;
     private String profileUri;
 
     public User(String fullName, String email,String profileUri) {
@@ -43,11 +43,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -97,6 +97,7 @@ public class ChatInitiate extends AppCompatActivity implements FeedAdapterForEnt
 
 
 
+
         RecyclerView forChatRecyclerView = (RecyclerView) findViewById(R.id.EnterIntoChat);
         forChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -104,7 +105,20 @@ public class ChatInitiate extends AppCompatActivity implements FeedAdapterForEnt
         ProgressDialog progressDialog
                 = new ProgressDialog(ChatInitiate.this);
 
-        progressDialog.show();
+
+        TextView displayMessage=findViewById(R.id.dispalyMessageForNoChatInitiate);
+        if(ListForChatting.size()==0)
+        {
+            progressDialog.dismiss();
+
+            displayMessage.setVisibility(View.VISIBLE);
+        }else
+        {
+            progressDialog.show();
+            displayMessage.setVisibility(View.GONE);
+        }
+
+
         final int[] x = new int[1];
         databaseReference1 = FirebaseDatabase.getInstance().getReference("/rotlo/chat/").getRef();
         databaseReference1.addChildEventListener(new ChildEventListener() {
@@ -172,6 +186,10 @@ public class ChatInitiate extends AppCompatActivity implements FeedAdapterForEnt
 //
 //                                    databaseReferenced.push().setValue(chatInitiateUtil);
                                     ListForChatting.add(chatInitiateUtil);
+
+                                    if(ListForChatting.size()!=0)
+                                        displayMessage.setVisibility(View.GONE);
+
 
 
                                     Collections.sort(ListForChatting, (o1, o2) -> (int) (o2.getTimeStamp() - o1.getTimeStamp()));

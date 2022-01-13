@@ -5,6 +5,8 @@
         android:id="@+id/homePager_fragment"
         android:title="Home"
         android:icon="@drawable/ic_home_feed"/>
+
+
     <item
         android:id="@+id/optionForDaS"
         android:title="Create"

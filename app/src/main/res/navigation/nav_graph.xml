@@ -51,6 +51,10 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
 
+
+        <action
+            android:id="@+id/action_profileFragment_to_my_post"
+            app:destination="@id/my_post" />
     </fragment>
     <fragment
         android:id="@+id/raiseFoodPostFragment2"
@@ -64,4 +68,10 @@
         android:name="com.example.copyversion.ChatInitiate"
         android:label="activity_chat_initiate"
         tools:layout="@layout/activity_chat_initiate" />
+
+    <fragment
+        android:id="@+id/my_post"
+        android:name="com.example.copyversion.my_post"
+        android:label="fragment_my_post"
+        tools:layout="@layout/fragment_my_post" />
 </navigation>

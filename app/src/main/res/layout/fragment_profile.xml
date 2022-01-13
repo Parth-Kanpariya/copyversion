@@ -167,6 +167,45 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:paddingLeft="11dp"
+            android:id="@+id/linearLayoutForMyPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_baseline_login_24"
+                android:fontFamily="@font/fontresourcefile"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/my_posts"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:fontFamily="@font/fontresourcefile"
+                android:text="My posts"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="8dp"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/black"/>
+
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="11dp"
+            android:id="@+id/linearLayoutForDeleteAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -176,19 +215,19 @@
                 android:layout_width="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_height="35dp"
-                android:background="@drawable/ic_baseline_settings_24"
+                android:background="@drawable/ic_baseline_delete_24"
                 android:fontFamily="@font/fontresourcefile"
                 android:textColor="@color/black"
                 />
 
             <TextView
-                android:id="@+id/setting"
+                android:id="@+id/delete_account"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:fontFamily="@font/fontresourcefile"
-                android:text="Setting"
+                android:text="Delete account"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="2dp"
                 android:textColor="@color/black"
@@ -207,6 +246,7 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:paddingLeft="11dp"
+            android:id="@+id/linearLayoutForLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -214,7 +254,7 @@
                 android:layout_width="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_height="35dp"
-                android:background="@drawable/ic_baseline_login_24"
+                android:background="@drawable/ic_logout__1_"
                 android:fontFamily="@font/fontresourcefile"
                 android:textColor="@color/black"
                 />

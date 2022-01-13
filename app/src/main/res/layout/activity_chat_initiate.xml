@@ -7,6 +7,17 @@
     android:background="@drawable/gradient"
     android:orientation="vertical"
     tools:context=".ChatInitiate">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Conversation"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/josefinsanssemibold"
+        android:visibility="gone"
+        android:id="@+id/dispalyMessageForNoChatInitiate"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/EnterIntoChat"

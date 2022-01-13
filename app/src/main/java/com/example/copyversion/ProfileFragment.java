@@ -4,8 +4,10 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -24,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 
 import android.os.Parcelable;
 import android.provider.MediaStore;
@@ -42,10 +45,15 @@ import com.example.copyversion.authentication.ui.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,6 +74,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.Executor;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +92,8 @@ public class ProfileFragment extends Fragment {
     private Bitmap bitmap;
     private String s;
     private GoogleSignInClient mGoogleSignInClient;
+
+    private LinearLayout logOutLayout, myPostLayout, deleteAccountLayout;
     Map<String, Object> postValues = new HashMap<String, Object>();
 
 
@@ -121,14 +132,14 @@ public class ProfileFragment extends Fragment {
 
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
-            TextView logOutButton = rootView.findViewById(R.id.log_out);
-            logOutButton.setOnClickListener(new View.OnClickListener() {
+            logOutLayout = rootView.findViewById(R.id.linearLayoutForLogout);
+            logOutLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     logOut(rootView);
                 }
             });
+
 
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.web_client_id))
@@ -137,6 +148,40 @@ public class ProfileFragment extends Fragment {
 
             mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
+            deleteAccountLayout = rootView.findViewById(R.id.linearLayoutForDeleteAccount);
+            deleteAccountLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                    alert.setTitle("Rotlo");
+                    alert.setMessage("Do you want to delete the account?");
+                    alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deleteAuthentication();
+                            deletePost(auth);
+                            deleteUser(auth);
+                            deleteChat(auth);
+                            mGoogleSignInClient.signOut();
+                        }
+                    });
+                    alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alert.create().show();
+                }
+            });
+
+            myPostLayout = rootView.findViewById(R.id.linearLayoutForMyPost);
+            myPostLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileFragment_to_my_post);
+                }
+            });
 
 
             name = rootView.findViewById(R.id.UserName);
@@ -170,7 +215,7 @@ public class ProfileFragment extends Fragment {
 
 
                         email.setText(snapshot.child("email").getValue(String.class));
-                        String nameForPost=(snapshot.child("fullName").getValue(String.class));
+                        String nameForPost = (snapshot.child("fullName").getValue(String.class));
                         name.setText(snapshot.child("fullName").getValue(String.class));
                         s = snapshot.child("uri").getValue(String.class);
 
@@ -249,20 +294,19 @@ public class ProfileFragment extends Fragment {
 //                                        .into(profileIcon);
 //
 
-                                Picasso.get().load(s).into(profileIcon);
-//
-                            String firstWord;
-
-                            if (nameForGreet.contains(" ")) {
-                                firstWord = nameForGreet.substring(0, nameForGreet.indexOf(" "));
-                                Greet.setText("Hii, " + firstWord + "!!");
-
-                            } else {
-                                Greet.setText("Hii, " + nameForGreet.substring(0, 5) + "!!");
-                            }
-
-
+                            Picasso.get().load(s).into(profileIcon);
                         }
+//
+                        String firstWord;
+
+                        if (nameForGreet.contains(" ")) {
+                            firstWord = nameForGreet.substring(0, nameForGreet.indexOf(" "));
+                            Greet.setText("Hii, " + firstWord + "!!");
+
+                        } else {
+                            Greet.setText("Hii, " + nameForGreet.substring(0, 5) + "!!");
+                        }
+
 
                     }
 
@@ -299,24 +343,23 @@ public class ProfileFragment extends Fragment {
             try {
 
                 // Setting image on image view using Bitmap
-                 bitmap = MediaStore
+                bitmap = MediaStore
                         .Images
                         .Media
                         .getBitmap(
                                 getActivity().getContentResolver(),
                                 filePath);
 
-                if(bitmap.getByteCount()>144609280)
-                { int nh = (int) ( bitmap.getHeight() * (1024.0 / bitmap.getWidth()) );
+                if (bitmap.getByteCount() > 144609280) {
+                    int nh = (int) (bitmap.getHeight() * (1024.0 / bitmap.getWidth()));
                     Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 1024, nh, true);
                     Matrix matrix = new Matrix();
 
                     matrix.postRotate(90);
                     scaled = Bitmap.createBitmap(scaled, 0, 0, scaled.getWidth(), scaled.getHeight(), matrix, true);
 
-                    profileIcon.setImageBitmap(scaled);}
-                else
-                {
+                    profileIcon.setImageBitmap(scaled);
+                } else {
                     profileIcon.setImageBitmap(bitmap);
                 }
 
@@ -446,6 +489,181 @@ public class ProfileFragment extends Fragment {
                                 }
                             });
         }
+    }
+
+    private void deletePost(FirebaseAuth auth) {
+
+
+        DatabaseReference rootRef1 = FirebaseDatabase.getInstance().getReference("/rotlo/post/Raising");
+        rootRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        DatabaseReference rootRef11 = FirebaseDatabase.getInstance().getReference("/rotlo/post/Raising").child(s.getKey());
+                        if (auth.getCurrentUser().getUid().equals(s.child("uid").getValue(String.class))) {
+                            rootRef11.removeValue();
+                        }
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+//
+        DatabaseReference rootRef2 = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation/");
+        rootRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        DatabaseReference rootRef22 = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation").child(s.getKey());
+                        if (auth.getCurrentUser().getUid().equals(s.child("uid").getValue(String.class))) {
+                            rootRef22.removeValue();
+                        }
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+//        Toast.makeText(getContext(), ""+rootRef2.getParent(), Toast.LENGTH_SHORT).show();
+
+        DatabaseReference rootRef3 = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling");
+        rootRef3.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        DatabaseReference rootRef33 = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling").child(s.getKey());
+                        if (auth.getCurrentUser().getUid().equals(s.child("uid").getValue(String.class))) {
+                            rootRef33.removeValue();
+                        }
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+    private void deleteUser(FirebaseAuth auth) {
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("/rotlo/user/");
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        if (s.getKey().equals(auth.getCurrentUser().getUid())) {
+                            s.getRef().removeValue();
+                        }
+
+                    }
+
+//                    Toast.makeText(getContext(), ""+snapshot.getChildren(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
+    private void deleteAuthentication() {
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        // Get auth credentials from the user for re-authentication. The example below shows
+        // email and password credentials but there are multiple possible providers,
+        // such as GoogleAuthProvider or FacebookAuthProvider.
+
+
+//        AuthCredential credential_for_Normal_user = EmailAuthProvider.getCredential(email, password);
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+//        AuthCredential credential_for_google_user = GoogleAuthProvider.getCredential(account.getIdToken(), email);
+        final int[] temp = {0};
+
+//
+
+        // Prompt the user to re-provide their sign-in credentials
+        if (user != null) {
+            user.delete()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("TAG", "User account deleted.");
+
+                                Intent intent = new Intent(getContext(), MainActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(getContext(), "Deleted User Successfully,", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "No delete,", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
+
+    }
+
+    void deleteChat(FirebaseAuth auth) {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("/rotlo/chat/");
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot s : snapshot.getChildren()) {
+                        if (s.getKey().contains(auth.getCurrentUser().getUid())) {
+                            DatabaseReference mDatabaseForDeleteChat = FirebaseDatabase.getInstance().getReference("/rotlo/chat/").child(s.getKey());
+                            mDatabaseForDeleteChat.removeValue();
+                        }
+
+
+                    }
+
+//                    Toast.makeText(getContext(), ""+snapshot.getChildren(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 

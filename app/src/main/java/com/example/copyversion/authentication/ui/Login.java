@@ -67,6 +67,7 @@ public class Login extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+
         googleSignInButton=findViewById(R.id.sign_in_button_google);
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +183,7 @@ public class Login extends AppCompatActivity {
                             user1.setFullName(user.getDisplayName());
                             user1.setEmail(user.getEmail());
                             user1.setUri(user.getPhotoUrl().toString());
+                            user1.setStatus("");
 //                                User(mFullname.getText().toString(),mEmailAddress.getText().toString(),profileUri);
 ////
                             FirebaseAuth mAuth= FirebaseAuth.getInstance();
@@ -205,5 +207,14 @@ public class Login extends AppCompatActivity {
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    public void revokeAccess() {
+        mGoogleSignInClient.revokeAccess()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
     }
 }
