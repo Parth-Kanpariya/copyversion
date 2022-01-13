@@ -14,7 +14,7 @@
 
 
     <item
-        android:id="@+id/chatInitiates"
+        android:id="@+id/chatInitiator"
         android:title="chat"
         android:icon="@drawable/ic_baseline_message_24"/>
     <item

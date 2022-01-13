@@ -74,4 +74,9 @@
         android:name="com.example.copyversion.my_post"
         android:label="fragment_my_post"
         tools:layout="@layout/fragment_my_post" />
+    <fragment
+        android:id="@+id/chatInitiator"
+        android:name="com.example.copyversion.ChatInitiator"
+        android:label="fragment_chat_initiator"
+        tools:layout="@layout/fragment_chat_initiator" />
 </navigation>
