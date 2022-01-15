@@ -56,6 +56,7 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
     private ArrayList<SellerInfo> sellingList = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     private double longitude, latitude;
+    String uidOfOtherUser=null;
     FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -72,14 +73,7 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment frontPage_Fragment.
-     */
+
     // TODO: Rename and change types and number of parameters
 //    public static frontPage_Fragment newInstance(String param1, String param2) {
 //        frontPage_Fragment fragment = new frontPage_Fragment();
@@ -93,6 +87,11 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            Bundle bundle=getArguments();
+            if(bundle!=null)
+            {
+                uidOfOtherUser=bundle.getString("uidOfOther");
+            }
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -133,7 +132,10 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
         });
 
 
+
         viewPager = rootView.findViewById(R.id.view_pager);
+
+
 
 
         return rootView;
@@ -151,6 +153,7 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
         //for Recycler view
 //        RecyclerView l = rootView.findViewById(R.id.list);
 //        l.setLayoutManager(new LinearLayoutManager(getContext()));
+
         RecyclerView sl = rootView.findViewById(R.id.sellinglist);
         sl.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -188,9 +191,33 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
                             foodPhotUrl = "https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fpost%2Fselling%2F3608aa61-7c94-4e36-bd4b-46dfe62f4403?alt=media&token=24638d50-1e71-4c72-8373-522b62710297";
                         }
 
-                        if (uid.equals(FirebaseAuth.getInstance().getUid())) {
-                            sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact));
+                        String decision=getArguments().getString("decision");
+                        boolean isClickable;
+                        if(decision.equals("NO"))
+                        {
+                            isClickable=false;
+                        }else
+                        {
+                            isClickable=true;
                         }
+
+                        if(uidOfOtherUser!=null)
+                        {
+                            if(uid.equals(uidOfOtherUser))
+                            {
+                                sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+
+                            }
+                        }
+                        else
+                        {
+                            if (uid.equals(FirebaseAuth.getInstance().getUid())) {
+                                sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+
+                            }
+                        }
+
+
 
 
                     }

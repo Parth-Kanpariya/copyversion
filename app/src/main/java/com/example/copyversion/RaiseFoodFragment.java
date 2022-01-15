@@ -190,7 +190,7 @@ public class RaiseFoodFragment extends Fragment implements FeedAdapter.ListItemC
                         }
 
 
-                        RaisingList.add(new FoodRaiseInfo(RaiserName, People, RaiserAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact));
+                        RaisingList.add(new FoodRaiseInfo(RaiserName, People, RaiserAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact,true));
 
 
                     }

@@ -23,6 +23,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/outline_restaurant_24.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/profile_icon.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/round_corner.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/round_corner_new_gradient.xml" value="0.2" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/rounded_corner.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/share.xml" value="0.146875" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/font/fontresourcefile.xml" value="0.1" />
@@ -47,8 +48,10 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/chat_phermo.xml" value="0.20208333333333334" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/chatinitiatelayout.xml" value="0.72" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/demo.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_chat_applicationn.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_chat_initiator.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_donation.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_edit_profile.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_first.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_front_page_.xml" value="0.20625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_home_pager.xml" value="0.2234375" />
@@ -61,6 +64,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_my_post_sell.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_option_for_da_s.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_profile.xml" value="0.2234375" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_profile_of_other_user.xml" value="0.11510416666666666" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_fragment.xml" value="0.103125" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_freagment.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/fragment_raise_food_post.xml" value="0.12946428571428573" />

@@ -54,6 +54,7 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
     private ArrayList<FoodRaiseInfo> RaisingList = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     private double longitude, latitude;
+    String uidOfOtherUser=null;
     FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -84,6 +85,11 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            Bundle bundle=getArguments();
+            if(bundle!=null)
+            {
+                uidOfOtherUser=bundle.getString("uidOfOther");
+            }
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -142,6 +148,8 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
         //for Recycler view
 //        RecyclerView l = rootView.findViewById(R.id.list);
 //        l.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         RecyclerView sl = rootView.findViewById(R.id.Raisinglist);
         sl.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -180,8 +188,29 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
                             foodPhotUrl = "https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fpost%2Fselling%2F8f62ebcb-3d7f-4f54-a06d-fc50e2d84c73?alt=media&token=95d18879-1068-4be1-9e1d-651fddde9151";
                         }
 
-                        if (uid.equals(FirebaseAuth.getInstance().getUid())) {
-                            RaisingList.add(new FoodRaiseInfo(RaiserName, People, RaiserAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact));
+                        String decision=getArguments().getString("decision");
+                        boolean isClickable;
+                        if(decision.equals("NO"))
+                        {
+                            isClickable=false;
+                        }else
+                        {
+                            isClickable=true;
+                        }
+
+                        if(uidOfOtherUser!=null)
+                        {
+                            if(uid.equals(uidOfOtherUser))
+                            {
+                            RaisingList.add(new FoodRaiseInfo(RaiserName, People, RaiserAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+                            }
+                        }
+                        else
+                        {
+                            if (uid.equals(FirebaseAuth.getInstance().getUid())) {
+                                RaisingList.add(new FoodRaiseInfo(RaiserName, People, RaiserAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+
+                            }
                         }
 
 

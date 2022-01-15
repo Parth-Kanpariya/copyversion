@@ -20,8 +20,8 @@
 
     <!--?xml version="1.0" encoding="UTF-8"?-->
 
-    <color name="primaryColor">#ff9100</color>
-    <color name="primaryLightColor">#ffc246</color>
+    <color name="primaryColor">#6d5ab7</color>
+    <color name="primaryLightColor">#9b5ab7</color>
     <color name="primaryDarkColor">#c56200</color>
     <color name="secondaryColor">#c90000</color>
     <color name="secondaryLightColor">#ff4e2f</color>

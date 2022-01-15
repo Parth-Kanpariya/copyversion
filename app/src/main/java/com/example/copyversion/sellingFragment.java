@@ -191,7 +191,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
                         }
 
 
-                        sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact));
+                        sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact,true));
 
 
                     }

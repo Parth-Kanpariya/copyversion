@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".EditProfile">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/NoChangeInProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_close_24"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit profile"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/josefinsanssemibold"
+            android:textSize="25dp"/>
+
+        <Button
+            android:id="@+id/profileUpdated"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="120dp"
+            android:background="@drawable/ic_baseline_done_24" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:id="@+id/buttonForChanginProfileEditPost"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:outlineSpotShadowColor="@color/primaryColor"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="16dp">
+
+            <ImageView
+                android:id="@+id/EditPostprofilePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/profileicon"
+                android:scaleType="centerCrop" />
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Profile Picture"
+            android:textColor="@color/primaryColor"
+            android:textSize="18dp"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/josefinsanssemibold"/>
+
+        <EditText
+            android:layout_marginTop="5dp"
+            android:id="@+id/EditPostEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

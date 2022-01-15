@@ -455,7 +455,7 @@ public class SellingPostFragment extends Fragment {
         sellerAddress = rootView.findViewById(R.id.seller_address);
         sellerName = rootView.findViewById(R.id.seller_name);
         Approximate = rootView.findViewById(R.id.Approximate_weight);
-        ContactNumberSeller=rootView.findViewById(R.id.mobileNumberSeller);
+//        ContactNumberSeller=rootView.findViewById(R.id.mobileNumberSeller);
 
 //        post=findViewById(R.id.text_view_post1);
 

@@ -30,9 +30,6 @@
 
 
         <activity
-            android:name=".ProfileOfUser"
-            android:exported="true" />
-        <activity
             android:name=".ChatInitiate"
             android:exported="true"
             android:screenOrientation="portrait" />

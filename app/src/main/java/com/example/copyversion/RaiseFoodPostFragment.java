@@ -455,7 +455,7 @@ public class RaiseFoodPostFragment extends Fragment {
         RaiserAddress = rootView.findViewById(R.id.Raiser_address);
         RaiserName = rootView.findViewById(R.id.Raiser_name);
         PeopleField= rootView.findViewById(R.id.food_weight);
-        ContactNumberRaiser=rootView.findViewById(R.id.mobileNumberRaiser);
+//        ContactNumberRaiser=rootView.findViewById(R.id.mobileNumberRaiser);
 
 //        post=findViewById(R.id.text_view_post1);
 

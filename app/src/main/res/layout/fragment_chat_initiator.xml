@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="#8c7dc6"
     android:orientation="vertical"
     tools:context=".ChatInitiator">
     <TextView
@@ -23,9 +23,11 @@
         android:id="@+id/EnterIntoChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:layout_marginBottom="80dp"/>
 
 </LinearLayout>

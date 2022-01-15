@@ -3,6 +3,7 @@ package com.example.copyversion.authentication.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,8 +36,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -45,6 +49,7 @@ public class Login extends AppCompatActivity {
     private int RC_SIGN_IN=120;
     private SignInButton googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
+
 
 
     @Override
@@ -75,6 +80,8 @@ public class Login extends AppCompatActivity {
                 signIn();
             }
         });
+
+
 
 
 //         ProgressBar loadingProgressBar = findViewById(R.id.loading);
@@ -188,12 +195,44 @@ public class Login extends AppCompatActivity {
 ////
                             FirebaseAuth mAuth= FirebaseAuth.getInstance();
 
-                            DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference("/rotlo/user").child(mAuth.getCurrentUser().getUid());
 
-                            mDatabase.setValue(user1);
-                            Intent intent=new Intent(Login.this,MainActivity.class);
+                            DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference("/rotlo/user");
+                            DatabaseReference mDatabase1= FirebaseDatabase.getInstance().getReference("/rotlo/user").child(mAuth.getCurrentUser().getUid());
+                            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                               int temp=0;
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists())
+                                    {
+                                        for(DataSnapshot ds:snapshot.getChildren())
+                                        {
+
+                                            if(ds.getKey().equals(mAuth.getCurrentUser().getUid()))
+                                            {
+                                                temp=1;
+
+                                            }
+                                        }
+
+                                    }
+                                    if(temp==0)
+                                    {
+                                        mDatabase1.setValue(user1);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    mDatabase1.setValue(user1);
+                                }
+
+                            });
+
+
+
+                            Intent intent=new Intent(Login.this,NavigationActivity.class);
                             startActivity(intent);
-                            finish();
+                             finish();
 //                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

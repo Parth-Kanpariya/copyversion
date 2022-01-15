@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentTop="true"
-    android:background="@drawable/gradient"
+    android:background="#8c7dc6"
     android:orientation="vertical">
 
         <RelativeLayout

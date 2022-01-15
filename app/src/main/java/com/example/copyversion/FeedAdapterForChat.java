@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Layout;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -184,6 +185,21 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
                         holder.timeLabelInChat.setText(address.getMessage());
                     }
                 }
+
+                else if(formattedDatee.substring(10,11).equals(",") && address.getMessage().substring(10,11)!=",")
+                {
+                        if(Integer.parseInt(formattedDatee.substring(9,10))-Integer.parseInt(address.getMessage().substring(9,11))==-1)
+                        {
+
+                            holder.timeLabelInChat.setText("Yesterday");
+                        }
+                        else
+                        {
+                            holder.timeLabelInChat.setText(address.getMessage());
+                        }
+
+
+                }
                 else if(formattedDatee.substring(10,11)!="," && address.getMessage().substring(10,11)!=",")
                 {
 
@@ -197,21 +213,6 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
                     {
                         holder.timeLabelInChat.setText(address.getMessage());
                     }
-                }
-                else if(formattedDatee.substring(10,11)=="," && address.getMessage().substring(10,11)!=",")
-                {
-//
-                        if(Integer.parseInt(formattedDatee.substring(9,10))-Integer.parseInt(address.getMessage().substring(9,11))<=0)
-                        {
-
-                            holder.timeLabelInChat.setText("Yesterday");
-                        }
-                        else
-                        {
-                            holder.timeLabelInChat.setText(address.getMessage());
-                        }
-
-
                 }
             }
 

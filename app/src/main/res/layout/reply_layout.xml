@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="30dp"
-    app:cardBackgroundColor="@color/primaryColor"
+    app:cardBackgroundColor="#9c8fce"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
@@ -24,7 +24,7 @@
             android:id="@+id/reply_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primaryDarkColor"
+            android:background="#A2CE8F"
             android:paddingStart="4dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/image_line"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Ali Zain" />
@@ -98,6 +99,7 @@
             android:inputType="textMultiLine|textCapSentences|textShortMessage"
             android:maxLength="2000"
             android:maxLines="5"
+            android:textSize="17sp"
             android:minHeight="52dp"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"

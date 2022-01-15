@@ -218,7 +218,7 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
                         }
 
 
-                        donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl, userId, postID, latiitude, longitude,profilePhtourl,username,currentTime,contact));
+                        donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl, userId, postID, latiitude, longitude,profilePhtourl,username,currentTime,contact,true));
 
 
 //

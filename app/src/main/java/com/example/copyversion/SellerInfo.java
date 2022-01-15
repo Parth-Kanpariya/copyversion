@@ -15,6 +15,7 @@ public class SellerInfo  implements Serializable {
     private String username;
     private String profilePhtourl;
     private String Contact;
+    private boolean isClickable;
     private double longitude;
     private double latitude;
     private Date currentTime;
@@ -27,7 +28,7 @@ public class SellerInfo  implements Serializable {
 
     }
 
-    public SellerInfo (String sellerName,String approximate,String sellerAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact) {
+    public SellerInfo (String sellerName,String approximate,String sellerAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact,boolean isClickable) {
         this.sellerAddress=sellerAddress;
         this.sellerName=sellerName;
         this.approximate=approximate;
@@ -40,6 +41,7 @@ public class SellerInfo  implements Serializable {
         this.username=username;
         this.currentTime=currentTime;
         this.Contact=Contact;
+        this.isClickable=isClickable;
 
 
     }
@@ -134,6 +136,13 @@ public class SellerInfo  implements Serializable {
         this.currentTime = currentTime;
     }
 
+    public void setClickable(boolean clickable) {
+        isClickable = clickable;
+    }
+
+    public boolean isClickable() {
+        return isClickable;
+    }
 
     public String getContact() {
         return Contact;

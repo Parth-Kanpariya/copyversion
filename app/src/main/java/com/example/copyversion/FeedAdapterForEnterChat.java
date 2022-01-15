@@ -99,6 +99,7 @@ public class FeedAdapterForEnterChat extends RecyclerView.Adapter<FeedAdapterFor
             }
         });
 
+
         holder.textViewChat.setText(last);
 
 

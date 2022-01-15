@@ -34,6 +34,7 @@
             android:id="@+id/action_optionForDaS_to_profileFragment"
             app:destination="@id/profileFragment" />
 
+
     </fragment>
     <fragment
         android:id="@+id/homePager_fragment"
@@ -43,6 +44,9 @@
         <action
             android:id="@+id/action_homePager_fragment_to_optionForDaS"
             app:destination="@id/optionForDaS" />
+        <action
+            android:id="@+id/action_homePager_fragment_to_profileOfOtherUser"
+            app:destination="@id/profileOfOtherUser" />
 
     </fragment>
     <fragment
@@ -55,6 +59,10 @@
         <action
             android:id="@+id/action_profileFragment_to_my_post"
             app:destination="@id/my_post" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfile"
+            app:destination="@+id/editProfile"
+            />
     </fragment>
     <fragment
         android:id="@+id/raiseFoodPostFragment2"
@@ -73,10 +81,73 @@
         android:id="@+id/my_post"
         android:name="com.example.copyversion.my_post"
         android:label="fragment_my_post"
-        tools:layout="@layout/fragment_my_post" />
+        tools:layout="@layout/fragment_my_post" >
+        <action
+            android:id="@+id/action_my_post_to_profileOfOtherUser"
+            app:destination="@id/profileOfOtherUser" />
+    </fragment>
     <fragment
         android:id="@+id/chatInitiator"
         android:name="com.example.copyversion.ChatInitiator"
         android:label="fragment_chat_initiator"
-        tools:layout="@layout/fragment_chat_initiator" />
+        tools:layout="@layout/fragment_chat_initiator" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.example.copyversion.EditProfile"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile"
+        >
+        <action
+            android:id="@+id/action_profileFragment_to_profile"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"
+            />
+
+    </fragment>
+    <activity
+        android:id="@+id/chatApplication"
+        android:name="com.example.copyversion.ChatApplication"
+        android:label="activity_chat_application"
+        tools:layout="@layout/activity_chat_application" >
+
+
+    </activity>
+    <fragment
+        android:id="@+id/profileOfOtherUser"
+        android:name="com.example.copyversion.ProfileOfOtherUser"
+        android:label="fragment_profile_of_other_user"
+        tools:layout="@layout/fragment_profile_of_other_user" >
+        <action
+            android:id="@+id/action_profileOfOtherUser_to_my_post"
+            app:destination="@id/my_post" />
+        <action
+            android:id="@+id/action_profileOfOtherUser_to_my_post_donor"
+            app:destination="@id/my_post_donor" />
+        <action
+            android:id="@+id/action_profileOfOtherUser_to_my_post_raise"
+            app:destination="@id/my_post_raise" />
+        <action
+            android:id="@+id/action_profileOfOtherUser_to_my_post_sell"
+            app:destination="@id/my_post_sell" />
+    </fragment>
+    <fragment
+        android:id="@+id/my_post_donor"
+        android:name="com.example.copyversion.my_post_donor"
+        android:label="fragment_my_post_donor"
+        tools:layout="@layout/fragment_my_post_donor" />
+    <fragment
+        android:id="@+id/my_post_sell"
+        android:name="com.example.copyversion.my_post_sell"
+        android:label="fragment_my_post_sell"
+        tools:layout="@layout/fragment_my_post_sell" />
+    <fragment
+        android:id="@+id/my_post_raise"
+        android:name="com.example.copyversion.my_post_raise"
+        android:label="fragment_my_post_raise"
+        tools:layout="@layout/fragment_my_post_raise" />
+
+
 </navigation>

@@ -93,21 +93,21 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField5"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contact Number">
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/outlinedTextField5"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Contact Number">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mobileNumberRaiser"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="TextContrastCheck" />
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/mobileNumberRaiser"-->
+<!--                android:inputType="number"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                tools:ignore="TextContrastCheck" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
 
 

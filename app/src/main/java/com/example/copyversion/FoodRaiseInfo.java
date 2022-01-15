@@ -15,6 +15,7 @@ public class FoodRaiseInfo  implements Serializable {
     private String username;
     private String Contact;
     private String profilePhtourl;
+    private boolean isClickable;
     private double longitude;
     private double latitude;
     private Date currentTime;
@@ -26,7 +27,7 @@ public class FoodRaiseInfo  implements Serializable {
 
     }
 
-    public FoodRaiseInfo  (String RaiserName,String People,String RaiserAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact) {
+    public FoodRaiseInfo  (String RaiserName,String People,String RaiserAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact,boolean isClickable) {
         this.RaiserAddress=RaiserAddress;
         this.RaiserName=RaiserName;
         this.People=People;
@@ -39,6 +40,7 @@ public class FoodRaiseInfo  implements Serializable {
         this.username=username;
         this.currentTime=currentTime;
         this.Contact=Contact;
+        this.isClickable=isClickable;
 
 
     }
@@ -133,6 +135,13 @@ public class FoodRaiseInfo  implements Serializable {
         this.currentTime = currentTime;
     }
 
+    public void setClickable(boolean clickable) {
+        isClickable = clickable;
+    }
+
+    public boolean isClickable() {
+        return isClickable;
+    }
 
     public String getContact() {
         return Contact;

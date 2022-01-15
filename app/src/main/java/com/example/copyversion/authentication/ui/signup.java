@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.copyversion.MainActivity;
+import com.example.copyversion.NavigationActivity;
 import com.example.copyversion.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -34,8 +35,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class signup extends AppCompatActivity {
 
@@ -155,7 +159,7 @@ public class signup extends AppCompatActivity {
 
                                 Intent intent1
                                         = new Intent(com.example.copyversion.authentication.ui.signup.this,
-                                        MainActivity.class);
+                                        NavigationActivity.class);
                                 startActivity(intent1);
                                 finish();
                             }
@@ -235,10 +239,42 @@ public class signup extends AppCompatActivity {
 ////
                             FirebaseAuth mAuth= FirebaseAuth.getInstance();
 
-                            DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference("/rotlo/user").child(mAuth.getCurrentUser().getUid());
+                            final int[] temp = {0};
+                            DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference("/rotlo/user");
 
-                            mDatabase.setValue(user1);
-                            Intent intent=new Intent(signup.this,MainActivity.class);
+                            DatabaseReference mDatabase1= FirebaseDatabase.getInstance().getReference("/rotlo/user").child(mAuth.getCurrentUser().getUid());
+                            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                int temp=0;
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists())
+                                    {
+                                        for(DataSnapshot ds:snapshot.getChildren())
+                                        {
+
+                                            if(ds.getKey().equals(mAuth.getCurrentUser().getUid()))
+                                            {
+                                                temp=1;
+
+                                            }
+                                        }
+
+                                    }
+                                    if(temp==0)
+                                    {
+                                        mDatabase1.setValue(user1);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    mDatabase1.setValue(user1);
+                                }
+
+                            });
+
+
+                            Intent intent=new Intent(signup.this, NavigationActivity.class);
                             startActivity(intent);
                             finish();
 //                            updateUI(user);

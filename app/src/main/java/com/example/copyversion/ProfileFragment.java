@@ -93,7 +93,7 @@ public class ProfileFragment extends Fragment {
     private String s;
     private GoogleSignInClient mGoogleSignInClient;
 
-    private LinearLayout logOutLayout, myPostLayout, deleteAccountLayout;
+    private LinearLayout logOutLayout, myPostLayout, deleteAccountLayout,profilNameAndPhoto;
     Map<String, Object> postValues = new HashMap<String, Object>();
 
 
@@ -132,14 +132,40 @@ public class ProfileFragment extends Fragment {
 
             ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
+
             logOutLayout = rootView.findViewById(R.id.linearLayoutForLogout);
             logOutLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    logOut(rootView);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                    alert.setTitle("Rotlo");
+                    alert.setMessage("Do you want to Log out the account?");
+                    alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            logOut(rootView);
+                        }
+                    });
+                    alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alert.create().show();
+
                 }
             });
 
+            profilNameAndPhoto=rootView.findViewById(R.id.profileNameAndPhoto);
+            profilNameAndPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileFragment_to_editProfile);
+
+                }
+            });
 
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.web_client_id))
@@ -189,19 +215,7 @@ public class ProfileFragment extends Fragment {
             profileIcon = rootView.findViewById(R.id.profilePhoto);
             Greet = rootView.findViewById(R.id.greetings);
 
-            profileIcon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(
-                            Intent.createChooser(
-                                    intent,
-                                    "Select Image from here..."),
-                            123);
-                }
-            });
+
 
             auth = FirebaseAuth.getInstance();
 
@@ -371,29 +385,9 @@ public class ProfileFragment extends Fragment {
             }
         }
 
-        LinearLayout x = rootView.findViewById(R.id.decision);
-        x.setVisibility(View.VISIBLE);
 
-        Button False = rootView.findViewById(R.id.cross);
-        False.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Picasso.get().load(s).resize(2048, 1600).onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
-                        .into(profileIcon);
-//                Picasso.get().load(s).into(profileIcon);
-                x.setVisibility(View.GONE);
-            }
-        });
 
-        Button True = rootView.findViewById(R.id.check);
-        True.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImage();
-                x.setVisibility(View.GONE);
-
-            }
-        });
+//
 
 
     }

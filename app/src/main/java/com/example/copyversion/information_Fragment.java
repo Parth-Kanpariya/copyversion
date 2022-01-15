@@ -563,7 +563,7 @@ public class information_Fragment extends Fragment {
         donorAddress = rootView.findViewById(R.id.donor_address);
         donorName = rootView.findViewById(R.id.donor_name);
         mainCourse = rootView.findViewById(R.id.main_course);
-        ContactNumberDonor=rootView.findViewById(R.id.mobileNumberDonor);
+//        ContactNumberDonor=rootView.findViewById(R.id.mobileNumberDonor);
 
 
 

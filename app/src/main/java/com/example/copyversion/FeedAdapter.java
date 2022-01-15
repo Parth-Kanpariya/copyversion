@@ -1,11 +1,13 @@
 package com.example.copyversion;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.copyversion.DonorInfo;
@@ -32,8 +35,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
@@ -78,7 +84,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
         DonorInfo address = FeedList.get(position);
         holder.textView2.setText(address.getDonorMainCourse());
         holder.textView3.setText(address.getDonorAddress());
-        holder.username.setText(address.getUsername());
+
 
         holder.textView4.setText(address.getPeople());
         Date createdAt = address.getCurrentTime();//get the date the message was created from parse backend
@@ -92,27 +98,76 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
         holder.userNameInPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,ProfileOfUser.class);
-                intent.putExtra("id",address.getUid());
-                context.startActivity(intent);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Object", address);
+                if(address.getUid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                {
+//                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_my_post_to_profileOfOtherUser,bundle);
+
+                }else if(!address.isClickable())
+                {
+
+                }
+                else
+                {
+                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_profileOfOtherUser,bundle);
+
+                }
+
+
             }
         });
 
 
         String s = (address.getFoodPhotoUrl());
-        String sl=address.getProfilePhtourl();
-
         if (s != null) {
 //            Picasso.get().load(s).into(holder.imageView1);
             Picasso.get().load(s).resize(2048, 1600).onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
                     .into(holder.imageView1);
 
         }
-        if (sl != null) {
-            Picasso.get().load(sl).into(holder.userProfile);
+
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("/rotlo/user").child(address.getUid());
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                String nameForPost =(snapshot.child("fullName").getValue(String.class));
+                holder.username.setText(nameForPost);
+                address.setUsername(nameForPost);
+
+
+                String ProfilePhotoUrl=(snapshot.child("uri")).getValue(String.class);
+                address.setProfilePhtourl(ProfilePhotoUrl);
+
+                if (ProfilePhotoUrl != null) {
+                    Picasso.get().load(ProfilePhotoUrl).into(holder.userProfile);
 //            Picasso.get().load(sl).resize(2048, 1600).onlyScaleDown() // the image will only be resized if it's bigger than 2048x 1600 pixels.
 //                    .into(holder.userProfile);
-        }
+                }
+
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        };
+        mDatabase.addListenerForSingleValueEvent(eventListener);
+
+
+
+
+
+
+
 //        holder.textView2.setText(address);
 
     }

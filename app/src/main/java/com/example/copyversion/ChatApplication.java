@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,6 +75,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
     DatabaseReference status1,connect1;
     String so=null;
     private ImageButton mapButton;
+    private TextView backToChatIntitiate;
     private int quotedMessagePos = -1;
     final long ANIMATION_DURATION= 300;
     ConstraintLayout replyLayout;
@@ -91,22 +93,21 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
         replyLayout=findViewById(R.id.reply_layout);
         textView=findViewById(R.id.textQuotedMessage);
         statusOfUser=findViewById(R.id.StatusOfUser);
-//        mapButton=findViewById(R.id.map);
-//
-//
-//
-//        mapButton.setVisibility(View.GONE);
-//           mapButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Uri gmmIntentUri = Uri.parse("geo:22.2106385,72.8818069");
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//                startActivity(mapIntent);
-//
-//            }
-//        });
+        backToChatIntitiate=findViewById(R.id.backToChatInitiate);
+        backToChatIntitiate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                   Intent intent=new Intent(ChatApplication.this,NavigationActivity.class);
+                   startActivity(intent);
+                   finish();
+
+
+
+            }
+        });
+
+//       
 
 
 

@@ -73,6 +73,7 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
     private ArrayList<DonorInfo> sellingList = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     private double longitude, latitude;
+    String uidOfOtherUser=null;
     FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -87,6 +88,10 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
 
     public my_post_donor() {
         // Required empty public constructor
+    }
+    public my_post_donor(String uid) {
+        // Required empty public constructor
+        uidOfOtherUser=uid;
     }
 
 
@@ -103,6 +108,11 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            Bundle bundle=getArguments();
+            if(bundle!=null)
+            {
+                uidOfOtherUser=bundle.getString("uidOfOther");
+            }
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -167,6 +177,11 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
         final InfoAdapter adapter = new InfoAdapter(getContext(), donationList);
 
 //        l.setBackgroundResource(R.drawable.rounded_corner);
+        //from my post
+
+
+
+
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation");
 
@@ -175,6 +190,7 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
         progressDialog.setTitle("Loading..");
 
         progressDialog.show();
+
 
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -196,14 +212,35 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
                         double longitude = ds.child("longitude").getValue(double.class);
                         String postID = ds.getKey();
 //
+                        String decision=getArguments().getString("decision");
+                        boolean isClickable;
+                        if(decision.equals("NO"))
+                        {
+                            isClickable=false;
+                        }else
+                        {
+                            isClickable=true;
+                        }
                         if (foodPhotUrl == null) {
                             foodPhotUrl = "https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fpost%2F43ec27d6-98e2-408d-9001-eee5b9230592?alt=media&token=f35256b0-280c-4621-b961-1b2d1615aad6";
                         }
 
-
-                        if (userId.equals(FirebaseAuth.getInstance().getUid())) {
-                            donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl, userId, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact));
+                        if(uidOfOtherUser!=null)
+                        {
+                            if(userId.equals(uidOfOtherUser))
+                            {
+                                donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl, userId, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+                            }
                         }
+                        else
+                        {
+                            if (userId.equals(FirebaseAuth.getInstance().getUid())) {
+                                donationList.add(new DonorInfo(donorName, people, mainCourse, donorAddress, foodPhotUrl, userId, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+
+                            }
+                        }
+
+
 
 
 //

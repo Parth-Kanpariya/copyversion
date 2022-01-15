@@ -16,26 +16,26 @@
         <LinearLayout
             android:id="@+id/infoOfPerson"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@color/primaryColor"
-            android:orientation="vertical">
+            android:layout_height="75dp"
+            android:background="#9b5ab7"
+            android:paddingTop="10dp"
+            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical">
 
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/backToChatInitiate"
+                    android:background="@drawable/ic_baseline_arrow_back_24"
+                    android:textColor="@color/white" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/chatProfilePhotoCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
                     android:outlineSpotShadowColor="@color/primaryColor"
                     app:cardCornerRadius="25dp"
                     app:cardElevation="16dp">
@@ -46,22 +46,21 @@
                         android:layout_height="50dp"
                         android:background="@drawable/circle_corner"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/logoutil" />
+                        android:src="@drawable/profileicon" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/chatProfilePhotoCard"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/NameOfUserInChat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="15dp"
-                        android:textColor="@color/white"
                         android:fontFamily="@font/josefinsanssemibold"
+                        android:textColor="@color/white"
                         android:textSize="22dp" />
 
                     <TextView
@@ -70,14 +69,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:layout_marginTop="2dp"
-                        android:layout_marginBottom="6dp"
+                        android:layout_marginBottom="4dp"
                         android:fontFamily="@font/josefinsanssemibold"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
 
                 </LinearLayout>
 
-            </RelativeLayout>
+
+
+
+
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,10 +102,7 @@
                 tools:text="@tools:sample/cities" />
 
 
-
-
             <include layout="@layout/reply_layout" />
-
 
 
             <!--  <androidx.constraintlayout.widget.Barrier
@@ -117,114 +116,110 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:id="@+id/linRecy"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_weight="1">-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:id="@+id/linRecy"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:layout_weight="1">-->
 
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/chatList"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_margin="15dp"-->
-<!--                android:layout_marginTop="50dp"-->
-<!--                android:orientation="vertical"-->
-<!--                android:scrollbars="none" />-->
+        <!--            <androidx.recyclerview.widget.RecyclerView-->
+        <!--                android:id="@+id/chatList"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_margin="15dp"-->
+        <!--                android:layout_marginTop="50dp"-->
+        <!--                android:orientation="vertical"-->
+        <!--                android:scrollbars="none" />-->
 
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:id="@+id/reply_layout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/green_dark"-->
-<!--                android:visibility="gone"-->
-<!--                app:layout_constraintStart_toStartOf="parent">-->
-<!--                <TextView-->
-<!--                    android:id="@+id/txtQuotedMsg"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="8dp"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:padding="8dp"-->
-<!--                    android:textColor="@color/primaryDarkColor"-->
-<!--                    android:textSize="14sp"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toStartOf="@+id/cancelButton"-->
-<!--                    app:layout_constraintHorizontal_bias="0.0"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    tools:text=" h ghgdhg fgd"/>-->
-
-
-
-<!--                <ImageButton-->
-<!--                    android:id="@+id/cancelButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:layout_marginBottom="8dp"-->
-<!--                    android:background="@drawable/cross_sign"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"/>-->
+        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                android:id="@+id/reply_layout"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@color/green_dark"-->
+        <!--                android:visibility="gone"-->
+        <!--                app:layout_constraintStart_toStartOf="parent">-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/txtQuotedMsg"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="8dp"-->
+        <!--                    android:layout_marginEnd="8dp"-->
+        <!--                    android:padding="8dp"-->
+        <!--                    android:textColor="@color/primaryDarkColor"-->
+        <!--                    android:textSize="14sp"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toStartOf="@+id/cancelButton"-->
+        <!--                    app:layout_constraintHorizontal_bias="0.0"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    tools:text=" h ghgdhg fgd"/>-->
 
 
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-<!--            <View-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="1dp"-->
-<!--                android:background="@color/primaryDarkColor"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/chatting"/>-->
-
-
-
-<!--        </LinearLayout>-->
-
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:id="@+id/chatting"-->
-<!--            android:layout_height="50dp">-->
-
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
+        <!--                <ImageButton-->
+        <!--                    android:id="@+id/cancelButton"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginTop="8dp"-->
+        <!--                    android:layout_marginEnd="8dp"-->
+        <!--                    android:layout_marginBottom="8dp"-->
+        <!--                    android:background="@drawable/cross_sign"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"/>-->
 
 
+        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <!--            <View-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="1dp"-->
+        <!--                android:background="@color/primaryDarkColor"-->
+        <!--                app:layout_constraintBottom_toTopOf="@+id/chatting"/>-->
 
 
-<!--                <com.google.android.material.card.MaterialCardView-->
-<!--                    android:layout_marginTop="5dp"-->
-<!--                    android:layout_width="330dp"-->
-<!--                    android:id="@+id/typedMessageMaterialView"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_margin="5dp"-->
-<!--                    android:background="@color/primaryColor"-->
-<!--                    app:cardCornerRadius="10dp">-->
+        <!--        </LinearLayout>-->
 
 
-<!--                <EditText-->
-<!--                    android:background="@color/primaryColor"-->
-<!--                    android:id="@+id/TypeMessage"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:paddingLeft="8dp"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp" />-->
-<!--                </com.google.android.material.card.MaterialCardView>-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:id="@+id/chatting"-->
+        <!--            android:layout_height="50dp">-->
 
-<!--                <Button-->
-<!--                    android:layout_marginRight="5dp"-->
-<!--                    android:id="@+id/sendButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_toRightOf="@+id/typedMessageMaterialView"-->
-<!--                    android:background="@drawable/ic_baseline_send_button_24"-->
-<!--                    />-->
-<!--            </RelativeLayout>-->
+        <!--            <RelativeLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent">-->
 
-<!--        </LinearLayout>-->
+
+        <!--                <com.google.android.material.card.MaterialCardView-->
+        <!--                    android:layout_marginTop="5dp"-->
+        <!--                    android:layout_width="330dp"-->
+        <!--                    android:id="@+id/typedMessageMaterialView"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_margin="5dp"-->
+        <!--                    android:background="@color/primaryColor"-->
+        <!--                    app:cardCornerRadius="10dp">-->
+
+
+        <!--                <EditText-->
+        <!--                    android:background="@color/primaryColor"-->
+        <!--                    android:id="@+id/TypeMessage"-->
+        <!--                    android:textColor="@color/white"-->
+        <!--                    android:paddingLeft="8dp"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="40dp" />-->
+        <!--                </com.google.android.material.card.MaterialCardView>-->
+
+        <!--                <Button-->
+        <!--                    android:layout_marginRight="5dp"-->
+        <!--                    android:id="@+id/sendButton"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_toRightOf="@+id/typedMessageMaterialView"-->
+        <!--                    android:background="@drawable/ic_baseline_send_button_24"-->
+        <!--                    />-->
+        <!--            </RelativeLayout>-->
+
+        <!--        </LinearLayout>-->
     </LinearLayout>
 </LinearLayout>

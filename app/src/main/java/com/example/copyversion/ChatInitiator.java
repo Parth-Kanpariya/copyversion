@@ -177,6 +177,7 @@ public class ChatInitiator extends Fragment implements FeedAdapterForEnterChat.L
                                     chatInitiateUtil.setLastMessage(sd[0]);
 
 
+
 //                                            databaseReferenced.child(finalUidOfOther).setValue(chatInitiateUtil);
 //                                    DatabaseReference databaseReferenced=FirebaseDatabase.getInstance().getReference("/rotlo/kuchb").getRef();
 //

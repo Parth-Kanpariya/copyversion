@@ -16,6 +16,7 @@ public class DonorInfo  implements Serializable {
     private String profilePhtourl;
     private String postID;
     private String Contact;
+    private boolean isClickable;
     private double longitude;
     private double latitude;
     private Date currentTime;
@@ -23,7 +24,7 @@ public class DonorInfo  implements Serializable {
 
 
 
-    public DonorInfo(String donorName,String people,String mainCourse,String donorAddress,String uploadUrl,String uid,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact) {
+    public DonorInfo(String donorName,String people,String mainCourse,String donorAddress,String uploadUrl,String uid,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact,boolean isClickable) {
         this.donorAddress=donorAddress;
         this.donorName=donorName;
         this.people=people;
@@ -37,6 +38,7 @@ public class DonorInfo  implements Serializable {
         this.username=username;
         this.currentTime=currentTime;
         this.Contact=Contact;
+        this.isClickable=isClickable;
 
 
 
@@ -159,6 +161,13 @@ public class DonorInfo  implements Serializable {
 
     public String getContact() {
         return Contact;
+    }
+    public void setClickable(boolean clickable) {
+        isClickable = clickable;
+    }
+
+    public boolean isClickable() {
+        return isClickable;
     }
 
     public void setContact(String contact) {
