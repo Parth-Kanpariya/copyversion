@@ -5,12 +5,14 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 import static androidx.recyclerview.widget.DiffUtil.DiffResult.NO_POSITION;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Layout;
@@ -33,6 +35,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,6 +63,7 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
     private Context context;
     private FeedAdapter.ListItemClickListener mOnItemClickListner;
     private int blinkItem = NO_POSITION;
+    private String FullName;
 
 
     FeedAdapterForChat.QuoteClickListener quoteClickListener;
@@ -97,12 +101,12 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
         }
         if (chatMessage.getTypeOfMessage() == -3 || chatMessage.getTypeOfMessage() == -33 ||chatMessage.getTypeOfMessage() == -333) {
 
-                return R.layout.send_post_reply;
-            }else if(chatMessage.getTypeOfMessage()==-4)
-            {
-                return R.layout.recived_reply_post;
-            }
-         else {
+            return R.layout.send_post_reply;
+        }else if(chatMessage.getTypeOfMessage()==-4)
+        {
+            return R.layout.recived_reply_post;
+        }
+        else {
             if (chatMessage.quotePos == -1) {
                 return R.layout.received_message_row;
             } else {
@@ -146,7 +150,7 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
 
         if(holder.sendMessage!=null)
         {
-            holder.sendMessage.setText(address.getMessage());
+            holder.sendMessage.setText(Decode.decode(address.getMessage().toString().trim()));
         }
 
 
@@ -188,15 +192,15 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
 
                 else if(formattedDatee.substring(10,11).equals(",") && address.getMessage().substring(10,11)!=",")
                 {
-                        if(Integer.parseInt(formattedDatee.substring(9,10))-Integer.parseInt(address.getMessage().substring(9,11))==-1)
-                        {
+                    if(Integer.parseInt(formattedDatee.substring(9,10))-Integer.parseInt(address.getMessage().substring(9,11))==-1)
+                    {
 
-                            holder.timeLabelInChat.setText("Yesterday");
-                        }
-                        else
-                        {
-                            holder.timeLabelInChat.setText(address.getMessage());
-                        }
+                        holder.timeLabelInChat.setText("Yesterday");
+                    }
+                    else
+                    {
+                        holder.timeLabelInChat.setText(address.getMessage());
+                    }
 
 
                 }
@@ -224,8 +228,9 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
         }
 
 
+
         if (holder.quoteMessage != null) {
-            holder.quoteMessage.setText(address.getQuote());
+            holder.quoteMessage.setText(Decode.decode(address.getQuote().trim()));
         }
 
         if(holder.imageViewSend!=null)
@@ -240,28 +245,34 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
                     if (FeedList.get(holder.getAbsoluteAdapterPosition()).getQuotePos() == -3) {
 
 
-                        Intent intent = new Intent(context, FullInfoOfPost.class);
 
-                        intent.putExtra("PostId", address.getPostId());
 
-                        context.startActivity(intent);
+
+                        Bundle bundle=new Bundle();
+                        bundle.putString("PostId", address.getPostId());
+
+                        Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_chatApplicationn_to_fullInfoPostDonor,bundle);
+
+
+
                     }else if (FeedList.get(holder.getAbsoluteAdapterPosition()).getQuotePos() == -33) {
 
 
-                        Intent intent = new Intent(context, FullInfoOfPostSell.class);
+                        Bundle bundle=new Bundle();
+                        bundle.putString("PostId", address.getPostId());
 
-                        intent.putExtra("PostId", address.getPostId());
+                        Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_chatApplicationn_to_fullInfoOfSell,bundle);
 
-                        context.startActivity(intent);
+
                     }
                     else if (FeedList.get(holder.getAbsoluteAdapterPosition()).getQuotePos() == -333) {
 
 
-                        Intent intent = new Intent(context, FullInfoOfPostRaise.class);
+                        Bundle bundle=new Bundle();
+                        bundle.putString("PostId", address.getPostId());
 
-                        intent.putExtra("PostId", address.getPostId());
+                        Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_chatApplicationn_to_fullInfoOfRaise,bundle);
 
-                        context.startActivity(intent);
                     }
                     else {
                         quoteClickListener.onQuoteClick(FeedList.get(holder.getAbsoluteAdapterPosition()).getQuotePos());
@@ -273,13 +284,28 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
             });
         }
 
+
+
+
+
+        FirebaseAuth auth=FirebaseAuth.getInstance();
+
+
         DatabaseReference connectOther;
         connectOther = FirebaseDatabase.getInstance().getReference("/rotlo/user").child(address.getOtherUid());
         connectOther.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                if(address.getTypeOfMessageForName()!=auth.getCurrentUser().getUid())
+                {
+                    if(holder.senderQuotedd!=null)
+                    {
+                        holder.senderQuotedd.setText(snapshot.child("fullName").getValue(String.class));
+                    }
+                }
                 if (holder.recieverQuoted != null) {
+
                     holder.recieverQuoted.setText(snapshot.child("fullName").getValue(String.class));
                 }
             }
@@ -290,6 +316,16 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
             }
         });
 
+        if(address.getTypeOfMessageForName()==auth.getCurrentUser().getUid())
+        {
+            if(holder.senderQuotedd!=null)
+            {
+                holder.senderQuotedd.setText("You");
+            }
+        }
+
+
+
 
         Long Timestamp = Long.parseLong(address.getTs());
         Date timeD = new Date(Timestamp * 1000);
@@ -299,6 +335,7 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
         {
             holder.timestamp.setText(Time);
         }
+
 
 //        holder.timestamp.setText(Time);
 
@@ -388,6 +425,7 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
         TextView textViewForReplay;
         private TextView sendMessage;
         private TextView quoteMessage, recieverQuoted;
+        TextView senderQuotedd;
         private TextView nome;
         private ImageView imageViewSend;
         private TextView timeLabelInChat;
@@ -421,6 +459,10 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
             }
             if (itemView.findViewById(R.id.Recivername) != null) {
                 recieverQuoted = (TextView) itemView.findViewById(R.id.Recivername);
+            }
+            if(itemView.findViewById(R.id.nameOFQuoetedSenderSide)!=null)
+            {
+                senderQuotedd=(TextView) itemView.findViewById(R.id.nameOFQuoetedSenderSide);
             }
 
 

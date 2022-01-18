@@ -3,11 +3,13 @@ package com.example.copyversion;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
@@ -59,6 +61,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
 
 
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
@@ -81,7 +84,11 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
 
 
+
+
     }
+
+
 
     final information_Fragment information_fragment=new information_Fragment();
     final frontPage_Fragment frontPage_fragment=new frontPage_Fragment();

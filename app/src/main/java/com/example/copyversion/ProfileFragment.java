@@ -117,6 +117,13 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle bundle=getArguments();
+        if(bundle!=null)
+        {
+            name.setText(bundle.getString("name"));
+            email.setText(bundle.getString("email"));
+            Picasso.get().load(bundle.getString("Image")).into(profileIcon);
+        }
 
     }
 
@@ -125,7 +132,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        if (rootView == null) {
+        if (rootView==null) {
 
             rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -216,6 +223,7 @@ public class ProfileFragment extends Fragment {
             Greet = rootView.findViewById(R.id.greetings);
 
 
+            Bundle bundle=new Bundle();
 
             auth = FirebaseAuth.getInstance();
 
@@ -232,6 +240,10 @@ public class ProfileFragment extends Fragment {
                         String nameForPost = (snapshot.child("fullName").getValue(String.class));
                         name.setText(snapshot.child("fullName").getValue(String.class));
                         s = snapshot.child("uri").getValue(String.class);
+                        bundle.putString("name",nameForPost);
+                        bundle.putString("email",snapshot.child("email").getValue(String.class));
+                        bundle.putString("Image",snapshot.child("uri").getValue(String.class));
+
 
 
                         DatabaseReference mDatabaseDonor = FirebaseDatabase.getInstance().getReference("/rotlo/post/donation");

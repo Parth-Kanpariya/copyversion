@@ -64,6 +64,19 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="forgot Password"
+            android:textColor="@color/primaryColor"
+            android:clickable="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="15dp"
+            android:textSize="18dp"
+            android:layout_gravity="right"
+            android:textColorLink="@color/primaryColor"
+            android:id="@+id/forgotPasswordInLogin"/>
+
 
 
         <Button
@@ -74,6 +87,7 @@
             android:background="@drawable/round_corner"
             android:gravity="center_horizontal"
             android:text="Login"
+            android:focusable="true"
             android:textAllCaps="false"
             android:textSize="20dp"
             android:layout_marginTop="50dp"
@@ -83,6 +97,7 @@
         <com.google.android.gms.common.SignInButton
             android:layout_marginTop="18dp"
             android:layout_width="300dp"
+            android:focusable="true"
             android:layout_height="wrap_content"
             android:id="@+id/sign_in_button_google"
             android:layout_marginLeft="30dp"

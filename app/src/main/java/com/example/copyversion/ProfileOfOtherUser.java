@@ -37,6 +37,7 @@ public class ProfileOfOtherUser extends Fragment {
     private TextView textView;
     private Button chatButton;
     private LinearLayout Donor,Raiser,seller;
+    private  String uidOfOther;
 
     public ProfileOfOtherUser() {
         // Required empty public constructor
@@ -80,6 +81,10 @@ public class ProfileOfOtherUser extends Fragment {
          SellerInfo sellerInfo= (SellerInfo) bundle.getSerializable("ObjectSeller");
          FoodRaiseInfo foodRaiseInfo= (FoodRaiseInfo) bundle.getSerializable("ObjectRaiser");
 
+         String name=bundle.getString("NameFromChat");
+         String imageUrl=bundle.getString("PhotFromChat");
+         String uidOfOtherFromChat=bundle.getString("uidOfOther");
+
 
 
          imageView=rootView.findViewById(R.id.imageViewInProfileOfOther);
@@ -87,18 +92,27 @@ public class ProfileOfOtherUser extends Fragment {
          chatButton=rootView.findViewById(R.id.Chat_Initiate_with_other_User);
          if(donorInfo!=null)
          {
+             uidOfOther=donorInfo.getUid();
              Picasso.get().load(donorInfo.getProfilePhtourl()).into(imageView);
              textView.setText(donorInfo.getUsername());
          }else if(sellerInfo!=null)
          {
+             uidOfOther=sellerInfo.getUid();
              Picasso.get().load(sellerInfo.getProfilePhtourl()).into(imageView);
              textView.setText(sellerInfo.getUsername());
          }else if(foodRaiseInfo!=null)
          {
+             uidOfOther=foodRaiseInfo.getUid();
              Picasso.get().load(foodRaiseInfo.getProfilePhtourl()).into(imageView);
              textView.setText(foodRaiseInfo.getUsername());
          }
 
+         if(donorInfo==null&&sellerInfo==null&&foodRaiseInfo==null)
+         {
+             uidOfOther=uidOfOtherFromChat;
+             Picasso.get().load(imageUrl).into(imageView);
+             textView.setText(name);
+         }
 
 
          chatButton.setOnClickListener(new View.OnClickListener() {
@@ -109,34 +123,47 @@ public class ProfileOfOtherUser extends Fragment {
                      String nameOfUser = donorInfo.getUsername();
                      String profileImageUri = donorInfo.getProfilePhtourl();
 
-                     Intent intent = new Intent(getContext(), ChatApplication.class);
-                     intent.putExtra("Name", nameOfUser);
-                     intent.putExtra("imagUrl", profileImageUri);
-                     intent.putExtra("uidOther", donorInfo.getUid());
+                     Bundle bundle=new Bundle();
+                     bundle.putString("Name",nameOfUser);
+                     bundle.putString("imageUrl",profileImageUri);
+                     bundle.putString("uidOther",uidOfOther);
+//
+                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileOfOtherUser_to_chatApplicationn,bundle);
 
-                     startActivity(intent);
                  }else if(sellerInfo!=null)
                  {
                      String nameOfUser = sellerInfo.getUsername();
                      String profileImageUri = sellerInfo.getProfilePhtourl();
 
-                     Intent intent = new Intent(getContext(), ChatApplication.class);
-                     intent.putExtra("Name", nameOfUser);
-                     intent.putExtra("imagUrl", profileImageUri);
-                     intent.putExtra("uidOther", sellerInfo.getUid());
 
-                     startActivity(intent);
+                     Bundle bundle=new Bundle();
+                     bundle.putString("Name",nameOfUser);
+                     bundle.putString("imageUrl",profileImageUri);
+                     bundle.putString("uidOther",uidOfOther);
+//
+                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileOfOtherUser_to_chatApplicationn,bundle);
+
                  }else if(foodRaiseInfo!=null)
                  {
                      String nameOfUser = foodRaiseInfo.getUsername();
                      String profileImageUri = foodRaiseInfo.getProfilePhtourl();
 
-                     Intent intent = new Intent(getContext(), ChatApplication.class);
-                     intent.putExtra("Name", nameOfUser);
-                     intent.putExtra("imagUrl", profileImageUri);
-                     intent.putExtra("uidOther", foodRaiseInfo.getUid());
+                     Bundle bundle=new Bundle();
+                     bundle.putString("Name",nameOfUser);
+                     bundle.putString("imageUrl",profileImageUri);
+                     bundle.putString("uidOther",uidOfOther);
+//
+                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileOfOtherUser_to_chatApplicationn,bundle);
 
-                     startActivity(intent);
+                 }else
+                 {
+
+                     Bundle bundle=new Bundle();
+                     bundle.putString("Name",name);
+                     bundle.putString("imageUrl",imageUrl);
+                     bundle.putString("uidOther",uidOfOtherFromChat);
+                     Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileOfOtherUser_to_chatApplicationn,bundle);
+
                  }
 
              }
@@ -150,15 +177,20 @@ public class ProfileOfOtherUser extends Fragment {
                  bundle.putString("decision", "NO");
                  if(donorInfo!=null)
                  {
-                     bundle.putString("uidOfOther", donorInfo.getUid());
+                     bundle.putString("uidOfOther", uidOfOther);
                  }else if(sellerInfo!=null)
                  {
-                     bundle.putString("uidOfOther", sellerInfo.getUid());
+                     bundle.putString("uidOfOther", uidOfOther);
                  }else if(foodRaiseInfo!=null)
                  {
-                     bundle.putString("uidOfOther", foodRaiseInfo.getUid());
+                     bundle.putString("uidOfOther", uidOfOther);
+                 }else
+                 {
+                     bundle.putString("uidOfOther", uidOfOtherFromChat);
+
                  }
 
+                 bundle.putString("YesOrNo","YES");
 
                  Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileOfOtherUser_to_my_post_donor,bundle);
 
@@ -174,17 +206,23 @@ public class ProfileOfOtherUser extends Fragment {
 
                 if(donorInfo!=null)
                 {
-                    bundle.putString("uidOfOther", donorInfo.getUid());
+                    bundle.putString("uidOfOther", uidOfOther);
 
                 }else if(sellerInfo!=null)
                 {
-                    bundle.putString("uidOfOther", sellerInfo.getUid());
+                    bundle.putString("uidOfOther", uidOfOther);
 
                 }else if(foodRaiseInfo!=null)
                 {
-                    bundle.putString("uidOfOther", foodRaiseInfo.getUid());
+                    bundle.putString("uidOfOther", uidOfOther);
 
                 }
+                else
+                {
+                    bundle.putString("uidOfOther", uidOfOtherFromChat);
+
+                }
+                bundle.putString("YesOrNo","YES");
 
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileOfOtherUser_to_my_post_raise,bundle);
 
@@ -200,17 +238,23 @@ public class ProfileOfOtherUser extends Fragment {
 
                 if(donorInfo!=null)
                 {
-                    bundle.putString("uidOfOther", donorInfo.getUid());
+                    bundle.putString("uidOfOther", uidOfOther);
 
                 }else if(sellerInfo!=null)
                 {
-                    bundle.putString("uidOfOther", sellerInfo.getUid());
+                    bundle.putString("uidOfOther", uidOfOther);
 
                 }else if(foodRaiseInfo!=null)
                 {
-                    bundle.putString("uidOfOther", foodRaiseInfo.getUid());
+                    bundle.putString("uidOfOther", uidOfOther);
 
                 }
+                else
+                {
+                    bundle.putString("uidOfOther", uidOfOtherFromChat);
+
+                }
+                bundle.putString("YesOrNo","YES");
 
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_profileOfOtherUser_to_my_post_sell,bundle);
 

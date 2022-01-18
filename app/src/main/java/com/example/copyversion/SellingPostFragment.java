@@ -85,7 +85,7 @@ public class SellingPostFragment extends Fragment {
 
     private TextView post;
     private Bitmap photo;
-    private EditText sellerName, Approximate, sellerAddress,ContactNumberSeller;
+    private EditText sellerName, Approximate, sellerAddress,NameOfFood;
     private Button sendDataButtuon;
     private ArrayList<String> arrayList;
     private ArrayAdapter<String> arr;
@@ -293,7 +293,9 @@ public class SellingPostFragment extends Fragment {
         String name = sellerName.getText().toString();
         String maincourse = Approximate.getText().toString();
         String address = sellerAddress.getText().toString();
-        String mobile=ContactNumberSeller.getText().toString();
+       String mobile=null;
+       String nameOfFood=NameOfFood.getText().toString();
+
 
         // below line is for checking weather the
         // edittext fields are empty or not.
@@ -302,19 +304,17 @@ public class SellingPostFragment extends Fragment {
 
 
         }
-        else  if(mobile.length()<10 || mobile.length()>10 )
-        {
-            Toast.makeText(getContext(), "Please Enter valid contact number", Toast.LENGTH_SHORT).show();
-        }
+
 
         else {
-            addToFirebase(name, maincourse, address, uriIntoString,mobile);
+            addToFirebase(name, maincourse, address, uriIntoString,mobile,nameOfFood);
 
             sellerName.getText().clear();
             Approximate.getText().clear();
             sellerAddress.getText().clear();
             imageView.setImageBitmap(null);
-            ContactNumberSeller.getText().clear();
+            NameOfFood.getText().clear();
+
         }
 
 
@@ -334,7 +334,7 @@ public class SellingPostFragment extends Fragment {
     }
 
 
-    private void addToFirebase(String name, String maincourse, String address, String photourl,String mobile) {
+    private void addToFirebase(String name, String maincourse, String address, String photourl,String mobile,String nameOfFood) {
         sellerInfo.setSellerAddress(address);
         sellerInfo.setSellerApproximate(maincourse);
         sellerInfo.setSellerName(name);
@@ -345,6 +345,7 @@ public class SellingPostFragment extends Fragment {
         sellerInfo.setLongitude(longitude);
         sellerInfo.setCurrentTime(new Date());
         sellerInfo.setContact(mobile);
+        sellerInfo.setNameOfFood(nameOfFood);
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("/rotlo/post/selling");
@@ -455,6 +456,7 @@ public class SellingPostFragment extends Fragment {
         sellerAddress = rootView.findViewById(R.id.seller_address);
         sellerName = rootView.findViewById(R.id.seller_name);
         Approximate = rootView.findViewById(R.id.Approximate_weight);
+        NameOfFood=rootView.findViewById(R.id.Food_Name);
 //        ContactNumberSeller=rootView.findViewById(R.id.mobileNumberSeller);
 
 //        post=findViewById(R.id.text_view_post1);

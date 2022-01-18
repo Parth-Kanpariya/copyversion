@@ -313,7 +313,7 @@ public class information_Fragment extends Fragment {
         String maincourse = mainCourse.getText().toString();
         String peple = people.getText().toString();
         String address = donorAddress.getText().toString();
-        String mobile=ContactNumberDonor.getText().toString();
+        String mobile=null;
 
 
         // below line is for checking weather the
@@ -322,10 +322,6 @@ public class information_Fragment extends Fragment {
             Toast.makeText(getContext(), "Please Add complete Data", Toast.LENGTH_SHORT).show();
 
 
-        }
-        else  if(mobile.length()<10 || mobile.length()>10)
-        {
-            Toast.makeText(getContext(), "Please Enter valid contact number", Toast.LENGTH_SHORT).show();
         }
 
         else {
@@ -340,7 +336,7 @@ public class information_Fragment extends Fragment {
             people.getText().clear();
             donorAddress.getText().clear();
             imageView.setImageResource(R.drawable.ic_add_photo);
-            ContactNumberDonor.getText().clear();
+
 
 
         }

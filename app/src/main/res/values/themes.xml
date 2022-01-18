@@ -21,5 +21,7 @@
 
     <style name="Theme.Copyversion.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.Copyversion.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.Copyversion.PopupOverlay" parent="Theme.MaterialComponents.Light.DarkActionBar"/>
+
+<!--    <style name="Theme.Copyversion.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 </resources>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginBottom="72dp"
     tools:context=".ChatApplication">
 
 
@@ -22,65 +23,60 @@
             android:orientation="horizontal">
 
 
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/backToChatInitiate"
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:textColor="@color/white" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/chatProfilePhotoCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:outlineSpotShadowColor="@color/primaryColor"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="16dp">
+
+                <ImageView
+                    android:id="@+id/chatProfilePhoto"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/circle_corner"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profileicon" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/head_in_chatAPP"
+                android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/backToChatInitiate"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/ic_baseline_arrow_back_24"
-                    android:textColor="@color/white" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/chatProfilePhotoCard"
+                    android:id="@+id/NameOfUserInChat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="10dp"
-                    android:outlineSpotShadowColor="@color/primaryColor"
-                    app:cardCornerRadius="25dp"
-                    app:cardElevation="16dp">
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/josefinsanssemibold"
+                    android:textColor="@color/white"
+                    android:textSize="22dp" />
 
-                    <ImageView
-                        android:id="@+id/chatProfilePhoto"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/circle_corner"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/profileicon" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/StatusOfUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/head_in_chatAPP"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/josefinsanssemibold"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
 
-                    <TextView
-                        android:id="@+id/NameOfUserInChat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:fontFamily="@font/josefinsanssemibold"
-                        android:textColor="@color/white"
-                        android:textSize="22dp" />
-
-                    <TextView
-                        android:id="@+id/StatusOfUser"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/josefinsanssemibold"
-                        android:textColor="@color/white"
-                        android:textSize="12dp" />
-
-                </LinearLayout>
+            </LinearLayout>
 
 
 

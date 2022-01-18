@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -182,6 +183,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
                         Date currentTime=ds.child("currentTime").getValue(Date.class);
                         String profilePhtourl=ds.child("profilePhtourl").getValue(String.class);
                         String contact=ds.child("contact").getValue(String.class);
+                        String nameOfFood=ds.child("nameOfFood").getValue(String.class);
                         double latiitude = ds.child("latitude").getValue(double.class);
                         double longitude = ds.child("longitude").getValue(double.class);
                         String postID = ds.getKey();
@@ -191,7 +193,7 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
                         }
 
 
-                        sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact,true));
+                        sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID,latiitude, longitude,profilePhtourl,username,currentTime,contact,true,nameOfFood));
 
 
                     }
@@ -234,11 +236,13 @@ public class sellingFragment extends Fragment implements FeedAdapter.ListItemCli
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPostSell.class);
         SellerInfo x = sellingList.get(position);
-        intent.putExtra("PostId", x.getPostID());
-        intent.putExtra("object",x);
-        startActivity(intent);
+        Bundle bundle=new Bundle();
+        bundle.putString("PostId",x.getPostID());
+        bundle.putSerializable("object1seller",x);
+
+        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_fullInfoOfSell,bundle);
+
     }
 
     @SuppressLint("MissingPermission")

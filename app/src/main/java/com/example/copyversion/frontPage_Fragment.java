@@ -1,6 +1,7 @@
 package com.example.copyversion;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.location.Address;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -38,6 +40,8 @@ import com.example.copyversion.ui.main.SectionsPagerAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -48,6 +52,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 
 import java.io.IOException;
@@ -165,8 +170,82 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
         });
 
 
+        getDynamicLinkFromFirebase();
         return rootView;
     }
+
+    private void getDynamicLinkFromFirebase() {
+
+
+
+        FirebaseDynamicLinks.getInstance()
+                .getDynamicLink(getActivity().getIntent())
+                .addOnSuccessListener((Activity) getContext(), new OnSuccessListener<PendingDynamicLinkData>() {
+                    @Override
+                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
+                        // Get deep link from result (may be null if no link is found)
+
+                        Uri deepLink = null;
+                        if (pendingDynamicLinkData != null) {
+                            deepLink = pendingDynamicLinkData.getLink();
+
+
+                        }
+                        if(deepLink!=null)
+                        {
+
+                            String x=deepLink.toString();
+
+                            String xy=x.substring(x.lastIndexOf("?")+1);
+                            int t=(x.lastIndexOf("?")+1);
+                            String PostId=x.substring(x.lastIndexOf("=")+1,t-1);
+
+
+                            if(xy.equals("Raise"))
+                            {
+//
+
+                                Bundle bundle=new Bundle();
+                                bundle.putString("PostId",PostId);
+                                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_fullInfoOfRaise,bundle);
+
+
+                            }else   if(xy.equals("Donor"))
+                            {
+//
+                                Bundle bundle=new Bundle();
+                                bundle.putString("PostId",PostId);
+                                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_fullInfoPostDonor,bundle);
+
+
+                            }
+                            else   if(xy.equals("Seller"))
+                            {
+//
+                                Bundle bundle=new Bundle();
+                                bundle.putString("PostId",PostId);
+                                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_fullInfoOfSell,bundle);
+
+
+                            }
+//
+
+
+
+                        }
+
+
+
+                    }
+                })
+                .addOnFailureListener(getActivity(), new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
 
 
@@ -253,11 +332,14 @@ public class frontPage_Fragment extends Fragment implements FeedAdapter.ListItem
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPost.class);
+
         DonorInfo x = donationList.get(position);
-        intent.putExtra("PostId", x.getPostID());
-        intent.putExtra("object",x);
-        startActivity(intent);
+        Bundle bundle=new Bundle();
+        bundle.putString("PostId",x.getPostID());
+        bundle.putSerializable("object",x);
+
+        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_fullInfoPostDonor,bundle);
+
     }
 
 

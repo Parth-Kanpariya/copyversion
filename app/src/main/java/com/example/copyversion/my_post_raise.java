@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -57,6 +58,7 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
     String uidOfOtherUser=null;
     FusedLocationProviderClient fusedLocationProviderClient;
 
+    String deci;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -103,10 +105,20 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
         View rootView = inflater.inflate(R.layout.fragment_my_post_raise, container, false);
 
 
+        if(RaisingList!=null)
+        {
+            RaisingList.clear();
+        }
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         getlocation();
 //
+        Bundle bundle1=getArguments();
+        if(bundle1!=null)
+        {
+            deci=bundle1.getString("YesOrNo");
+
+        }
 
 
         getdata(rootView);
@@ -188,9 +200,14 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
                             foodPhotUrl = "https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fpost%2Fselling%2F8f62ebcb-3d7f-4f54-a06d-fc50e2d84c73?alt=media&token=95d18879-1068-4be1-9e1d-651fddde9151";
                         }
 
-                        String decision=getArguments().getString("decision");
+                        Bundle bundle=getArguments();
+                        String decision=null;
+                        if(bundle!=null)
+                        {
+                            decision=bundle.getString("decision");
+                        }
                         boolean isClickable;
-                        if(decision.equals("NO"))
+                        if(decision=="NO")
                         {
                             isClickable=false;
                         }else
@@ -254,11 +271,19 @@ public class my_post_raise extends Fragment implements FeedAdapter.ListItemClick
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPostRaise.class);
+        Bundle bundle=new Bundle();
         FoodRaiseInfo x = RaisingList.get(position);
-        intent.putExtra("PostId", x.getPostID());
-        intent.putExtra("object", x);
-        startActivity(intent);
+        bundle.putString("PostId",x.getPostID());
+        bundle.putSerializable("object1foodraise",x);
+
+        if(deci=="YES")
+        {
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_my_post_raise_to_fullInfoOfRaise ,bundle);
+
+
+        }else {
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_my_post_to_fullInfoOfRaise2, bundle);
+        }
     }
 
     @SuppressLint("MissingPermission")

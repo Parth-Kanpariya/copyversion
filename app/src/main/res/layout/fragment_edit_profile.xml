@@ -16,6 +16,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:focusable="true"
             android:id="@+id/NoChangeInProfile"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -33,6 +34,7 @@
             android:textSize="25dp"/>
 
         <Button
+            android:focusable="true"
             android:id="@+id/profileUpdated"
             android:layout_width="40dp"
             android:layout_height="40dp"

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -92,6 +93,10 @@ public class ChatInitiator extends Fragment implements FeedAdapterForEnterChat.L
         // Inflate the layout for this fragment
         View rootView= inflater.inflate(R.layout.fragment_chat_initiator, container, false);
 
+        if(ListForChatting!=null)
+        {
+            ListForChatting.clear();
+        }
         FirebaseAuth Auth = FirebaseAuth.getInstance();
         String myUid = Auth.getCurrentUser().getUid();
 
@@ -272,12 +277,18 @@ public class ChatInitiator extends Fragment implements FeedAdapterForEnterChat.L
                     String nameOfUser = (snapshot.child("fullName").getValue(String.class));
                     String profileImageUri = snapshot.child("uri").getValue(String.class);
 
-                    Intent intent = new Intent(getContext(), ChatApplication.class);
-                    intent.putExtra("Name", nameOfUser);
-                    intent.putExtra("imagUrl", profileImageUri);
-                    intent.putExtra("uidOther", x.getOtherUid());
+                    Bundle bundle=new Bundle();
+                    bundle.putString("Name",nameOfUser);
+                    bundle.putString("imageUrl",profileImageUri);
+                    bundle.putString("uidOther",x.getOtherUid());
+//                    Intent intent = new Intent(getContext(), ChatApplicationn.class);
+//                    intent.putExtra("Name", nameOfUser);
+//                    intent.putExtra("imagUrl", profileImageUri);
+//                    intent.putExtra("uidOther", x.getOtherUid());
+                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_chatInitiator_to_chatApplicationn,bundle);
 
-                    startActivity(intent);
+
+//                    startActivity(intent);
 
 
 

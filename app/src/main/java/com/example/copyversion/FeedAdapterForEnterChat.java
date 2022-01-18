@@ -64,11 +64,12 @@ public class FeedAdapterForEnterChat extends RecyclerView.Adapter<FeedAdapterFor
 
         ChatInitiateUtil chatInitiateUtil=FeedList.get(position);
         String uidOfOther=chatInitiateUtil.getOtherUid();
-        String last=chatInitiateUtil.getLastMessage();
+        String last=Decode.decode(chatInitiateUtil.getLastMessage().trim());
         if(last.length()>20)
         {
             last=last.substring(0,20);
         }
+
 
 
 
@@ -79,14 +80,18 @@ public class FeedAdapterForEnterChat extends RecyclerView.Adapter<FeedAdapterFor
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String s=snapshot.child("status").getValue(String.class);
-               if(s.equals("typing...."))
+                if(s!=null)
                 {
-                    holder.textViewChat.setText(s);
+                    if(s.equals("typing...."))
+                    {
+                        holder.textViewChat.setText(s);
+                    }
+                    else
+                    {
+                        holder.textViewChat.setText(finalLast);
+                    }
                 }
-               else
-               {
-                   holder.textViewChat.setText(finalLast);
-               }
+
 
 
 
@@ -99,8 +104,16 @@ public class FeedAdapterForEnterChat extends RecyclerView.Adapter<FeedAdapterFor
             }
         });
 
+//        if(last.length()<27)
+//        {
+            holder.textViewChat.setText(last.trim());
 
-        holder.textViewChat.setText(last);
+//        }else
+//        {
+//            holder.textViewChat.setText(last.substring(0,25));
+//
+//        }25
+
 
 
 
@@ -116,7 +129,16 @@ public class FeedAdapterForEnterChat extends RecyclerView.Adapter<FeedAdapterFor
                      String profileImageUri = snapshot.child("uri").getValue(String.class);
 
 
-                    holder.textView.setText(nameOfUser);
+                     if(nameOfUser.length()>19)
+                     {
+                         holder.textView.setText(nameOfUser.substring(0,19));
+
+                     }else
+                     {
+                         holder.textView.setText(nameOfUser);
+
+                     }
+
                     if(profileImageUri!=null)
                     {
                         Picasso.get().load(profileImageUri).into(holder.imageView);

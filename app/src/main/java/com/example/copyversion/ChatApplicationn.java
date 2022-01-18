@@ -1,72 +1,61 @@
 package com.example.copyversion;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.provider.ContactsContract;
-import android.provider.SyncStateContract;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.internal.OnConnectionFailedListener;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.Places;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ChatApplication extends AppCompatActivity implements FeedAdapterForChat.ListItemClickListener,SwipeControllerActions,FeedAdapterForChat.QuoteClickListener {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link ChatApplicationn#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class ChatApplicationn extends Fragment implements FeedAdapterForChat.ListItemClickListener,SwipeControllerActions,FeedAdapterForChat.QuoteClickListener {
 
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
     DatabaseReference databaseReference1,databaseReference2;
     DatabaseReference connectOther;
     RecyclerView chatListRecyclerView;
@@ -74,6 +63,9 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
     EditText typedMessage;
     DatabaseReference status1,connect1;
     String so=null;
+    String imagUrl;
+    private String uidOfOther;
+    View rootView;
     private ImageButton mapButton;
     private TextView backToChatIntitiate;
     private int quotedMessagePos = -1;
@@ -86,41 +78,73 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
 
     private ArrayList<ChatMessage> ListForChatting= new ArrayList<>();
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_application);
-        getSupportActionBar().hide();
 
-        replyLayout=findViewById(R.id.reply_layout);
-        textView=findViewById(R.id.textQuotedMessage);
-        statusOfUser=findViewById(R.id.StatusOfUser);
-        backToChatIntitiate=findViewById(R.id.backToChatInitiate);
+    public ChatApplicationn() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ChatApplicationn.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ChatApplicationn newInstance(String param1, String param2) {
+        ChatApplicationn fragment = new ChatApplicationn();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+         rootView= inflater.inflate(R.layout.fragment_chat_applicationn, container, false);
+
+
+         if(ListForChatting!=null)
+         {
+             ListForChatting.clear();
+         }
+
+
+        replyLayout=rootView.findViewById(R.id.reply_layout);
+        textView=rootView.findViewById(R.id.textQuotedMessage);
+        statusOfUser=rootView.findViewById(R.id.StatusOfUser);
+        backToChatIntitiate=rootView.findViewById(R.id.backToChatInitiate);
         backToChatIntitiate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                   Intent intent=new Intent(ChatApplication.this,NavigationActivity.class);
-                   startActivity(intent);
-                   finish();
+//                Intent intent=new Intent(ChatApplication.this,NavigationActivity.class);
+//                startActivity(intent);
+//                finish();
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_chatApplicationn_to_chatInitiator);
+
 
 
 
             }
         });
 
-//        headerChatApp=findViewById(R.id.head_in_chatAPP);
-//        headerChatApp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("Object", address);
-//                Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_profileOfOtherUser,bundle);
+
+
 //
-//            }
-//        });
-
-//       
 
 
 
@@ -139,18 +163,31 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
 
 
-        Intent i = getIntent();
 
-        String Name= (String) i.getSerializableExtra("Name");
-        String imagUrl = (String) i.getSerializableExtra("imagUrl");
-        String uidOfOther=(String)i.getSerializableExtra("uidOther");
-        DonorInfo donorInfo= (DonorInfo) i.getSerializableExtra("object1");
-        SellerInfo sellerInfo= (SellerInfo) i.getSerializableExtra("object1seller");
-        FoodRaiseInfo foodRaiseInfo= (FoodRaiseInfo) i.getSerializableExtra("object1foodraise");
+
+        String Name= getArguments().getString("Name");
+         imagUrl = getArguments().getString("imageUrl");
+         uidOfOther= getArguments().getString("uidOther");
+        DonorInfo donorInfo= (DonorInfo) getArguments().getSerializable("object1");
+        SellerInfo sellerInfo= (SellerInfo) getArguments().getSerializable("object1seller");
+        FoodRaiseInfo foodRaiseInfo= (FoodRaiseInfo) getArguments().getSerializable("object1foodraise");
         FirebaseAuth Auth= FirebaseAuth.getInstance();
         String myUid=Auth.getCurrentUser().getUid();
         String Path2=uidOfOther+"-"+myUid;
         String Path1=myUid+"-"+uidOfOther;
+
+        headerChatApp=rootView.findViewById(R.id.head_in_chatAPP);
+        headerChatApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("PhotFromChat",imagUrl);
+                bundle.putString("NameFromChat",Name);
+                bundle.putString("uidOfOther",uidOfOther);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_chatApplicationn_to_profileOfOtherUser,bundle);
+
+            }
+        });
 
         if(donorInfo!=null)
         {
@@ -166,7 +203,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
         }
 
 
-        status1=FirebaseDatabase.getInstance().getReference("/rotlo/user").child(myUid);
+        status1= FirebaseDatabase.getInstance().getReference("/rotlo/user").child(myUid);
         connect1=FirebaseDatabase.getInstance().getReference(".info/connected");
         connect1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -205,7 +242,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
                 {
                     statusOfUser.setText(s);
                 }
-                 else
+                else
                 {
                     statusOfUser.setText("");
                 }
@@ -220,7 +257,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
         });
 
 
-        typedMessage=findViewById(R.id.edit_message);
+        typedMessage=rootView.findViewById(R.id.edit_message);
 
         typedMessage.addTextChangedListener(new TextWatcher() {
             @Override
@@ -283,8 +320,8 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
 
 
-         chatListRecyclerView = (RecyclerView) findViewById(R.id.chatList);
-        chatListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        chatListRecyclerView = (RecyclerView) rootView.findViewById(R.id.chatList);
+        chatListRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         databaseReference1 = FirebaseDatabase.getInstance().getReference("/rotlo/chat/"+Path1);
         databaseReference2 = FirebaseDatabase.getInstance().getReference("/rotlo/chat/"+Path2);
@@ -297,9 +334,17 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
 
 
-        TextView name=findViewById(R.id.NameOfUserInChat);
-        ImageView PhotoInChat=findViewById(R.id.chatProfilePhoto);
-        name.setText(Name);
+        TextView name=rootView.findViewById(R.id.NameOfUserInChat);
+        ImageView PhotoInChat=rootView.findViewById(R.id.chatProfilePhoto);
+        if(Name.length()>18)
+        {
+            name.setText(Name.substring(0,18));
+
+        }else
+        {
+            name.setText(Name);
+
+        }
         if(imagUrl!=null) {
             Picasso.get().load(imagUrl).into(PhotoInChat);
         }
@@ -326,7 +371,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
         Calendar smsTime = Calendar.getInstance();
 //        smsTime.setTimeInMillis(Long.parseLong(ListForChatting.get(ListForChatting.size()-1).getTs()));
         Date datee=new Date();
-          datee.setTime(System.currentTimeMillis());
+        datee.setTime(System.currentTimeMillis());
         String formattedDatee=new SimpleDateFormat("EEE, MMM d, ''yy").format(datee);
 
 
@@ -339,20 +384,22 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
 
 
-        ImageButton sendButton=findViewById(R.id.send_button);
+        ImageButton sendButton=rootView.findViewById(R.id.send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                typedMessage=findViewById(R.id.edit_message);
+                typedMessage=rootView.findViewById(R.id.edit_message);
                 String message=typedMessage.getText().toString();
+                message=Encode.encode(message);
+
 
 
                 if(message.length()!=0)
                 {
                     Long tsLong = System.currentTimeMillis();
                     String ts = tsLong.toString();
-                    String quote=textView.getText().toString();
+                    String quote=Encode.encode(textView.getText().toString());
                     Long tsLongForTimeStamp=System.currentTimeMillis()/1000;
                     String tsLongForTimeStampString=tsLongForTimeStamp.toString();
 
@@ -548,7 +595,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
 
 
-        ImageButton cancleButtonn=findViewById(R.id.cancelButton);
+        ImageButton cancleButtonn=rootView.findViewById(R.id.cancelButton);
         cancleButtonn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -567,10 +614,10 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if(snapshot.exists())
                 {
-                        String chatMessage=snapshot.child("message").getValue(String.class);
-                        String ID=snapshot.child("id").getValue(String.class);
+                    String chatMessage=snapshot.child("message").getValue(String.class);
+                    String ID=snapshot.child("id").getValue(String.class);
 
-                         String ts = snapshot.child("ts").getValue(String.class);
+                    String ts = snapshot.child("ts").getValue(String.class);
 
                     String quote = snapshot.child("quote").getValue(String.class);
                     String nameOfOther = snapshot.child("nameOfOther").getValue(String.class);
@@ -581,7 +628,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
                     int type=snapshot.child("typeOfMessage").getValue(Integer.class);
                     int timeLabelId=snapshot.child("timeLabelId").getValue(Integer.class);
                     String typeForName=snapshot.child("typeOfMessageForName").getValue(String.class);
-                        ListForChatting.add(new ChatMessage(chatMessage,ID,uidOfOther,ts,quote,quotePose,type,nameOfOther,PostId,imageOfPost,dateOfMessage,timeLabelId,typeForName));
+                    ListForChatting.add(new ChatMessage(chatMessage,ID,uidOfOther,ts,quote,quotePose,type,nameOfOther,PostId,imageOfPost,dateOfMessage,timeLabelId,typeForName));
 
 
 
@@ -590,7 +637,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
                 {
 
                 }
-                chatListRecyclerView.setAdapter(new FeedAdapterForChat(ListForChatting,ChatApplication.this::onListItemClick,ChatApplication.this::onQuoteClick,ChatApplication.this));
+                chatListRecyclerView.setAdapter(new FeedAdapterForChat(ListForChatting,ChatApplicationn.this::onListItemClick,ChatApplicationn.this::onQuoteClick,getContext()));
 
 
             }
@@ -674,24 +721,26 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
         setUpItemTouchHelper();
 
+        return rootView;
     }
 
+
     private void hideReplyLayout() {
-        ConstraintLayout constraintLayout=findViewById(R.id.reply_layout);
-        ImageView i=findViewById(R.id.replyPhoto);
+        ConstraintLayout constraintLayout=rootView.findViewById(R.id.reply_layout);
+        ImageView i=rootView.findViewById(R.id.replyPhoto);
         ResizeAnim resizeAnim=new ResizeAnim(constraintLayout,4,0);
         resizeAnim.setDuration(ANIMATION_DURATION);
 
         new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+            @Override
+            public void run() {
 
-                        constraintLayout.requestLayout();
-                        constraintLayout.forceLayout();
-                        constraintLayout.setVisibility(View.GONE);
-                        i.setVisibility(View.GONE);
-                    }
-                },ANIMATION_DURATION-50);
+                constraintLayout.requestLayout();
+                constraintLayout.forceLayout();
+                constraintLayout.setVisibility(View.GONE);
+                i.setVisibility(View.GONE);
+            }
+        },ANIMATION_DURATION-50);
 
         constraintLayout.startAnimation(resizeAnim);
         resizeAnim.setAnimationListener(new Animation.AnimationListener() {
@@ -725,7 +774,7 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
 
 
-        MessageSwipeController messageSwipeController=new MessageSwipeController(chatListRecyclerView,this,
+        MessageSwipeController messageSwipeController=new MessageSwipeController(chatListRecyclerView,getContext(),
 
                 new SwipeControllerActions() {
                     @Override
@@ -750,13 +799,13 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
     private void showQuotedMessageAsStatus(DonorInfo donorInfo)
     {
-        ConstraintLayout constraintLayout=findViewById(R.id.reply_layout);
+        ConstraintLayout constraintLayout=rootView.findViewById(R.id.reply_layout);
         constraintLayout.setVisibility(View.VISIBLE);
 
 
         textView.setText("MainCourse=> "+donorInfo.getDonorMainCourse());
 
-        ImageView i=findViewById(R.id.replyPhoto);
+        ImageView i=rootView.findViewById(R.id.replyPhoto);
         i.getLayoutParams().height = 100;
         ImageUrl=donorInfo.getFoodPhotoUrl();
         Picasso.get().load(donorInfo.getFoodPhotoUrl()).into(i);
@@ -766,13 +815,13 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
     private void showQuotedMessageAsSellStatus(SellerInfo sellerInfo)
     {
-        ConstraintLayout constraintLayout=findViewById(R.id.reply_layout);
+        ConstraintLayout constraintLayout=rootView.findViewById(R.id.reply_layout);
         constraintLayout.setVisibility(View.VISIBLE);
 
 
         textView.setText("Seller Name=> "+sellerInfo.getSellerName());
 
-        ImageView i=findViewById(R.id.replyPhoto);
+        ImageView i=rootView.findViewById(R.id.replyPhoto);
         i.getLayoutParams().height = 100;
         ImageUrl=sellerInfo.getFoodPhotoUrl();
         Picasso.get().load(sellerInfo.getFoodPhotoUrl()).into(i);
@@ -782,13 +831,13 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 
     private void showQuotedMessageAsRaiseFoodStatus(FoodRaiseInfo foodRaiseInfo)
     {
-        ConstraintLayout constraintLayout=findViewById(R.id.reply_layout);
+        ConstraintLayout constraintLayout=rootView.findViewById(R.id.reply_layout);
         constraintLayout.setVisibility(View.VISIBLE);
 
 
         textView.setText("Raiser Name=> "+foodRaiseInfo.getRaiserName());
 
-        ImageView i=findViewById(R.id.replyPhoto);
+        ImageView i=rootView.findViewById(R.id.replyPhoto);
         i.getLayoutParams().height = 100;
         ImageUrl=foodRaiseInfo.getFoodPhotoUrl();
         Picasso.get().load(foodRaiseInfo.getFoodPhotoUrl()).into(i);
@@ -800,20 +849,15 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
 //        typedMessage.requestFocus();
 //        InputMathodManager inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 //        inputMethodManager?.showSoftInput(edit_message, InputMethodManager.SHOW_IMPLICIT)
-        ConstraintLayout constraintLayout=findViewById(R.id.reply_layout);
+        ConstraintLayout constraintLayout=rootView.findViewById(R.id.reply_layout);
         constraintLayout.setVisibility(View.VISIBLE);
-        ImageView i=findViewById(R.id.replyPhoto);
+        ImageView i=rootView.findViewById(R.id.replyPhoto);
         i.setVisibility(View.GONE);
 
-        if(chatMessage.getTypeOfMessage()==2)
-        {
-            typeOfMessageForName="RECIEVER";
-        }
-        else
-        {
-            typeOfMessageForName="SENDER";
-        }
-        textView.setText(chatMessage.getMessage());
+
+            typeOfMessageForName=chatMessage.getID();
+
+        textView.setText(Decode.decode(chatMessage.getMessage().trim()));
         int height=textView.getLineHeight();
         int startHeight=0;
 //        if (height != startHeight) {
@@ -870,12 +914,9 @@ public class ChatApplication extends AppCompatActivity implements FeedAdapterFor
         { chatListRecyclerView.scrollToPosition(position-1);}
 
 //         FeedAdapterForChat feedAdapterForChat= (FeedAdapterForChat) chatListRecyclerView.getAdapter();
-         ((FeedAdapterForChat) chatListRecyclerView.getAdapter()).blinkItem(position);
+        ((FeedAdapterForChat) chatListRecyclerView.getAdapter()).blinkItem(position);
 //         feedAdapterForChat.blinkItem(position);
     }
 
-//    @Override
-//    public void showReplyUI(int position) {
-//
-//    }
+
 }

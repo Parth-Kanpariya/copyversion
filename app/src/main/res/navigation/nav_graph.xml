@@ -47,6 +47,15 @@
         <action
             android:id="@+id/action_homePager_fragment_to_profileOfOtherUser"
             app:destination="@id/profileOfOtherUser" />
+        <action
+            android:id="@+id/action_homePager_fragment_to_fullInfoPostDonor"
+            app:destination="@id/fullInfoPostDonor" />
+        <action
+            android:id="@+id/action_homePager_fragment_to_fullInfoOfSell"
+            app:destination="@id/fullInfoOfSell" />
+        <action
+            android:id="@+id/action_homePager_fragment_to_fullInfoOfRaise"
+            app:destination="@id/fullInfoOfRaise" />
 
     </fragment>
     <fragment
@@ -85,6 +94,15 @@
         <action
             android:id="@+id/action_my_post_to_profileOfOtherUser"
             app:destination="@id/profileOfOtherUser" />
+        <action
+            android:id="@+id/action_my_post_to_fullInfoPostDonor2"
+            app:destination="@id/fullInfoPostDonor" />
+        <action
+            android:id="@+id/action_my_post_to_fullInfoOfSell2"
+            app:destination="@id/fullInfoOfSell" />
+        <action
+            android:id="@+id/action_my_post_to_fullInfoOfRaise2"
+            app:destination="@id/fullInfoOfRaise" />
     </fragment>
     <fragment
         android:id="@+id/chatInitiator"
@@ -92,6 +110,9 @@
         android:label="fragment_chat_initiator"
         tools:layout="@layout/fragment_chat_initiator" >
 
+        <action
+            android:id="@+id/action_chatInitiator_to_chatApplicationn"
+            app:destination="@id/chatApplicationn" />
     </fragment>
     <fragment
         android:id="@+id/editProfile"
@@ -103,7 +124,6 @@
             android:id="@+id/action_profileFragment_to_profile"
             app:destination="@id/profileFragment"
             app:popUpTo="@id/profileFragment"
-            app:popUpToInclusive="true"
             />
 
     </fragment>
@@ -132,22 +152,97 @@
         <action
             android:id="@+id/action_profileOfOtherUser_to_my_post_sell"
             app:destination="@id/my_post_sell" />
+        <action
+            android:id="@+id/action_profileOfOtherUser_to_chatApplicationn"
+            app:destination="@id/chatApplicationn" />
     </fragment>
     <fragment
         android:id="@+id/my_post_donor"
         android:name="com.example.copyversion.my_post_donor"
         android:label="fragment_my_post_donor"
-        tools:layout="@layout/fragment_my_post_donor" />
+        tools:layout="@layout/fragment_my_post_donor" >
+        <action
+            android:id="@+id/action_my_post_donor_to_fullInfoPostDonor"
+            app:destination="@id/fullInfoPostDonor" />
+    </fragment>
     <fragment
         android:id="@+id/my_post_sell"
         android:name="com.example.copyversion.my_post_sell"
         android:label="fragment_my_post_sell"
-        tools:layout="@layout/fragment_my_post_sell" />
+        tools:layout="@layout/fragment_my_post_sell" >
+        <action
+            android:id="@+id/action_my_post_sell_to_fullInfoOfSell"
+            app:destination="@id/fullInfoOfSell" />
+    </fragment>
     <fragment
         android:id="@+id/my_post_raise"
         android:name="com.example.copyversion.my_post_raise"
         android:label="fragment_my_post_raise"
-        tools:layout="@layout/fragment_my_post_raise" />
+        tools:layout="@layout/fragment_my_post_raise" >
+        <action
+            android:id="@+id/action_my_post_raise_to_fullInfoOfRaise"
+            app:destination="@id/fullInfoOfRaise" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatApplicationn"
+        android:name="com.example.copyversion.ChatApplicationn"
+        android:label="ChatApplicationn" >
+        <action
+            android:id="@+id/action_chatApplicationn_to_chatInitiator"
+            app:destination="@id/chatInitiator"
+            app:popUpTo="@id/chatInitiator"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_chatApplicationn_to_fullInfoOfRaise"
+            app:destination="@id/fullInfoOfRaise" />
+        <action
+            android:id="@+id/action_chatApplicationn_to_fullInfoOfSell"
+            app:destination="@id/fullInfoOfSell" />
+        <action
+            android:id="@+id/action_chatApplicationn_to_fullInfoPostDonor"
+            app:destination="@id/fullInfoPostDonor" />
+        <action
+            android:id="@+id/action_chatApplicationn_to_profileOfOtherUser"
+            app:destination="@id/profileOfOtherUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullInfoPostDonor"
+        android:name="com.example.copyversion.FullInfoPostDonor"
+        android:label="FullInfoPostDonor" >
+        <action
+            android:id="@+id/action_fullInfoPostDonor_to_chatApplicationn"
+            app:destination="@id/chatApplicationn" />
+        <action
+            android:id="@+id/action_fullInfoPostDonor_to_imageOfFood2"
+            app:destination="@id/imageOfFood2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullInfoOfRaise"
+        android:name="com.example.copyversion.FullInfoOfRaise"
+        android:label="FullInfoOfRaise" >
+        <action
+            android:id="@+id/action_fullInfoOfRaise_to_chatApplicationn"
+            app:destination="@id/chatApplicationn" />
+        <action
+            android:id="@+id/action_fullInfoOfRaise_to_imageOfFood2"
+            app:destination="@id/imageOfFood2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullInfoOfSell"
+        android:name="com.example.copyversion.FullInfoOfSell"
+        android:label="FullInfoOfSell" >
+        <action
+            android:id="@+id/action_fullInfoOfSell_to_chatApplicationn"
+            app:destination="@id/chatApplicationn" />
+        <action
+            android:id="@+id/action_fullInfoOfSell_to_imageOfFood2"
+            app:destination="@id/imageOfFood2" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageOfFood2"
+        android:name="com.example.copyversion.ImageOfFood"
+        android:label="fragment_image_of_food"
+        tools:layout="@layout/fragment_image_of_food" />
 
 
 </navigation>

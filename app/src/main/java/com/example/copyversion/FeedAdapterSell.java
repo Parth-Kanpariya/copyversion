@@ -107,6 +107,25 @@ public class FeedAdapterSell extends RecyclerView.Adapter<FeedAdapterSell.FeedHo
             }
         });
 
+        holder.userProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ObjectSeller", address);
+                if(address.getUid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                {
+//                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_my_post_to_profileOfOtherUser,bundle);
+
+                }else if(!address.isClickable())
+                {
+
+                }else
+                {
+                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_profileOfOtherUser,bundle);
+
+                }
+            }
+        });
         Date createdAt = address.getCurrentTime();//get the date the message was created from parse backend
         long now = new Date().getTime();//get current date
         String convertedDate = DateUtils.getRelativeTimeSpanString(

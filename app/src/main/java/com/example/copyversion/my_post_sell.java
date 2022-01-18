@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -57,6 +58,7 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
     SwipeRefreshLayout swipeRefreshLayout;
     private double longitude, latitude;
     String uidOfOtherUser=null;
+    String deci;
     FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -104,12 +106,22 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
 
         View rootView = inflater.inflate(R.layout.fragment_my_post_sell, container, false);
 
+        if(sellingList!=null)
+        {
+            sellingList.clear();
+        }
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         getlocation();
 //
 
+        Bundle bundle1=getArguments();
+        if(bundle1!=null)
+        {
+            deci=bundle1.getString("YesOrNo");
+
+        }
 
         getdata(rootView);
 
@@ -184,6 +196,7 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
                         Date currentTime = ds.child("currentTime").getValue(Date.class);
                         String profilePhtourl = ds.child("profilePhtourl").getValue(String.class);
                         String contact = ds.child("contact").getValue(String.class);
+                        String nameOfFood=ds.child("nameOfFood").getValue(String.class);
                         double latiitude = ds.child("latitude").getValue(double.class);
                         double longitude = ds.child("longitude").getValue(double.class);
                         String postID = ds.getKey();
@@ -191,9 +204,13 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
                             foodPhotUrl = "https://firebasestorage.googleapis.com/v0/b/copyversion-b749a.appspot.com/o/images%2Fpost%2Fselling%2F3608aa61-7c94-4e36-bd4b-46dfe62f4403?alt=media&token=24638d50-1e71-4c72-8373-522b62710297";
                         }
 
-                        String decision=getArguments().getString("decision");
-                        boolean isClickable;
-                        if(decision.equals("NO"))
+                        Bundle bundle=getArguments();
+                        String decision=null;
+                        if(bundle!=null)
+                        {
+                            decision=bundle.getString("decision");
+                        }                        boolean isClickable;
+                        if(decision=="NO")
                         {
                             isClickable=false;
                         }else
@@ -205,14 +222,14 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
                         {
                             if(uid.equals(uidOfOtherUser))
                             {
-                                sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+                                sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable,nameOfFood));
 
                             }
                         }
                         else
                         {
                             if (uid.equals(FirebaseAuth.getInstance().getUid())) {
-                                sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable));
+                                sellingList.add(new SellerInfo(donorName, mainCourse, donorAddress, foodPhotUrl, uid, postID, latiitude, longitude, profilePhtourl, username, currentTime, contact,isClickable,nameOfFood));
 
                             }
                         }
@@ -260,11 +277,19 @@ public class my_post_sell extends Fragment implements FeedAdapter.ListItemClickL
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPostSell.class);
         SellerInfo x = sellingList.get(position);
-        intent.putExtra("PostId", x.getPostID());
-        intent.putExtra("object", x);
-        startActivity(intent);
+        Bundle bundle=new Bundle();
+        bundle.putString("PostId",x.getPostID());
+        bundle.putSerializable("object1seller",x);
+
+        if(deci=="YES")
+        {
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_my_post_sell_to_fullInfoOfSell ,bundle);
+
+
+        }else {
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_my_post_to_fullInfoOfSell2, bundle);
+        }
     }
 
     @SuppressLint("MissingPermission")

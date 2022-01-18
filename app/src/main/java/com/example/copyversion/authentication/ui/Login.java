@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -49,6 +50,7 @@ public class Login extends AppCompatActivity {
     private int RC_SIGN_IN=120;
     private SignInButton googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
+    private TextView forgetPassword;
 
 
 
@@ -81,6 +83,16 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        forgetPassword=findViewById(R.id.forgotPasswordInLogin);
+        String html = "<u>forgot password</u>";
+        forgetPassword.setText(Html.fromHtml(html));
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Login.this,ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
 
 
 

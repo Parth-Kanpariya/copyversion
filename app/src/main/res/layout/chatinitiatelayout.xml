@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentTop="true"
-    android:background="#8c7dc6"
+    app:cardBackgroundColor="#8c7dc6"
+    android:outlineProvider="none"
     android:orientation="vertical">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/NameOfUserInChatInitiate"
                 android:layout_marginLeft="29dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="-25dp"
                 android:layout_toRightOf="@id/chatProfilePhotoCardLayout"
                 android:fontFamily="@font/josefinsanssemibold"
@@ -60,5 +62,5 @@
                 android:textColor="@color/white"
                 android:textSize="15dp" />
         </RelativeLayout>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>
 

@@ -115,6 +115,27 @@ public class FeedAdapterRaise extends RecyclerView.Adapter<FeedAdapterRaise.Feed
             }
         });
 
+        holder.userProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ObjectRaiser", address);
+                if(address.getUid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                {
+//                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_my_post_to_profileOfOtherUser,bundle);
+
+                }
+                else if(!address.isClickable())
+                {
+
+                }else
+                {
+                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_profileOfOtherUser,bundle);
+
+                }
+            }
+        });
+
         String s = (address.getFoodPhotoUrl());
         if (s != null) {
 //            Picasso.get().load(s).into(holder.imageView1);

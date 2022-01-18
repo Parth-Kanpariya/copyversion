@@ -3,6 +3,7 @@ package com.example.copyversion;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        getDynamicLinkFromFirebase();
+//        getDynamicLinkFromFirebase();
 
 
 //          creatLink();
@@ -230,28 +231,28 @@ public class MainActivity extends AppCompatActivity {
                             String PostId=x.substring(x.lastIndexOf("=")+1,t-1);
 
 
-                            if(xy.equals("Raise"))
-                            {
-                                Intent intent = new Intent(MainActivity.this, FullInfoOfPostRaise.class);
-
-                                intent.putExtra("PostId",PostId);
-                                startActivity(intent);
-
-                            }else   if(xy.equals("Donor"))
-                            {
-                                Intent intent = new Intent(MainActivity.this, FullInfoOfPost.class);
-                                intent.putExtra("PostId",PostId);
-                                startActivity(intent);
-
-                            }
-                            else   if(xy.equals("Seller"))
-                            {
-                                Intent intent = new Intent(MainActivity.this, FullInfoOfPostSell.class);
-                                intent.putExtra("PostId",PostId);
-                                startActivity(intent);
-
-                            }
-
+//                            if(xy.equals("Raise"))
+//                            {
+//                                Intent intent = new Intent(MainActivity.this, FullInfoOfPostRaise.class);
+//
+//                                intent.putExtra("PostId",PostId);
+//                                startActivity(intent);
+//
+//                            }else   if(xy.equals("Donor"))
+//                            {
+//                                Intent intent = new Intent(MainActivity.this, FullInfoOfPost.class);
+//                                intent.putExtra("PostId",PostId);
+//                                startActivity(intent);
+//
+//                            }
+//                            else   if(xy.equals("Seller"))
+//                            {
+//                                Intent intent = new Intent(MainActivity.this, FullInfoOfPostSell.class);
+//                                intent.putExtra("PostId",PostId);
+//                                startActivity(intent);
+//
+//                            }
+//
 
 
 

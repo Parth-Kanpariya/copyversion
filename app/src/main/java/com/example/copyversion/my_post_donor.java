@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -74,6 +75,7 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
     SwipeRefreshLayout swipeRefreshLayout;
     private double longitude, latitude;
     String uidOfOtherUser=null;
+    String deci;
     FusedLocationProviderClient fusedLocationProviderClient;
 
 
@@ -126,7 +128,18 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
         View rootView = inflater.inflate(R.layout.fragment_my_post_donor, container, false);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
+        if(donationList!=null)
+        {
+            donationList.clear();
+        }
+
         getlocation();
+        Bundle bundle1=getArguments();
+        if(bundle1!=null)
+        {
+          deci=bundle1.getString("YesOrNo");
+
+        }
 
 
 //        ActionBar actionBar;
@@ -212,9 +225,15 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
                         double longitude = ds.child("longitude").getValue(double.class);
                         String postID = ds.getKey();
 //
-                        String decision=getArguments().getString("decision");
+                        Bundle bundle=getArguments();
+                        String decision=null;
+                        if(bundle!=null)
+                        {
+                            decision=bundle.getString("decision");
+                        }
+
                         boolean isClickable;
-                        if(decision.equals("NO"))
+                        if(decision=="NO")
                         {
                             isClickable=false;
                         }else
@@ -275,11 +294,27 @@ public class my_post_donor extends Fragment implements FeedAdapter.ListItemClick
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPost.class);
         DonorInfo x = donationList.get(position);
-        intent.putExtra("PostId", x.getPostID());
-        intent.putExtra("object", x);
-        startActivity(intent);
+        Bundle bundle=new Bundle();
+        bundle.putString("PostId",x.getPostID());
+        bundle.putSerializable("object",x);
+
+
+        if(deci=="YES")
+        {
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_my_post_donor_to_fullInfoPostDonor ,bundle);
+
+
+        }else
+        {
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_my_post_to_fullInfoPostDonor2 ,bundle);
+
+        }
+
+
+
+
+
     }
 
 

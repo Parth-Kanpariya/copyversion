@@ -93,6 +93,27 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedHolder> {
                 createdAt.getTime(), now, DateUtils.SECOND_IN_MILLIS).toString();
         holder.timeForPost.setText(convertedDate);
 
+        holder.userProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Object", address);
+                if(address.getUid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                {
+//                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_my_post_to_profileOfOtherUser,bundle);
+
+                }else if(!address.isClickable())
+                {
+
+                }
+                else
+                {
+                    Navigation.findNavController((Activity) context, R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_profileOfOtherUser,bundle);
+
+                }
+
+            }
+        });
 
 
         holder.userNameInPost.setOnClickListener(new View.OnClickListener() {

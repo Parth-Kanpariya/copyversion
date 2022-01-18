@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -234,11 +235,13 @@ public class RaiseFoodFragment extends Fragment implements FeedAdapter.ListItemC
 
     @Override
     public void onListItemClick(int position) {
-        Intent intent = new Intent(getContext(), FullInfoOfPostRaise.class);
+        Bundle bundle=new Bundle();
         FoodRaiseInfo x = RaisingList.get(position);
-        intent.putExtra("PostId", x.getPostID());
-        intent.putExtra("object",x);
-        startActivity(intent);
+        bundle.putString("PostId",x.getPostID());
+        bundle.putSerializable("object1foodraise",x);
+
+        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.action_homePager_fragment_to_fullInfoOfRaise,bundle);
+
     }
 
     @SuppressLint("MissingPermission")

@@ -19,6 +19,7 @@ public class SellerInfo  implements Serializable {
     private double longitude;
     private double latitude;
     private Date currentTime;
+    private String nameOfFood;
 
 
 //
@@ -28,7 +29,7 @@ public class SellerInfo  implements Serializable {
 
     }
 
-    public SellerInfo (String sellerName,String approximate,String sellerAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact,boolean isClickable) {
+    public SellerInfo (String sellerName,String approximate,String sellerAddress,String uploadUrl,String UID,String postID,double latitude,double longitude,String profilePhtourl,String username,Date currentTime,String Contact,boolean isClickable,String nameOfFood) {
         this.sellerAddress=sellerAddress;
         this.sellerName=sellerName;
         this.approximate=approximate;
@@ -42,10 +43,19 @@ public class SellerInfo  implements Serializable {
         this.currentTime=currentTime;
         this.Contact=Contact;
         this.isClickable=isClickable;
+        this.nameOfFood=nameOfFood;
 
 
     }
 
+
+    public String getNameOfFood() {
+        return nameOfFood;
+    }
+
+    public void setNameOfFood(String nameOfFood) {
+        this.nameOfFood = nameOfFood;
+    }
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;

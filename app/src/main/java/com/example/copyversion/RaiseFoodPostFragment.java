@@ -293,7 +293,7 @@ public class RaiseFoodPostFragment extends Fragment {
         String name =RaiserName.getText().toString();
         String People = PeopleField.getText().toString();
         String address = RaiserAddress.getText().toString();
-        String mobile=ContactNumberRaiser.getText().toString();
+        String mobile=null;
 
         // below line is for checking weather the
         // edittext fields are empty or not.
@@ -306,10 +306,7 @@ public class RaiseFoodPostFragment extends Fragment {
 //        {
 //            Toast.makeText(getContext(), "Entered valid contact number", Toast.LENGTH_SHORT).show();
 //        }
-        else  if(mobile.length()<10 || mobile.length()>10)
-        {
-            Toast.makeText(getContext(), "Please Enter valid contact number", Toast.LENGTH_SHORT).show();
-        }
+
 
 
 
@@ -320,7 +317,7 @@ public class RaiseFoodPostFragment extends Fragment {
             PeopleField.getText().clear();
             RaiserAddress.getText().clear();
             imageView.setImageBitmap(null);
-            ContactNumberRaiser.getText().clear();
+
         }
 
 

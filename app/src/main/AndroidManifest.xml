@@ -12,9 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -27,8 +25,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Copyversion">
-
-
+        <activity
+            android:name=".authentication.ui.ForgotPassword"
+            android:exported="true" />
         <activity
             android:name=".ChatInitiate"
             android:exported="true"
@@ -80,7 +79,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDv8Qp93306IiZ765oZfCixV8Rx80NbCqw" />
@@ -94,35 +92,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".FullInfoOfPost"
-            android:exported="true"
-            android:label="ROTLO"
-            android:screenOrientation="portrait">
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="example.com/link"
-                    android:scheme="http" />
-                <data
-                    android:host="example.com/link"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".FullInfoOfPostSell"
-            android:exported="true"
-            android:label="ROTLO"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".FullInfoOfPostRaise"
-            android:exported="true"
-            android:label="ROTLO"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

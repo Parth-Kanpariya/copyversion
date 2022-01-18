@@ -11,7 +11,8 @@ public class ChatMessage {
     String quote="";
     int timeLabelId;
     int quotePos=-1,type;
-    public ChatMessage(String Message,String ID,String myUid,String ts,String quote,int quotePos,String nameOfOther)
+    String typeOfMessageForName;
+    public ChatMessage(String Message,String ID,String myUid,String ts,String quote,int quotePos,String nameOfOther,String typeOfMessage)
     {
         this.Message=Message;
         this.ID=ID;
@@ -20,11 +21,12 @@ public class ChatMessage {
         this.quote=quote;
         this.quotePos=quotePos;
         this.nameOfOther=nameOfOther;
+        this.typeOfMessageForName=typeOfMessage;
 
 
     }
 
-    public ChatMessage(String Message,String ID,String myUid,String ts,String quote,int quotePos,int type,String nameOfOther,String PostId,String ImageUrl,String date,int timeLabelId)
+    public ChatMessage(String Message,String ID,String myUid,String ts,String quote,int quotePos,int type,String nameOfOther,String PostId,String ImageUrl,String date,int timeLabelId,String typeOfMessage)
     {
         this.Message=Message;
         this.ID=ID;
@@ -38,9 +40,10 @@ public class ChatMessage {
         this.ImageUrl=ImageUrl;
         this.date=date;
         this.timeLabelId=timeLabelId;
+        this.typeOfMessageForName=typeOfMessage;
 
     }
-    public ChatMessage(String Message,String ID,String myUid,String ts,int quotePos,String nameOfOther)
+    public ChatMessage(String Message,String ID,String myUid,String ts,int quotePos,String nameOfOther,String typeOfMessage)
     {
         this.Message=Message;
         this.ID=ID;
@@ -48,7 +51,16 @@ public class ChatMessage {
         this.ts=ts;
         this.quotePos=quotePos;
         this.nameOfOther=nameOfOther;
+        this.typeOfMessageForName=typeOfMessage;
 
+    }
+
+    public String getTypeOfMessageForName() {
+        return typeOfMessageForName;
+    }
+
+    public void setTypeOfMessageForName(String typeOfMessageForName) {
+        this.typeOfMessageForName = typeOfMessageForName;
     }
 
     public void setTimeLabelId(int timeLabelId) {
