@@ -8,17 +8,17 @@
 
     <fragment
         android:id="@+id/information_Fragment"
-        android:name="com.example.copyversion.information_Fragment"
+        android:name="com.rotlo.copyversion.information_Fragment"
         android:label="activity_information"
         tools:layout="@layout/activity_information" />
     <fragment
         android:id="@+id/sellingPostFragment"
-        android:name="com.example.copyversion.SellingPostFragment"
+        android:name="com.rotlo.copyversion.SellingPostFragment"
         android:label="fragment_selling_post"
         tools:layout="@layout/fragment_selling_post" />
     <fragment
         android:id="@+id/optionForDaS"
-        android:name="com.example.copyversion.OptionForDaS"
+        android:name="com.rotlo.copyversion.OptionForDaS"
         android:label="fragment_option_for_da_s"
         tools:layout="@layout/fragment_option_for_da_s">
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePager_fragment"
-        android:name="com.example.copyversion.HomePager_fragment"
+        android:name="com.rotlo.copyversion.HomePager_fragment"
         android:label="fragment_home_pager"
         tools:layout="@layout/fragment_home_pager">
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.copyversion.ProfileFragment"
+        android:name="com.rotlo.copyversion.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
 
@@ -75,20 +75,20 @@
     </fragment>
     <fragment
         android:id="@+id/raiseFoodPostFragment2"
-        android:name="com.example.copyversion.RaiseFoodPostFragment"
+        android:name="com.rotlo.copyversion.RaiseFoodPostFragment"
         android:label="fragment_raise_food_post"
         tools:layout="@layout/fragment_raise_food_post">
     </fragment>
 
     <activity
         android:id="@+id/chatInitiates"
-        android:name="com.example.copyversion.ChatInitiate"
+        android:name="com.rotlo.copyversion.ChatInitiate"
         android:label="activity_chat_initiate"
         tools:layout="@layout/activity_chat_initiate" />
 
     <fragment
         android:id="@+id/my_post"
-        android:name="com.example.copyversion.my_post"
+        android:name="com.rotlo.copyversion.my_post"
         android:label="fragment_my_post"
         tools:layout="@layout/fragment_my_post" >
         <action
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatInitiator"
-        android:name="com.example.copyversion.ChatInitiator"
+        android:name="com.rotlo.copyversion.ChatInitiator"
         android:label="fragment_chat_initiator"
         tools:layout="@layout/fragment_chat_initiator" >
 
@@ -116,7 +116,7 @@
     </fragment>
     <fragment
         android:id="@+id/editProfile"
-        android:name="com.example.copyversion.EditProfile"
+        android:name="com.rotlo.copyversion.EditProfile"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile"
         >
@@ -129,7 +129,7 @@
     </fragment>
     <activity
         android:id="@+id/chatApplication"
-        android:name="com.example.copyversion.ChatApplication"
+        android:name="com.rotlo.copyversion.ChatApplication"
         android:label="activity_chat_application"
         tools:layout="@layout/activity_chat_application" >
 
@@ -137,7 +137,7 @@
     </activity>
     <fragment
         android:id="@+id/profileOfOtherUser"
-        android:name="com.example.copyversion.ProfileOfOtherUser"
+        android:name="com.rotlo.copyversion.ProfileOfOtherUser"
         android:label="fragment_profile_of_other_user"
         tools:layout="@layout/fragment_profile_of_other_user" >
         <action
@@ -158,7 +158,7 @@
     </fragment>
     <fragment
         android:id="@+id/my_post_donor"
-        android:name="com.example.copyversion.my_post_donor"
+        android:name="com.rotlo.copyversion.my_post_donor"
         android:label="fragment_my_post_donor"
         tools:layout="@layout/fragment_my_post_donor" >
         <action
@@ -167,7 +167,7 @@
     </fragment>
     <fragment
         android:id="@+id/my_post_sell"
-        android:name="com.example.copyversion.my_post_sell"
+        android:name="com.rotlo.copyversion.my_post_sell"
         android:label="fragment_my_post_sell"
         tools:layout="@layout/fragment_my_post_sell" >
         <action
@@ -176,7 +176,7 @@
     </fragment>
     <fragment
         android:id="@+id/my_post_raise"
-        android:name="com.example.copyversion.my_post_raise"
+        android:name="com.rotlo.copyversion.my_post_raise"
         android:label="fragment_my_post_raise"
         tools:layout="@layout/fragment_my_post_raise" >
         <action
@@ -185,7 +185,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatApplicationn"
-        android:name="com.example.copyversion.ChatApplicationn"
+        android:name="com.rotlo.copyversion.ChatApplicationn"
         android:label="ChatApplicationn" >
         <action
             android:id="@+id/action_chatApplicationn_to_chatInitiator"
@@ -207,7 +207,7 @@
     </fragment>
     <fragment
         android:id="@+id/fullInfoPostDonor"
-        android:name="com.example.copyversion.FullInfoPostDonor"
+        android:name="com.rotlo.copyversion.FullInfoPostDonor"
         android:label="FullInfoPostDonor" >
         <action
             android:id="@+id/action_fullInfoPostDonor_to_chatApplicationn"
@@ -218,7 +218,7 @@
     </fragment>
     <fragment
         android:id="@+id/fullInfoOfRaise"
-        android:name="com.example.copyversion.FullInfoOfRaise"
+        android:name="com.rotlo.copyversion.FullInfoOfRaise"
         android:label="FullInfoOfRaise" >
         <action
             android:id="@+id/action_fullInfoOfRaise_to_chatApplicationn"
@@ -229,7 +229,7 @@
     </fragment>
     <fragment
         android:id="@+id/fullInfoOfSell"
-        android:name="com.example.copyversion.FullInfoOfSell"
+        android:name="com.rotlo.copyversion.FullInfoOfSell"
         android:label="FullInfoOfSell" >
         <action
             android:id="@+id/action_fullInfoOfSell_to_chatApplicationn"
@@ -240,7 +240,7 @@
     </fragment>
     <fragment
         android:id="@+id/imageOfFood2"
-        android:name="com.example.copyversion.ImageOfFood"
+        android:name="com.rotlo.copyversion.ImageOfFood"
         android:label="fragment_image_of_food"
         tools:layout="@layout/fragment_image_of_food" />
 
