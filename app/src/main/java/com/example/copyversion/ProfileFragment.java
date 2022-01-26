@@ -627,7 +627,6 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Log.d("TAG", "User account deleted.");
 
                                 Intent intent = new Intent(getContext(), MainActivity.class);
                                 startActivity(intent);

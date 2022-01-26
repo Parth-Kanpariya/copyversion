@@ -12,6 +12,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_add_post.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_attach_file_24.xml" value="0.1" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_food_bank_24.xml" value="0.23958333333333334" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.17962962962962964" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_baseline_send_button_24.xml" value="0.18333333333333332" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/drawable/ic_check.xml" value="0.1" />
@@ -44,6 +45,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_load_start_photo.xml" value="0.103125" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_login.xml" value="0.2234375" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_main.xml" value="0.20625" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_maps.xml" value="0.21927083333333333" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_navigation.xml" value="0.20625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_profile_of_user.xml" value="0.1265625" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/layout/activity_selling_fragment_page.xml" value="0.2234375" />
@@ -96,6 +98,7 @@
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1391304347826087" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/bottom_nav_menu_fragment.xml" value="0.103125" />
         <entry key="..\:/andropro/copyversion/app/src/main/res/menu/postmenu.xml" value="0.1" />
+        <entry key="..\:/andropro/copyversion/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17037037037037037" />
       </map>
     </option>
   </component>

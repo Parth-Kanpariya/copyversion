@@ -25,7 +25,6 @@ public class ResizeAnim extends Animation {
 //                    (startHeight + (targetHeight - startHeight) * interpolatedTime).toInt();
         } else {
 //            view.layoutParams.height = (startHeight + targetHeight * interpolatedTime).toInt();
-            Log.d("TAG_TAG", "applyTransformation: height = ${view.layoutParams.height}");
         }
         view.requestLayout();
     }

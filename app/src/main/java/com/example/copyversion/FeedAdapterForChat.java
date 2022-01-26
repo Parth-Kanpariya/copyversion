@@ -150,7 +150,7 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
 
         if(holder.sendMessage!=null)
         {
-            holder.sendMessage.setText(Decode.decode(address.getMessage().toString().trim()));
+            holder.sendMessage.setText(address.getMessage());
         }
 
 
@@ -230,7 +230,7 @@ public class FeedAdapterForChat extends RecyclerView.Adapter<FeedAdapterForChat.
 
 
         if (holder.quoteMessage != null) {
-            holder.quoteMessage.setText(Decode.decode(address.getQuote().trim()));
+            holder.quoteMessage.setText(address.getQuote());
         }
 
         if(holder.imageViewSend!=null)

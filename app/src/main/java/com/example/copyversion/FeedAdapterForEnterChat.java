@@ -64,7 +64,7 @@ public class FeedAdapterForEnterChat extends RecyclerView.Adapter<FeedAdapterFor
 
         ChatInitiateUtil chatInitiateUtil=FeedList.get(position);
         String uidOfOther=chatInitiateUtil.getOtherUid();
-        String last=Decode.decode(chatInitiateUtil.getLastMessage().trim());
+        String last=chatInitiateUtil.getLastMessage();
         if(last.length()>20)
         {
             last=last.substring(0,20);

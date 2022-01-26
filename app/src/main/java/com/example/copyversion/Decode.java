@@ -82,7 +82,6 @@ public class Decode {
             ch = (char) num[i];
             ret = ret.concat(String.valueOf(ch));
         }
-        Log.e("dec", "text 11 - " + ret);
 
         // check if the encrypted code was
         // generated for this algorithm

@@ -53,7 +53,6 @@ public class SortPlacesSelling implements Comparator<SellerInfo> {
 
         double distanceToPlace1 = distance(currentLatitude, currentLongitude, lat1, lon1);
         double distanceToPlace2 = distance(currentLatitude, currentLongitude, lat2, lon2);
-        Log.v("fg",""+ ((int)(distanceToPlace1- distanceToPlace2)));
         return (int)(distanceToPlace1- distanceToPlace2);
 
 

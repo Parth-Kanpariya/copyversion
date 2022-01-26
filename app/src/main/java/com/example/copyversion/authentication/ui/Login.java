@@ -172,16 +172,13 @@ public class Login extends AppCompatActivity {
                 try {
                     // Google Sign In was successful, authenticate with Firebase
                     GoogleSignInAccount account = task.getResult(ApiException.class);
-                    Log.d("ddfd", "firebaseAuthWithGoogle:" + account.getId());
                     firebaseAuthWithGoogle(account.getIdToken());
                 } catch (ApiException e) {
                     // Google Sign In failed, update UI appropriately
-                    Log.w("ncmd", "Google sign in failed", e);
                 }
 
             }else
             {
-                Log.w("dfnmdn",exception.toString());
             }
 
         }
@@ -195,7 +192,6 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("dfd", "signInWithCredential:success");
                             FirebaseUser user = auth.getCurrentUser();
                             User user1=new User();
 //                                user.setUri(profileUri);
@@ -248,7 +244,6 @@ public class Login extends AppCompatActivity {
 //                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("df", "signInWithCredential:failure", task.getException());
 //                            updateUI(null);
                         }
                     }
