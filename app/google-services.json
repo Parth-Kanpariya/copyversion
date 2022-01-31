@@ -8,26 +8,26 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:976664410188:android:f02d85334889112a06dce9",
+        "mobilesdk_app_id": "1:976664410188:android:ff1e286937493ecd06dce9",
         "android_client_info": {
-          "package_name": "com.example.copyversion"
+          "package_name": "com.rotlo.copyversion"
         }
       },
       "oauth_client": [
         {
-          "client_id": "976664410188-a8ct93avjamsjram1s0a9q9jsolaefbo.apps.googleusercontent.com",
+          "client_id": "976664410188-9oqknomr4di2bbgi54j97kh3ovgtehvc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.copyversion",
-            "certificate_hash": "9247229e51d08fe4017d508daecc47fee27d4bff"
+            "package_name": "com.rotlo.copyversion",
+            "certificate_hash": "53bdc02f227792767da8d1fd02ddd805b712b9cb"
           }
         },
         {
-          "client_id": "976664410188-fejo216lfed8v7ta2b6tsh1lt1odht4m.apps.googleusercontent.com",
+          "client_id": "976664410188-lk5jrf7fs73eenfi5jre1v6m9iuu6oc1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.copyversion",
-            "certificate_hash": "53bdc02f227792767da8d1fd02ddd805b712b9cb"
+            "package_name": "com.rotlo.copyversion",
+            "certificate_hash": "9247229e51d08fe4017d508daecc47fee27d4bff"
           }
         },
         {
